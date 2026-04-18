@@ -3,38 +3,40 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from mplsoccer import Pitch
 
-st.set_page_config(page_title="EPS Match Analysis", layout="wide")
-st.title("⚽ EPS Match Performance Dashboard")
+st.set_page_config(page_title="EPS Analysis", layout="wide")
 
 @st.cache_data
 def load_data():
-    df = pd.read_csv('EPS_Match_Data_Clean.csv')
-    return df
+    return pd.read_csv('EPS_Match_Data_Clean.csv')
 
-df = load_data()
+try:
+    df = load_data()
+    st.title("⚽ EPS Match Dashboard")
 
-col1, col2 = st.columns(2)
+    col1, col2 = st.columns([1, 2])
 
-with col1:
-    st.header("📊 Match Summary")
-    event_counts = df['Event Name'].str.split(' ').str[0].value_counts()
-    st.bar_chart(event_counts)
+    with col1:
+        st.subheader("Match Events")
+        counts = df['Event Name'].str.split(' ').str[0].value_counts()
+        st.bar_chart(counts)
 
-with col2:
-    st.header("🎯 Shot Map")
-    # فلترة التسديدات والتأكد من وجود إحداثيات
-    shots = df[df['Event Name'].str.contains('Shot', na=False)].dropna(subset=['X_Start', 'Y_Start'])
-    
-    # تعديل نظام الملعب ليتناسب مع أرقامك (من 0 لـ 1)
-    pitch = Pitch(pitch_type='custom', pitch_length=1, pitch_width=1, line_color='black')
-    fig, ax = pitch.draw(figsize=(8, 6))
-    
-    if not shots.empty:
-        pitch.scatter(shots.X_Start, shots.Y_Start, ax=ax, c='#ef4444', s=100, edgecolors='black')
-    
-    st.pyplot(fig)
+    with col2:
+        st.subheader("Shot Map")
+        # فلترة ذكية للتسديدات
+        shots = df[df['Event Name'].str.contains('Shot', case=False, na=False)]
+        
+        # رسم الملعب بنظام مرن
+        pitch = Pitch(pitch_type='custom', pitch_length=100, pitch_width=100)
+        fig, ax = pitch.draw()
+        
+        if not shots.empty:
+            # ضرب الإحداثيات في 100 لأن مكتبة الرسم بتفهم الأرقام الكبيرة أحسن
+            plt.scatter(shots['X_Start'] * 100, shots['Y_Start'] * 100, c='red', s=100, edgecolors='black')
+        
+        st.pyplot(fig)
 
-st.header("🔝 Top Passers")
-passes = df[df['Event Name'].str.contains('Pass', na=False)]
-top_passers = passes['Players'].value_counts().head(10)
-st.table(top_passers)
+    st.subheader("Top Players (Passes)")
+    st.dataframe(df[df['Event Name'].str.contains('Pass', na=False)]['Players'].value_counts().head(10))
+
+except Exception as e:
+    st.error(f"Error loading dashboard: {e}")
