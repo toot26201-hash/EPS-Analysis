@@ -3,11 +3,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from mplsoccer import Pitch
 
-# إعدادات الصفحة
 st.set_page_config(page_title="EPS Match Analysis", layout="wide")
 st.title("⚽ EPS Match Performance Dashboard")
 
-# تحميل البيانات
 @st.cache_data
 def load_data():
     df = pd.read_csv('EPS_Match_Data_Clean.csv')
@@ -15,7 +13,6 @@ def load_data():
 
 df = load_data()
 
-# توزيع الصفحة
 col1, col2 = st.columns(2)
 
 with col1:
@@ -25,10 +22,16 @@ with col1:
 
 with col2:
     st.header("🎯 Shot Map")
-    shots = df[df['Event Name'].str.contains('Shot', na=False)]
+    # فلترة التسديدات والتأكد من وجود إحداثيات
+    shots = df[df['Event Name'].str.contains('Shot', na=False)].dropna(subset=['X_Start', 'Y_Start'])
+    
+    # تعديل نظام الملعب ليتناسب مع أرقامك (من 0 لـ 1)
     pitch = Pitch(pitch_type='custom', pitch_length=1, pitch_width=1, line_color='black')
     fig, ax = pitch.draw(figsize=(8, 6))
-    pitch.scatter(shots.X_Start, shots.Y_Start, ax=ax, c='#ef4444', s=100, edgecolors='black')
+    
+    if not shots.empty:
+        pitch.scatter(shots.X_Start, shots.Y_Start, ax=ax, c='#ef4444', s=100, edgecolors='black')
+    
     st.pyplot(fig)
 
 st.header("🔝 Top Passers")
