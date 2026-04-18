@@ -2,10 +2,9 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 from mplsoccer import Pitch
-import seaborn as sns
 
 st.set_page_config(page_title="EPS Tactical Lab", layout="wide")
-st.title("⚽ Final Third & Penalty Box Analysis")
+st.title("⚽ Advanced Penalty Box Entries")
 
 @st.cache_data
 def load_data():
@@ -17,57 +16,55 @@ def load_data():
 try:
     df = load_data()
 
-    # --- 1. فلترة اختراقات الثلث الأخير ---
-    f3_entries = df[(df['X_End'] >= 0.66) & (df['X_Start'] < 0.66)].copy()
-    
-    # --- 2. فلترة دخول منطقة الجزاء ---
+    # 1. تعريف "دخول منطقة الجزاء"
     box_entries = df[
         (df['X_End'] >= 0.83) & (df['Y_End'] >= 0.22) & (df['Y_End'] <= 0.78) & (df['X_Start'] < 0.83)
     ].copy()
 
-    # تصنيف طريقة دخول الصندوق
-    def entry_method(row):
+    # 2. وظيفة تصنيف "ذكية" للدخول
+    def get_entry_method(row):
+        # لو هي تمريرة
         if 'Pass' in str(row['Event Name']):
-            if abs(row['Y_End'] - row['Y_Start']) > 0.3: return "Cross"
-            else: return "Through Pass"
-        return "Dribble/Carry"
+            # العرضية لازم تبدأ من "طرف الملعب" (Y < 0.25 أو Y > 0.75)
+            if row['Y_Start'] < 0.25 or row['Y_Start'] > 0.75:
+                return "Cross"
+            else:
+                return "Through Pass / Cut-back"
+        # لو مش تمريرة يبقى جري بالكورة
+        return "Dribble / Carry"
 
     if not box_entries.empty:
-        box_entries['Method'] = box_entries.apply(entry_method, axis=1)
+        box_entries['Method'] = box_entries.apply(get_entry_method, axis=1)
 
-    # --- العرض ---
-    tab1, tab2 = st.tabs(["Final Third Entries", "Penalty Box Detail"])
+    # --- العرض المرئي ---
+    col1, col2 = st.columns([2, 1])
 
-    with tab1:
-        st.subheader("🗺️ How we enter the Final Third")
-        pitch = Pitch(pitch_type='statsbomb', pitch_color='#22312b', line_color='#efefef')
+    with col1:
+        st.subheader("🎯 Penalty Box Entry Map")
+        pitch = Pitch(pitch_type='statsbomb', pitch_color='#22312b', line_color='#efefef', stripe=True)
         fig, ax = pitch.draw(figsize=(10, 7))
-        # رسم أسهم الدخول للثلث الأخير
-        pitch.arrows(f3_entries.X_Start*120, f3_entries.Y_Start*80, 
-                     f3_entries.X_End*120, f3_entries.Y_End*80, color='#adff2f', ax=ax, width=2)
-        st.pyplot(fig)
-        st.write(f"إجمالي عدد مرات دخول الثلث الأخير: {len(f3_entries)}")
-
-    with tab2:
-        st.subheader("🎯 Penalty Box Entry Methods")
-        col_m1, col_m2 = st.columns([2, 1])
         
-        with col_m1:
-            pitch = Pitch(pitch_type='statsbomb', pitch_color='#22312b', line_color='#efefef')
-            fig, ax = pitch.draw(figsize=(10, 7))
-            # تلوين الدخول حسب الطريقة
-            for _, row in box_entries.iterrows():
-                color = "cyan" if row['Method'] == "Through Pass" else "yellow" if row['Method'] == "Cross" else "magenta"
-                pitch.arrows(row.X_Start*120, row.Y_Start*80, row.X_End*120, row.Y_End*80, color=color, ax=ax, width=3)
-            st.pyplot(fig)
-            st.write("🔵 Through Pass | 🟡 Cross | 🔴 Dribble")
+        # ألوان محددة لكل نوع
+        colors = {"Cross": "yellow", "Through Pass / Cut-back": "#00bfff", "Dribble / Carry": "#ff00ff"}
+        
+        for _, row in box_entries.iterrows():
+            pitch.arrows(row.X_Start*120, row.Y_Start*80, row.X_End*120, row.Y_End*80, 
+                         color=colors.get(row['Method'], "white"), ax=ax, width=3, headwidth=8)
+        
+        st.pyplot(fig)
+        st.write("🟡 **Yellow: Crosses** (From Wings) | 🔵 **Blue: Central Passes** | 🔴 **Pink: Dribbles**")
 
-        with col_m2:
-            if not box_entries.empty:
-                st.write("**Entry Stats:**")
-                st.bar_chart(box_entries['Method'].value_counts())
-                st.write("**Top Players entering the box:**")
-                st.write(box_entries['Players'].value_counts().head(5))
+    with col2:
+        st.subheader("📊 Entry Stats")
+        method_counts = box_entries['Method'].value_counts()
+        st.bar_chart(method_counts)
+        
+        st.write("**Top Players entering the box:**")
+        st.table(box_entries['Players'].value_counts().head(5))
+
+    st.divider()
+    st.subheader("📋 Raw Data (Box Entries Only)")
+    st.dataframe(box_entries[['Players', 'Event Name', 'Method', 'X_Start', 'Y_Start']])
 
 except Exception as e:
     st.error(f"Error: {e}")
