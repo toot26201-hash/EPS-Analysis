@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from mplsoccer import Pitch
 
-st.set_page_config(page_title="EPS Team Tactical Analysis", layout="wide")
+st.set_page_config(page_title="EPS Team Analysis", layout="wide")
 
 @st.cache_data
 def load_data():
@@ -12,7 +12,6 @@ def load_data():
         # تأكد أن اسم الملف EPS_Match_Data.xlsx
         df = pd.read_excel('EPS_Match_Data.xlsx')
         df.columns = df.columns.str.strip()
-        # تحويل الإحداثيات لأرقام
         for col in ['X_Start', 'Y_Start', 'X_End', 'Y_End']:
             df[col] = pd.to_numeric(df[col], errors='coerce')
         return df.dropna(subset=['X_Start', 'Y_Start', 'X_End', 'Y_End'])
@@ -23,66 +22,55 @@ def load_data():
 df = load_data()
 
 if not df.empty:
-    st.title("🎯 EPS Team: Zone 14 & Half-space Entries")
-    st.subheader("تحليل اختراقات الفريق للمناطق المؤثرة")
+    st.title("🎯 EPS Team: Zone 14 & Half-space Arrows")
 
-    # --- معالجة الإحداثيات للجماعي ---
-    # ضبط المحاور (الـ Y في الإكسيل هو الـ X في الملعب)
-    df['x_s_plot'] = df['Y_Start'] * 120
-    df['y_s_plot'] = df['X_Start'] * 80
-    df['x_e_plot'] = df['Y_End'] * 120
-    df['y_e_plot'] = df['X_End'] * 80
+    # --- ضبط الإحداثيات (قلبة المحاور لضبط الاتجاه) ---
+    df['x_s'] = df['Y_Start'] * 120
+    df['y_s'] = df['X_Start'] * 80
+    df['x_e'] = df['Y_End'] * 120
+    df['y_e'] = df['X_End'] * 80
 
-    # تعريف المناطق تكتيكياً
+    # تعريف المناطق بدقة
     def classify_zone(x, y):
-        # Zone 14 (80-102 طول، 30-50 عرض)
+        # Zone 14
         if 80 <= x <= 102 and 30 <= y <= 50:
             return "Zone 14"
-        # Half-spaces (80-102 طول، العرض 18-30 أو 50-62)
+        # Half-spaces
         elif 80 <= x <= 102 and ((18 <= y <= 30) or (50 <= y <= 62)):
             return "Half-space"
         return "Other"
 
-    df['Target_Zone'] = df.apply(lambda r: classify_zone(r['x_e_plot'], r['y_e_plot']), axis=1)
+    df['Target_Zone'] = df.apply(lambda r: classify_zone(r['x_e'], r['y_e']), axis=1)
     
-    # فلترة التمريرات الجماعية اللي دخلت المناطق دي بس
-    team_tactical = df[df['Target_Zone'] != "Other"].copy()
+    # فلترة التمريرات اللي دخلت الأهداف التكتيكية
+    team_passes = df[df['Target_Zone'] != "Other"].copy()
 
     # رسم الملعب
     pitch = Pitch(pitch_type='statsbomb', pitch_color='#1e293b', line_color='#777777')
     fig, ax = pitch.draw(figsize=(13, 9))
 
-    # رسم تظليل المناطق
-    # Zone 14 (أحمر خفيف)
-    ax.add_patch(patches.Rectangle((80, 30), 22, 20, color='red', alpha=0.1, label='Zone 14'))
-    # Half-spaces (أزرق خفيف)
-    ax.add_patch(patches.Rectangle((80, 18), 22, 12, color='blue', alpha=0.05, label='Half-space'))
-    ax.add_patch(patches.Rectangle((80, 50), 22, 12, color='blue', alpha=0.05))
+    # 1. رسم التظليل أولاً (عشان يكون تحت الأسهم)
+    ax.add_patch(patches.Rectangle((80, 30), 22, 20, color='red', alpha=0.15)) # Zone 14
+    ax.add_patch(patches.Rectangle((80, 18), 22, 12, color='blue', alpha=0.1)) # Half-space Top
+    ax.add_patch(patches.Rectangle((80, 50), 22, 12, color='blue', alpha=0.1)) # Half-space Bottom
 
-    # رسم التمريرات (كل نوع بلون)
-    for _, row in team_tactical.iterrows():
-        if row['Target_Zone'] == "Zone 14":
-            color = "#ff4b4b" # أحمر للـ Zone 14
-            label = "Zone 14"
-        else:
-            color = "#38bdf8" # أزرق للـ Half-space
-            label = "Half-space"
-            
-        pitch.arrows(row['x_s_plot'], row['y_s_plot'], 
-                     row['x_e_plot'], row['y_e_plot'], 
-                     color=color, ax=ax, width=2, headwidth=4, alpha=0.7)
-
-    st.pyplot(fig)
-
-    # إحصائيات سريعة للمدرب
-    col1, col2 = st.columns(2)
-    with col1:
-        st.metric("Total Zone 14 Entries", len(team_tactical[team_tactical['Target_Zone']=="Zone 14"]))
-    with col2:
-        st.metric("Total Half-space Entries", len(team_tactical[team_tactical['Target_Zone']=="Half-space"]))
-
-    st.write("🔴 Zone 14 Entries | 🔵 Half-space Entries")
-    st.dataframe(team_tactical[['Players', 'Event Name', 'Target_Zone']].sort_values('Target_Zone'))
+    # 2. رسم الأسهم فوق التظليل
+    if not team_passes.empty:
+        for _, row in team_passes.iterrows():
+            color = "#ff4b4b" if row['Target_Zone'] == "Zone 14" else "#38bdf8"
+            # رسم السهم
+            pitch.arrows(row['x_s'], row['y_s'], row['x_e'], row['y_e'], 
+                         color=color, ax=ax, width=2.5, headwidth=4, alpha=0.9, zorder=3)
+        
+        st.pyplot(fig)
+        
+        # ملخص الأرقام
+        c1, c2 = st.columns(2)
+        c1.metric("Zone 14 Entries 🔴", len(team_passes[team_passes['Target_Zone']=="Zone 14"]))
+        c2.metric("Half-space Entries 🔵", len(team_passes[team_passes['Target_Zone']=="Half-space"]))
+    else:
+        st.warning("لم يتم العثور على تمريرات دخلت هذه المناطق. تأكد من دقة الإحداثيات في ملف الإكسيل.")
+        st.pyplot(fig)
 
 else:
-    st.info("ارفع ملف الإكسيل EPS_Match_Data.xlsx عشان نشوف أداء الفريق.")
+    st.info("ارفع ملف الإكسيل EPS_Match_Data.xlsx")
