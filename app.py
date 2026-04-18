@@ -1,48 +1,76 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-from mplsoccer import Pitch
-import os
+from mplsoccer import Pitch, VerticalPitch
+import seaborn as sns
 
-st.set_page_config(page_title="EPS Analysis", layout="wide")
-st.title("⚽ EPS Match Dashboard")
+st.set_page_config(page_title="EPS Pro Dashboard", layout="wide")
+st.title("📊 EPS Performance Analysis - Pro Level")
 
-# اسم الملف اللي بنور عليه
-FILE_NAME = 'EPS_Match_Data_Clean.csv'
-
-if os.path.exists(FILE_NAME):
-    df = pd.read_csv(FILE_NAME)
-    
-    # تنظيف أسماء الأعمدة من أي مسافات زايدة
+@st.cache_data
+def load_data():
+    df = pd.read_csv('EPS_Match_Data_Clean.csv')
     df.columns = df.columns.str.strip()
-    
-    col1, col2 = st.columns([1, 2])
+    return df
 
-    with col1:
-        st.subheader("📊 Match Summary")
-        if 'Event Name' in df.columns:
-            counts = df['Event Name'].str.split(' ').str[0].value_counts()
-            st.bar_chart(counts)
-        else:
-            st.warning("Column 'Event Name' not found")
+df = load_data()
 
-    with col2:
-        st.subheader("🎯 Shot Map")
-        pitch = Pitch(pitch_type='statsbomb', pitch_color='#22312b', line_color='#c7d5cc')
-        fig, ax = pitch.draw(figsize=(8, 6))
-        
-        # محاولة رسم التسديدات لو الأعمدة موجودة
-        if 'X_Start' in df.columns and 'Y_Start' in df.columns:
-            shots = df[df['Event Name'].str.contains('Shot', na=False, case=False)]
-            # تحويل الإحداثيات لمقياس Statsbomb (120x80) لو هي (0-1)
-            pitch.scatter(shots['X_Start']*120, shots['Y_Start']*80, ax=ax, c='#ef4444', s=100)
-        
-        st.pyplot(fig)
+# --- Sidebar: قائمة اختيار اللاعب ---
+st.sidebar.header("Filters")
+all_players = ["All Team"] + sorted(df['Players'].unique().tolist())
+selected_player = st.sidebar.selectbox("Select Player", all_players)
 
-    st.subheader("🔝 Top Players (Passes)")
-    if 'Players' in df.columns:
-        st.dataframe(df[df['Event Name'].str.contains('Pass', na=False)]['Players'].value_counts().head(10))
-
+# فلترة البيانات بناءً على الاختيار
+if selected_player == "All Team":
+    filtered_df = df
 else:
-    st.error(f"❌ الملف مش موجود في GitHub! اتأكد إنك رفعت ملف اسمه: {FILE_NAME}")
-    st.info("الملفات اللي السيستم شايفها دلوقتي هي: " + str(os.listdir()))
+    filtered_df = df[df['Players'] == selected_player]
+
+# --- توزيع الصفحة ---
+col1, col2 = st.columns(2)
+
+with col1:
+    st.subheader(f"📍 Action Heatmap: {selected_player}")
+    pitch = Pitch(pitch_type='statsbomb', line_zorder=2, pitch_color='#22312b', line_color='#efefef')
+    fig, ax = pitch.draw(figsize=(8, 6))
+    
+    # رسم الخريطة الحرارية
+    if not filtered_df.empty:
+        kde = sns.kdeplot(
+            x=filtered_df['X_Start'] * 120,
+            y=filtered_df['Y_Start'] * 80,
+            fill=True,
+            thresh=0.05,
+            levels=100,
+            cmap='hot',
+            alpha=0.5,
+            ax=ax
+        )
+    st.pyplot(fig)
+
+with col2:
+    st.subheader(f"🎯 Shot Map: {selected_player}")
+    pitch = Pitch(pitch_type='statsbomb', pitch_color='#22312b', line_color='#efefef')
+    fig, ax = pitch.draw(figsize=(8, 6))
+    
+    shots = filtered_df[filtered_df['Event Name'].str.contains('Shot', na=False, case=False)]
+    if not shots.empty:
+        pitch.scatter(shots['X_Start']*120, shots['Y_Start']*80, ax=ax, c='#ef4444', s=150, edgecolors='white', label='Shots')
+    st.pyplot(fig)
+
+# --- جدول الإحصائيات أسفل الملعب ---
+st.divider()
+st.subheader(f"📈 Performance Stats: {selected_player}")
+stats_col1, stats_col2, stats_col3 = st.columns(3)
+
+with stats_col1:
+    total_actions = len(filtered_df)
+    st.metric("Total Actions", total_actions)
+
+with stats_col2:
+    passes_count = len(filtered_df[filtered_df['Event Name'].str.contains('Pass', na=False)])
+    st.metric("Total Passes", passes_count)
+
+with stats_col3:
+    shots_count = len(filtered_df[filtered_df['Event Name'].str.contains('Shot', na=False)])
+    st.metric("Total Shots", shots_count)
