@@ -5,7 +5,7 @@ from mplsoccer import Pitch
 import seaborn as sns
 from highlight_text import ax_text
 
-st.set_page_config(page_title="EPS Pro Elite Analysis", layout="wide")
+st.set_page_config(page_title="EPS Calibration Tool", layout="wide")
 
 @st.cache_data
 def load_data():
@@ -23,47 +23,48 @@ def load_data():
 try:
     df = load_data()
     if not df.empty:
+        # فك الأسماء
         all_names = df['Players'].str.split('|').explode().str.strip()
         clean_list = sorted([p for p in all_names.unique() if p and p not in ['nan', 'Unknown']])
-        selected_player = st.sidebar.selectbox("Select Player", clean_list)
+        
+        st.sidebar.header("⚙️ إعدادات المعايرة")
+        selected_player = st.sidebar.selectbox("اختر اللاعب", clean_list)
+        
+        # --- السحر هنا: أزرار لضبط الاتجاه لو طلع غلط ---
+        flip_axes = st.sidebar.checkbox("تبديل الطول بالعرض (Swap X/Y)")
+        invert_x = st.sidebar.checkbox("عكس اتجاه الهجوم (Invert X)")
+
         player_df = df[df['Players'].str.contains(selected_player, na=False)].copy()
 
-        st.title(f"📊 Tactical Report: {selected_player}")
+        st.title(f"📊 Pass Map: {selected_player}")
 
-        # رسم الملعب
         pitch = Pitch(pitch_type='statsbomb', pitch_color='#1e293b', line_color='#777777', linestyle='--', linewidth=1)
         fig, ax = pitch.draw(figsize=(12, 9))
 
-        if not player_df.empty:
-            for _, row in player_df.iterrows():
-                # --- الفلترة والضبط النهائي ---
-                # تبديل X و Y عشان نعدل الاتجاه المائل
-                x_s, y_s = row['Y_Start'] * 120, row['X_Start'] * 80
-                x_e, y_e = row['Y_End'] * 120, row['X_End'] * 80
-                
-                # حساب المسافة (لو التمريرة أقل من 4 متر شيلها لأنها بتعمل زحمة)
-                dist = ((x_e-x_s)**2 + (y_e-y_s)**2)**0.5
-                if dist < 4: continue
-
-                # تحديد اللون بناءً على التقدم للأمام فقط
-                if (x_e - x_s) > 10: 
-                    color = "#38bdf8" # تمريرة للأمام (مفيدة)
-                    alpha = 0.8
-                elif abs(y_e - y_s) > 20:
-                    color = "#fbbf24" # عرضية
-                    alpha = 0.6
-                else:
-                    color = "#ef4444" # للخلف أو عرضية قصيرة
-                    alpha = 0.4
-
-                pitch.arrows(x_s, y_s, x_e, y_e, color=color, ax=ax, width=1.8, headwidth=4, alpha=alpha)
-
-            # إضافة اسم اللاعب
-            ax_text(60, -5, f"<{selected_player}>", fontsize=25, color='white', 
-                    fontweight='bold', ha='center', ax=ax, highlight_textprops=[{"color": "#38bdf8"}])
+        for _, row in player_df.iterrows():
+            # ضبط الإحداثيات بناءً على اختياراتك في الـ Sidebar
+            if flip_axes:
+                xs, ys = row['Y_Start'], row['X_Start']
+                xe, ye = row['Y_End'], row['X_End']
+            else:
+                xs, ys = row['X_Start'], row['Y_Start']
+                xe, ye = row['X_End'], row['Y_End']
             
+            if invert_x:
+                xs, xe = 1 - xs, 1 - xe
+
+            # التحويل النهائي لمقاس الملعب
+            x_s, y_s = xs * 120, ys * 80
+            x_e, y_e = xe * 120, ye * 80
+            
+            if ((x_e-x_s)**2 + (y_e-y_s)**2)**0.5 < 4: continue
+
+            # تلوين ذكي
+            color = "#38bdf8" if (x_e - x_s) > 10 else "#ef4444"
+            pitch.arrows(x_s, y_s, x_e, y_e, color=color, ax=ax, width=2, headwidth=4, alpha=0.7)
+
+        ax_text(60, -5, f"<{selected_player}>", fontsize=25, color='white', fontweight='bold', ha='center', ax=ax, highlight_textprops=[{"color": "#38bdf8"}])
         st.pyplot(fig)
-        st.write("🔵 تمريرات هجومية | 🟡 عرضيات | 🔴 تمريرات تحضيرية")
 
 except Exception as e:
     st.error(f"Error: {e}")
