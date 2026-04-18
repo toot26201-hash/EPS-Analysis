@@ -1,71 +1,73 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-from mplsoccer import Pitch, VerticalPitch
-import numpy as np
+from mplsoccer import Pitch
+import seaborn as sns
 
-st.set_page_config(page_title="EPS Elite Dashboard", layout="wide")
-st.title("🚀 EPS Elite Tactical Analytics")
+st.set_page_config(page_title="EPS Tactical Lab", layout="wide")
+st.title("⚽ Final Third & Penalty Box Analysis")
 
 @st.cache_data
 def load_data():
     df = pd.read_csv('EPS_Match_Data_Clean.csv')
     df.columns = df.columns.str.strip()
     df['Players'] = df['Players'].fillna('Unknown')
-    # حساب المسافة التقدمية (كم متر الكورة قربت للمرمى)
-    df['prog_dist'] = df['X_End'] - df['X_Start']
     return df
 
 try:
     df = load_data()
+
+    # --- 1. فلترة اختراقات الثلث الأخير ---
+    f3_entries = df[(df['X_End'] >= 0.66) & (df['X_Start'] < 0.66)].copy()
     
-    # القائمة الجانبية
-    st.sidebar.header("Elite Analytics")
-    analysis_type = st.sidebar.selectbox("Select Analysis", ["Progressive Actions", "Pass Network", "Field Tilt"])
-    selected_player = st.sidebar.selectbox("Filter by Player", ["All Team"] + sorted(df['Players'].unique().tolist()))
+    # --- 2. فلترة دخول منطقة الجزاء ---
+    box_entries = df[
+        (df['X_End'] >= 0.83) & (df['Y_End'] >= 0.22) & (df['Y_End'] <= 0.78) & (df['X_Start'] < 0.83)
+    ].copy()
 
-    if selected_player != "All Team":
-        df_filtered = df[df['Players'] == selected_player]
-    else:
-        df_filtered = df
+    # تصنيف طريقة دخول الصندوق
+    def entry_method(row):
+        if 'Pass' in str(row['Event Name']):
+            if abs(row['Y_End'] - row['Y_Start']) > 0.3: return "Cross"
+            else: return "Through Pass"
+        return "Dribble/Carry"
 
-    # 1. تحليل التمريرات التقدمية (Progressive Passes)
-    if analysis_type == "Progressive Actions":
-        st.subheader("🎯 Progressive Passes & Carries")
-        # تعريف التمريرة التقدمية: هي اللي بتمشي 10 متر لقدام على الأقل في اتجاه الخصم
-        prog_df = df_filtered[(df_filtered['Event Name'].str.contains('Pass', na=False)) & (df_filtered['prog_dist'] > 0.25)]
-        
-        pitch = Pitch(pitch_type='statsbomb', pitch_color='#1a1a1a', line_color='#c7d5cc')
-        fig, ax = pitch.draw(figsize=(12, 8))
-        pitch.arrows(prog_df.X_Start*120, prog_df.Y_Start*80, prog_df.X_End*120, prog_df.Y_End*80, 
-                     color='#39FF14', width=2, headwidth=10, ax=ax)
-        st.pyplot(fig)
-        st.info(f"عدد التمريرات التقدمية: {len(prog_df)} - وهي التمريرات التي تكسر الخطوط وتدفع الفريق للأمام.")
+    if not box_entries.empty:
+        box_entries['Method'] = box_entries.apply(entry_method, axis=1)
 
-    # 2. شبكة التمرير (Pass Network - Simplified)
-    elif analysis_type == "Pass Network":
-        st.subheader("🕸️ Player Connections (Simplified)")
-        # حساب متوسط مراكز اللاعبين وعدد التمريرات بينهم
-        avg_locations = df.groupby('Players').agg({'X_Start': 'mean', 'Y_Start': 'mean'}).reset_index()
-        
-        pitch = Pitch(pitch_type='statsbomb', pitch_color='#1a1a1a', line_color='#555555')
+    # --- العرض ---
+    tab1, tab2 = st.tabs(["Final Third Entries", "Penalty Box Detail"])
+
+    with tab1:
+        st.subheader("🗺️ How we enter the Final Third")
+        pitch = Pitch(pitch_type='statsbomb', pitch_color='#22312b', line_color='#efefef')
         fig, ax = pitch.draw(figsize=(10, 7))
-        
-        # رسم اللاعبين كدوائر في أماكنهم المتوسطة
-        pitch.scatter(avg_locations.X_Start*120, avg_locations.Y_Start*80, s=300, color='#00bfff', edgecolors='white', ax=ax)
-        for i, row in avg_locations.iterrows():
-            pitch.annotate(row.Players, (row.X_Start*120, row.Y_Start*80-2), ax=ax, color='white', fontsize=8, ha='center')
+        # رسم أسهم الدخول للثلث الأخير
+        pitch.arrows(f3_entries.X_Start*120, f3_entries.Y_Start*80, 
+                     f3_entries.X_End*120, f3_entries.Y_End*80, color='#adff2f', ax=ax, width=2)
         st.pyplot(fig)
-        st.write("هذا الشكل يوضح متوسط تمركز اللاعبين وشكل الـ Structure الخاص بالفريق.")
+        st.write(f"إجمالي عدد مرات دخول الثلث الأخير: {len(f3_entries)}")
 
-    # 3. الـ Field Tilt (الضغط العالي)
-    elif analysis_type == "Field Tilt":
-        st.subheader("🔥 Field Tilt & Territory Control")
-        # تقسيم الملعب لـ 5 مناطق طولية
-        df['zone'] = pd.cut(df['X_Start'], bins=[0, 0.2, 0.4, 0.6, 0.8, 1.0], labels=['Own 1st', 'Own 2nd', 'Middle', 'Final 3rd', 'Deep Box'])
-        zone_counts = df['zone'].value_counts().sort_index()
-        st.bar_chart(zone_counts)
-        st.write("يوضح الرسم البياني في أي منطقة من الملعب يمتلك الفريق أكبر عدد من الأفعال (Actions).")
+    with tab2:
+        st.subheader("🎯 Penalty Box Entry Methods")
+        col_m1, col_m2 = st.columns([2, 1])
+        
+        with col_m1:
+            pitch = Pitch(pitch_type='statsbomb', pitch_color='#22312b', line_color='#efefef')
+            fig, ax = pitch.draw(figsize=(10, 7))
+            # تلوين الدخول حسب الطريقة
+            for _, row in box_entries.iterrows():
+                color = "cyan" if row['Method'] == "Through Pass" else "yellow" if row['Method'] == "Cross" else "magenta"
+                pitch.arrows(row.X_Start*120, row.Y_Start*80, row.X_End*120, row.Y_End*80, color=color, ax=ax, width=3)
+            st.pyplot(fig)
+            st.write("🔵 Through Pass | 🟡 Cross | 🔴 Dribble")
+
+        with col_m2:
+            if not box_entries.empty:
+                st.write("**Entry Stats:**")
+                st.bar_chart(box_entries['Method'].value_counts())
+                st.write("**Top Players entering the box:**")
+                st.write(box_entries['Players'].value_counts().head(5))
 
 except Exception as e:
     st.error(f"Error: {e}")
