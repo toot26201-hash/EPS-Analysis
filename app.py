@@ -2,10 +2,9 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 from mplsoccer import Pitch
-import seaborn as sns
 from highlight_text import ax_text
 
-st.set_page_config(page_title="EPS Elite Analytics", layout="wide")
+st.set_page_config(page_title="EPS Player Pass Maps", layout="wide")
 
 @st.cache_data
 def load_data():
@@ -17,62 +16,65 @@ def load_data():
 try:
     df = load_data()
     
-    # تنظيف قائمة اللاعبين من الـ "|"
+    # تنظيف الأسماء وفك التمريرات المركبة (حسب الصور السابقة)
     all_names_raw = df['Players'].str.split('|').explode().str.strip()
     clean_player_list = sorted([p for p in all_names_raw.unique() if p and p not in ['nan', 'Unknown']])
 
-    # --- القائمة الجانبية ---
-    st.sidebar.header("🎨 Analysis Settings")
-    selected_player = st.sidebar.selectbox("Select Player", clean_player_list)
-    analysis_mode = st.sidebar.radio("View Mode", ["Heatmap", "Final Third Entries"])
+    st.sidebar.header("📋 إعدادات الخريطة")
+    selected_player = st.sidebar.selectbox("اختر اللاعب", clean_player_list)
 
-    # فلترة بيانات اللاعب
-    player_df = df[df['Players'].str.contains(selected_player, na=False)].copy()
+    # فلترة التمريرات فقط للاعب المختار
+    player_passes = df[
+        (df['Players'].str.contains(selected_player, na=False)) & 
+        (df['Event Name'].str.contains('Pass', na=False, case=False))
+    ].copy()
 
-    st.title(f"📊 {selected_player} Analysis Report")
+    st.title(f"📍 Pass Map: {selected_player}")
 
-    if analysis_mode == "Heatmap":
-        # شكل الهيت ماب الاحترافي اللي طلبته
-        pitch = Pitch(pitch_type='statsbomb', pitch_color='#1a1a1a', line_color='#777777')
-        fig, ax = pitch.draw(figsize=(10, 8))
-        fig.set_facecolor('#1a1a1a')
+    # --- إعداد الملعب حسب طلبك بالظبط ---
+    pitch = Pitch(
+        pitch_type='statsbomb', 
+        pitch_color='#22312b', 
+        line_color='#c7d5cc',
+        linestyle='--', 
+        linewidth=1, 
+        goal_linestyle='-'
+    )
+    fig, ax = pitch.draw(figsize=(12, 9))
+    fig.set_facecolor('#22312b')
 
-        if not player_df.empty:
-            sns.kdeplot(x=player_df['X_Start']*120, y=player_df['Y_Start']*80, 
-                        fill=True, thresh=0.05, levels=100, cmap='magma', alpha=0.7, ax=ax)
-            
-            # إضافة اسم اللاعب داخل الصورة للتحميل
-            ax_text(60, -5, f"<{selected_player}>", fontsize=22, color='white', 
-                    fontweight='bold', ha='center', ax=ax, highlight_textprops=[{"color": "#ff4b4b"}])
-        st.pyplot(fig)
+    if not player_passes.empty:
+        # تصنيف التمريرات للتلوين
+        def get_color(row):
+            # عرضية: تبدأ من الأطراف
+            if row['Y_Start'] < 0.20 or row['Y_Start'] > 0.80:
+                return "yellow"
+            # طولية: مسافة التقدم في الملعب كبيرة
+            elif (row['X_End'] - row['X_Start']) > 0.30:
+                return "#00bfff" # أزرق سماوي
+            # تمريرة عادية
+            else:
+                return "#ff4b4b" # أحمر
 
-    else:
-        # ملعب النجيلة وتحليل التمريرات بالألوان
-        st.subheader("🚀 Final Third Entry Passes")
-        pitch = Pitch(pitch_type='statsbomb', pitch_color='grass', line_color='white', stripe=True)
-        fig, ax = pitch.draw(figsize=(10, 8))
+        for _, row in player_passes.iterrows():
+            color = get_color(row)
+            pitch.arrows(
+                row.X_Start*120, row.Y_Start*80, 
+                row.X_End*120, row.Y_End*80, 
+                color=color, ax=ax, width=2, headwidth=5, alpha=0.7
+            )
+
+        # إضافة اسم اللاعب وعنوان الخريطة داخل الصورة
+        ax_text(60, -5, f"<{selected_player}> | <Pass Map Analysis>", 
+                fontsize=20, color='white', fontweight='bold', ha='center', ax=ax,
+                highlight_textprops=[{"color": "#00bfff"}, {"color": "yellow"}])
         
-        f3_passes = player_df[(player_df['Event Name'].str.contains('Pass', na=False)) & 
-                              (player_df['X_End'] >= 0.66) & (player_df['X_Start'] < 0.66)].copy()
-
-        if not f3_passes.empty:
-            # تصنيف وتلوين التمريرات
-            for _, row in f3_passes.iterrows():
-                # عرضية (من الطرف)
-                if row['Y_Start'] < 0.25 or row['Y_Start'] > 0.75:
-                    color = "yellow"
-                # طولية (مسافة كبيرة)
-                elif (row['X_End'] - row['X_Start']) > 0.20:
-                    color = "#00bfff"
-                # قصيرة
-                else:
-                    color = "#ff1493"
-                
-                pitch.arrows(row.X_Start*120, row.Y_Start*80, row.X_End*120, row.Y_End*80, 
-                             color=color, ax=ax, width=3, headwidth=8)
-            
-            st.write("🟡 Yellow: Crosses | 🔵 Blue: Long Vertical | 🔴 Pink: Short Entries")
         st.pyplot(fig)
+        
+        # مفتاح الألوان
+        st.write("🟡 **Yellow:** Crosses | 🔵 **Blue:** Long/Vertical Passes | 🔴 **Red:** Short/Other Passes")
+    else:
+        st.warning(f"لا توجد بيانات تمريرات مسجلة للاعب {selected_player} في هذا الملف.")
 
 except Exception as e:
-    st.error(f"Error: {e}")
+    st.error(f"حدث خطأ أثناء التشغيل: {e}")
