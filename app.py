@@ -2,49 +2,67 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 from mplsoccer import Pitch
+from highlight_text import ax_text
 
-st.set_page_config(page_title="EPS Realistic Maps", layout="wide")
+st.set_page_config(page_title="EPS Realistic Pass Maps", layout="wide")
 
 @st.cache_data
 def load_data():
     df = pd.read_csv('EPS_Match_Data_Clean.csv')
     df.columns = df.columns.str.strip()
-    return df
+    
+    # تحويل الإحداثيات لأرقام والتخلص من أي نصوص غلط فيها
+    for col in ['X_Start', 'Y_Start', 'X_End', 'Y_End']:
+        df[col] = pd.to_numeric(df[col], errors='coerce')
+    
+    df['Players'] = df['Players'].astype(str).fillna('Unknown')
+    return df.dropna(subset=['X_Start', 'Y_Start', 'X_End', 'Y_End'])
 
 try:
     df = load_data()
+    
     # تنظيف الأسماء
     all_names = df['Players'].str.split('|').explode().str.strip()
-    player = st.sidebar.selectbox("Select Player", sorted(all_names.unique()))
+    clean_list = sorted([p for p in all_names.unique() if p and p not in ['nan', 'Unknown']])
     
-    p_df = df[df['Players'].str.contains(player, na=False)].copy()
+    selected_player = st.sidebar.selectbox("اختر لاعب EPS", clean_list)
+    p_df = df[df['Players'].str.contains(selected_player, na=False)].copy()
 
-    # --- الملعب ---
-    pitch = Pitch(pitch_type='statsbomb', pitch_color='#22312b', line_color='#c7d5cc')
-    fig, ax = pitch.draw(figsize=(12, 8))
+    st.title(f"📍 Pass Map: {selected_player}")
+
+    # إعداد الملعب الاحترافي اللي طلبته
+    pitch = Pitch(pitch_type='statsbomb', pitch_color='#1a1a1a', line_color='#777777',
+                  linestyle='--', linewidth=1, goal_linestyle='-')
+    fig, ax = pitch.draw(figsize=(12, 9))
+    fig.set_facecolor('#1a1a1a')
 
     if not p_df.empty:
         for _, row in p_df.iterrows():
-            # تحويل الإحداثيات لواقعية الملعب (120x80)
-            x_start, y_start = row['X_Start'] * 120, row['Y_Start'] * 80
-            x_end, y_end = row['X_End'] * 120, row['Y_End'] * 80
+            # تحويل الإحداثيات لمقاس الملعب (120x80)
+            x_s, y_s = row['X_Start'] * 120, row['Y_Start'] * 80
+            x_e, y_e = row['X_End'] * 120, row['Y_End'] * 80
             
-            # فلترة التمريرات المستحيلة (لو المسافة أكبر من طول الملعب مثلاً)
-            dist = ((x_end-x_start)**2 + (y_end-y_start)**2)**0.5
-            if dist < 2: continue # شيل النقط اللي فوق بعضها (الزحمة الفاضية)
+            # حساب المسافة للتأكد من واقعية التمريرة
+            dist = ((x_e-x_s)**2 + (y_e-y_s)**2)**0.5
+            if dist < 3: continue # تجاهل اللمسات في نفس المكان (بتقلل الزحمة)
 
-            # رسم السهم
-            pitch.arrows(x_start, y_start, x_end, y_end, 
-                         color='yellow' if y_start < 20 or y_start > 60 else '#00bfff',
-                         ax=ax, width=1.2, headwidth=3, alpha=0.7)
+            # تلوين تكتيكي
+            if y_s < 20 or y_s > 60: color = "yellow" # عرضية
+            elif (x_e - x_s) > 25: color = "#00bfff" # طولية تقدمية
+            else: color = "#ff4b4b" # قصيرة
 
-    st.pyplot(fig)
+            pitch.arrows(x_s, y_s, x_e, y_e, color=color, ax=ax, 
+                         width=1.2, headwidth=3, alpha=0.6)
 
-    # مراجعة الأرقام للتأكد
-    st.write("🔍 مراجعة عينة من إحداثيات اللاعب (X من 0-120 | Y من 0-80):")
-    p_df['X_Real'] = p_df['X_Start'] * 120
-    p_df['Y_Real'] = p_df['Y_Start'] * 80
-    st.dataframe(p_df[['Event Name', 'X_Real', 'Y_Real']].head(10))
+        # إضافة اسم اللاعب بوضوح على الخريطة
+        ax_text(60, -5, f"<{selected_player}> | <EPS Tactical Analysis>", 
+                fontsize=20, color='white', fontweight='bold', ha='center', ax=ax,
+                highlight_textprops=[{"color": "#00bfff"}, {"color": "yellow"}])
+        
+        st.pyplot(fig)
+        st.write("🟡 Crosses | 🔵 Progressive | 🔴 Short Passes")
+    else:
+        st.warning("لا توجد بيانات لهذا اللاعب.")
 
 except Exception as e:
     st.error(f"Error: {e}")
