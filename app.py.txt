@@ -1,0 +1,37 @@
+import streamlit as st
+import pandas as pd
+import matplotlib.pyplot as plt
+from mplsoccer import Pitch
+
+# إعدادات الصفحة
+st.set_page_config(page_title="EPS Match Analysis", layout="wide")
+st.title("⚽ EPS Match Performance Dashboard")
+
+# تحميل البيانات
+@st.cache_data
+def load_data():
+    df = pd.read_csv('EPS_Match_Data_Clean.csv')
+    return df
+
+df = load_data()
+
+# توزيع الصفحة
+col1, col2 = st.columns(2)
+
+with col1:
+    st.header("📊 Match Summary")
+    event_counts = df['Event Name'].str.split(' ').str[0].value_counts()
+    st.bar_chart(event_counts)
+
+with col2:
+    st.header("🎯 Shot Map")
+    shots = df[df['Event Name'].str.contains('Shot', na=False)]
+    pitch = Pitch(pitch_type='custom', pitch_length=1, pitch_width=1, line_color='black')
+    fig, ax = pitch.draw(figsize=(8, 6))
+    pitch.scatter(shots.X_Start, shots.Y_Start, ax=ax, c='#ef4444', s=100, edgecolors='black')
+    st.pyplot(fig)
+
+st.header("🔝 Top Passers")
+passes = df[df['Event Name'].str.contains('Pass', na=False)]
+top_passers = passes['Players'].value_counts().head(10)
+st.table(top_passers)

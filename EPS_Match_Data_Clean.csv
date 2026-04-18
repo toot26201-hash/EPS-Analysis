@@ -1,0 +1,1015 @@
+Event Name,Start Time (ms),Stop Time (ms),Team,Players,X_Start,Y_Start,X_End,Y_End
+Lineup,0,0,,,,,,
+Kick-off 001,6810,26810,,20-Pinomaa Aleksi,,,,
+Pass 001,16990,26990,EPS,21-Gebala Marek | 30-Lehtinen Lassi,0.319905,0.488889,0.798578,0.066667
+Pass 002,18210,28210,EPS,21-Gebala Marek | 5-Nathan,0.7891,0.081481,0.680095,0.059259
+Pass 003,20980,30980,EPS,21-Gebala Marek,0.718009,0.037037,0.803318,0.118519
+Pass 004,22660,32660,EPS,5-Nathan | 25-Talvitie Emil,0.825829,0.118519,0.719194,0.111111
+Pass 005,27220,37220,EPS,5-Nathan | 29-Paappanen Eemeli,0.687204,0.125926,0.665877,0.474074
+Pass 006,29640,39640,EPS,30-Lehtinen Lassi | 29-Paappanen Eemeli,0.649289,0.57037,0.640995,0.496296
+Pass 007,33120,43120,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,0.501185,0.925926,0.665877,0.548148
+Pass 008,38770,48770,EPS,2-Margaritidis Angelos Nikolaos | 19-O. Adawi,0.528436,0.911111,0.492891,0.355556
+Pass 009,41410,51410,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.482227,0.362963,0.53673,0.925926
+Pass 010,43690,53690,EPS,2-Margaritidis Angelos Nikolaos | 19-O. Adawi,0.533175,0.925926,0.470379,0.355556
+Pass 011,45890,55890,EPS,19-O. Adawi | 25-Talvitie Emil,0.477488,0.333333,0.662322,0.148148
+Pass 012,47930,57930,EPS,25-Talvitie Emil | 12-Asikainen Elias,0.675355,0.125926,0.484597,0.037037
+Pass 013,49850,59850,EPS,12-Asikainen Elias | 25-Talvitie Emil,0.466825,0.037037,0.67891,0.111111
+Pass 014,51450,61450,EPS,25-Talvitie Emil | 21-Gebala Marek,0.697867,0.103704,0.854265,0.133333
+Pass 015,53010,63010,EPS,21-Gebala Marek | 30-Lehtinen Lassi,0.864929,0.148148,0.739336,0.474074
+Pass 016,55090,65090,EPS,30-Lehtinen Lassi | 29-Paappanen Eemeli,0.731043,0.488889,0.630332,0.466667
+Pass 017,56650,66650,EPS,29-Paappanen Eemeli | 12-Asikainen Elias,0.612559,0.474074,0.449052,0.111111
+Pass 018,58130,68130,EPS,12-Asikainen Elias | 20-Pinomaa Aleksi,0.42891,0.103704,0.228673,0.2
+Pass 019,63130,73130,EPS,29-Paappanen Eemeli | 12-Asikainen Elias,0.7109,0.466667,0.419431,0.096296
+Pass 020,64650,74650,EPS,12-Asikainen Elias | 25-Talvitie Emil,0.4,0.096296,0.60545,0.081481
+Pass 021,66410,76410,EPS,25-Talvitie Emil | 29-Paappanen Eemeli,0.627962,0.096296,0.7,0.481481
+Pass 022,68330,78330,EPS,29-Paappanen Eemeli | 2-Margaritidis Angelos Nikolaos,0.687204,0.5,0.469194,0.925926
+Pass 023,70730,80730,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,0.457346,0.918519,0.640995,0.481481
+Pass 024,72570,82570,EPS,30-Lehtinen Lassi | 19-O. Adawi,0.626777,0.466667,0.449052,0.362963
+Pass 025,74570,84570,EPS,19-O. Adawi | 5-Nathan,0.432464,0.37037,0.669431,0.125926
+Pass 026,76290,86290,EPS,5-Nathan | 25-Talvitie Emil,0.686019,0.111111,0.767773,0.111111
+Pass 027,77890,87890,EPS,25-Talvitie Emil | 21-Gebala Marek,0.787915,0.111111,0.835308,0.140741
+Pass 028,80610,90610,EPS,21-Gebala Marek | 5-Nathan,0.824645,0.111111,0.728673,0.118519
+Pass 029,82450,92450,EPS,5-Nathan | 29-Paappanen Eemeli,0.7109,0.111111,0.655213,0.488889
+Pass 030,84410,94410,EPS,29-Paappanen Eemeli | 30-Lehtinen Lassi,0.648104,0.5,0.590047,0.5
+Pass 031,86330,96330,EPS,30-Lehtinen Lassi | 2-Margaritidis Angelos Nikolaos,0.575829,0.5,0.441943,0.940741
+Pass 032,88330,98330,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,0.42891,0.940741,0.419431,0.074074
+Pass 033,93290,103290,EPS,12-Asikainen Elias | 20-Pinomaa Aleksi,0.413507,0.059259,0.221564,0.185185
+Pass 034,103490,113490,EPS,12-Asikainen Elias | 14-Laine Simo,0.407583,0.074074,0.170616,0.340741
+Pass 035,108650,118650,EPS,14-Laine Simo | 19-O. Adawi,0.165877,0.355556,0.334123,0.355556
+Pass 036,110810,120810,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.347156,0.37037,0.404028,0.859259
+Pass 037,113170,123170,EPS,2-Margaritidis Angelos Nikolaos | 29-Paappanen Eemeli,0.401659,0.874074,0.505924,0.518519
+Pass 038,116010,126010,EPS,29-Paappanen Eemeli | 21-Gebala Marek,0.511848,0.533333,0.771327,0.185185
+Pass 039,118090,128090,EPS,21-Gebala Marek | 25-Talvitie Emil,0.783175,0.155556,0.640995,0.118519
+Pass 040,120050,130050,EPS,25-Talvitie Emil | 12-Asikainen Elias,0.627962,0.111111,0.419431,0.066667
+Pass 041,123010,133010,EPS,12-Asikainen Elias | 19-O. Adawi,0.4,0.059259,0.439573,0.385185
+Pass 042,125010,135010,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.449052,0.392593,0.434834,0.925926
+Pass 043,127690,137690,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,0.43128,0.911111,0.53673,0.533333
+Pass 044,130010,140010,EPS,30-Lehtinen Lassi | 29-Paappanen Eemeli,0.530806,0.540741,0.528436,0.525926
+Pass 045,134290,144290,EPS,14-Laine Simo | 19-O. Adawi,0.222749,0.333333,0.344787,0.37037
+Pass 046,136370,146370,EPS,19-O. Adawi | 30-Lehtinen Lassi,0.354265,0.37037,0.477488,0.548148
+Pass 047,138330,148330,EPS,30-Lehtinen Lassi | 2-Margaritidis Angelos Nikolaos,0.479858,0.555556,0.42891,0.911111
+Pass 048,141330,151330,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,0.421801,0.925926,0.395735,0.059259
+Pass 049,145890,155890,EPS,12-Asikainen Elias | 19-O. Adawi,0.38981,0.059259,0.359005,0.37037
+Pass 050,147810,157810,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.364929,0.385185,0.417062,0.896296
+Pass 051,149890,159890,EPS,2-Margaritidis Angelos Nikolaos | 14-Laine Simo,0.414692,0.903704,0.322275,0.333333
+Pass 052,151930,161930,EPS,14-Laine Simo | 24-Ridge Rasmus,0.315166,0.325926,0.106635,0.185185
+Pass 053,153770,163770,EPS,24-Ridge Rasmus | 14-Laine Simo,0.1,0.17037,0.244076,0.311111
+Pass 054,155570,165570,EPS,14-Laine Simo | 19-O. Adawi,0.25237,0.318519,0.347156,0.385185
+Pass 055,157490,167490,EPS,19-O. Adawi | 30-Lehtinen Lassi,0.35545,0.392593,0.449052,0.540741
+Pass 056,159650,169650,EPS,30-Lehtinen Lassi | 2-Margaritidis Angelos Nikolaos,0.457346,0.555556,0.407583,0.881481
+Pass 057,163010,173010,EPS,2-Margaritidis Angelos Nikolaos | 14-Laine Simo,0.400474,0.888889,0.363744,0.333333
+Pass 058,165210,175210,EPS,14-Laine Simo | 19-O. Adawi,0.363744,0.340741,0.456161,0.385185
+Pass 059,167090,177090,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.46327,0.4,0.439573,0.911111
+Pass 060,169650,179650,EPS,2-Margaritidis Angelos Nikolaos | 29-Paappanen Eemeli,0.441943,0.925926,0.618483,0.466667
+Pass 061,171690,181690,EPS,29-Paappanen Eemeli | 19-O. Adawi,0.635071,0.481481,0.5,0.348148
+Pass 062,174610,184610,EPS,19-O. Adawi | 14-Laine Simo,0.5,0.333333,0.395735,0.318519
+Pass 063,176210,186210,EPS,14-Laine Simo | 19-O. Adawi,0.393365,0.325926,0.53673,0.4
+Pass 064,178050,188050,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.546209,0.407407,0.530806,0.925926
+Pass 065,180490,190490,EPS,2-Margaritidis Angelos Nikolaos | 29-Paappanen Eemeli,0.530806,0.925926,0.763033,0.518519
+Pass 066,182730,192730,EPS,29-Paappanen Eemeli | 21-Gebala Marek,0.771327,0.525926,0.915877,0.155556
+Pass 067,185090,195090,EPS,21-Gebala Marek | 29-Paappanen Eemeli,0.924171,0.162963,0.854265,0.503704
+Pass 068,187050,197050,EPS,29-Paappanen Eemeli | 21-Gebala Marek,0.86019,0.518519,0.924171,0.155556
+Pass 069,190290,200290,EPS,21-Gebala Marek | 19-O. Adawi,0.925355,0.155556,0.550948,0.37037
+Pass 070,192330,202330,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.558057,0.37037,0.550948,0.918519
+Pass 071,194850,204850,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,0.552133,0.918519,0.738152,0.481481
+Pass 072,196890,206890,EPS,30-Lehtinen Lassi | 19-O. Adawi,0.729858,0.474074,0.550948,0.348148
+Pass 073,198650,208650,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.550948,0.333333,0.561611,0.918519
+Pass 074,201170,211170,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,0.561611,0.925926,0.53673,0.066667
+Pass 075,205810,215810,EPS,12-Asikainen Elias | 19-O. Adawi,0.528436,0.066667,0.530806,0.355556
+Pass 076,207850,217850,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.530806,0.37037,0.546209,0.925926
+Pass 077,210490,220490,EPS,2-Margaritidis Angelos Nikolaos | 29-Paappanen Eemeli,0.547393,0.925926,0.78436,0.525926
+Pass 078,212610,222610,EPS,29-Paappanen Eemeli | 21-Gebala Marek,0.793839,0.533333,0.914692,0.162963
+Pass 079,214810,224810,EPS,21-Gebala Marek | 29-Paappanen Eemeli,0.914692,0.155556,0.86019,0.481481
+Pass 080,216650,226650,EPS,29-Paappanen Eemeli | 21-Gebala Marek,0.854265,0.5,0.924171,0.155556
+Pass 081,219490,229490,EPS,21-Gebala Marek | 19-O. Adawi,0.924171,0.155556,0.613744,0.37037
+Pass 082,221530,231530,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.613744,0.37037,0.6,0.911111
+Pass 083,224370,234370,EPS,2-Margaritidis Angelos Nikolaos | 29-Paappanen Eemeli,0.6,0.918519,0.850711,0.518519
+Pass 084,226770,236770,EPS,29-Paappanen Eemeli | 19-O. Adawi,0.854265,0.518519,0.6,0.37037
+Pass 085,229330,239330,EPS,19-O. Adawi | 12-Asikainen Elias,0.6,0.355556,0.57346,0.066667
+Pass 086,234410,244410,EPS,12-Asikainen Elias | 19-O. Adawi,0.555687,0.066667,0.584123,0.355556
+Pass 087,236250,246250,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.584123,0.377778,0.587678,0.918519
+Pass 088,238810,248810,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,0.587678,0.925926,0.851896,0.488889
+Pass 089,241090,251090,EPS,30-Lehtinen Lassi | 21-Gebala Marek,0.841232,0.481481,0.93128,0.162963
+Pass 090,243570,253570,EPS,21-Gebala Marek | 30-Lehtinen Lassi,0.92654,0.155556,0.842417,0.496296
+Pass 091,245450,255450,EPS,30-Lehtinen Lassi | 29-Paappanen Eemeli,0.835308,0.5,0.842417,0.5
+Pass 092,248130,258130,EPS,29-Paappanen Eemeli | 21-Gebala Marek,0.848341,0.5,0.941943,0.162963
+Pass 093,251330,261330,EPS,21-Gebala Marek | 12-Asikainen Elias,0.940758,0.155556,0.672986,0.051852
+Pass 094,254610,264610,EPS,12-Asikainen Elias | 19-O. Adawi,0.655213,0.051852,0.630332,0.348148
+Pass 095,256530,266530,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.627962,0.37037,0.613744,0.911111
+Pass 096,259210,269210,EPS,2-Margaritidis Angelos Nikolaos | 29-Paappanen Eemeli,0.612559,0.925926,0.838863,0.518519
+Pass 097,261290,271290,EPS,29-Paappanen Eemeli | 21-Gebala Marek,0.830569,0.511111,0.941943,0.148148
+Pass 098,264010,274010,EPS,21-Gebala Marek | 19-O. Adawi,0.939573,0.148148,0.697867,0.37037
+Pass 099,266010,276010,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.694313,0.377778,0.670616,0.918519
+Pass 100,268770,278770,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,0.669431,0.918519,0.86019,0.481481
+Pass 101,270850,280850,EPS,30-Lehtinen Lassi | 21-Gebala Marek,0.854265,0.481481,0.941943,0.133333
+Pass 102,273370,283370,EPS,21-Gebala Marek | 19-O. Adawi,0.941943,0.148148,0.722749,0.362963
+Pass 103,275410,285410,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.718009,0.377778,0.7,0.911111
+Pass 104,277970,287970,EPS,2-Margaritidis Angelos Nikolaos | 29-Paappanen Eemeli,0.699052,0.918519,0.932464,0.511111
+Pass 105,280250,290250,EPS,29-Paappanen Eemeli | 21-Gebala Marek,0.921801,0.518519,0.952607,0.133333
+Pass 106,282690,292690,EPS,21-Gebala Marek | 19-O. Adawi,0.952607,0.133333,0.771327,0.355556
+Pass 107,284770,294770,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.767773,0.37037,0.739336,0.918519
+Pass 108,287290,297290,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,0.739336,0.925926,0.723934,0.066667
+Pass 109,292410,302410,EPS,12-Asikainen Elias | 19-O. Adawi,0.7,0.059259,0.7109,0.362963
+Pass 110,294570,304570,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.7109,0.377778,0.709716,0.918519
+Pass 111,297370,307370,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,0.707346,0.925926,0.941943,0.481481
+Pass 112,299290,309290,EPS,30-Lehtinen Lassi | 21-Gebala Marek,0.92891,0.488889,0.959716,0.133333
+Pass 113,301410,311410,EPS,21-Gebala Marek | 19-O. Adawi,0.959716,0.133333,0.78436,0.355556
+Pass 114,303530,313530,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.781991,0.37037,0.771327,0.911111
+Pass 115,306050,316050,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,0.771327,0.925926,0.75,0.066667
+Pass 116,310810,320810,EPS,12-Asikainen Elias | 19-O. Adawi,0.728673,0.066667,0.75,0.362963
+Pass 117,312850,322850,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.75,0.377778,0.741706,0.918519
+Pass 118,315650,325650,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,0.741706,0.918519,0.953791,0.481481
+Pass 119,317770,327770,EPS,30-Lehtinen Lassi | 21-Gebala Marek,0.943128,0.488889,0.966825,0.133333
+Pass 120,319810,329810,EPS,21-Gebala Marek | 19-O. Adawi,0.966825,0.133333,0.803318,0.355556
+Pass 121,321970,331970,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.8,0.37037,0.778436,0.911111
+Pass 122,324610,334610,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,0.778436,0.911111,0.767773,0.066667
+Pass 123,329370,339370,EPS,12-Asikainen Elias | 19-O. Adawi,0.753555,0.059259,0.767773,0.362963
+Pass 124,331370,341370,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.767773,0.377778,0.767773,0.918519
+Pass 125,334050,344050,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,0.767773,0.925926,0.951422,0.481481
+Pass 126,335970,345970,EPS,30-Lehtinen Lassi | 21-Gebala Marek,0.940758,0.488889,0.966825,0.133333
+Pass 127,338210,348210,EPS,21-Gebala Marek | 19-O. Adawi,0.966825,0.133333,0.825829,0.355556
+Pass 128,340290,350290,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.822275,0.37037,0.796209,0.911111
+Pass 129,343170,353170,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,0.796209,0.925926,0.776066,0.066667
+Pass 130,348010,358010,EPS,12-Asikainen Elias | 19-O. Adawi,0.760664,0.059259,0.779621,0.362963
+Pass 131,350170,360170,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.779621,0.377778,0.776066,0.918519
+Pass 132,352810,362810,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,0.776066,0.925926,0.951422,0.481481
+Pass 133,354890,364890,EPS,30-Lehtinen Lassi | 21-Gebala Marek,0.940758,0.481481,0.96327,0.133333
+Pass 134,357050,367050,EPS,21-Gebala Marek | 19-O. Adawi,0.96327,0.133333,0.835308,0.355556
+Pass 135,359170,369170,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.835308,0.37037,0.811611,0.911111
+Pass 136,361930,371930,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,0.811611,0.925926,0.796209,0.066667
+Pass 137,366810,376810,EPS,12-Asikainen Elias | 19-O. Adawi,0.781991,0.059259,0.797393,0.362963
+Pass 138,368930,378930,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.797393,0.377778,0.796209,0.918519
+Pass 139,371570,381570,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,0.796209,0.925926,0.957346,0.481481
+Pass 140,373650,383650,EPS,30-Lehtinen Lassi | 21-Gebala Marek,0.945498,0.488889,0.966825,0.133333
+Pass 141,375810,385810,EPS,21-Gebala Marek | 19-O. Adawi,0.966825,0.133333,0.849526,0.355556
+Pass 142,377970,387970,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.849526,0.37037,0.825829,0.911111
+Pass 143,380690,390690,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,0.825829,0.925926,0.815166,0.066667
+Pass 144,385610,395610,EPS,12-Asikainen Elias | 19-O. Adawi,0.8,0.059259,0.82109,0.362963
+Pass 145,387810,397810,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.82109,0.377778,0.816351,0.918519
+Pass 146,390490,400490,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,0.816351,0.925926,0.966825,0.481481
+Pass 147,392610,402610,EPS,30-Lehtinen Lassi | 21-Gebala Marek,0.953791,0.488889,0.973934,0.133333
+Pass 148,394810,404810,EPS,21-Gebala Marek | 19-O. Adawi,0.973934,0.133333,0.864929,0.355556
+Pass 149,396970,406970,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.864929,0.37037,0.835308,0.911111
+Pass 150,399650,409650,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,0.835308,0.925926,0.830569,0.066667
+Pass 151,404570,414570,EPS,12-Asikainen Elias | 19-O. Adawi,0.816351,0.059259,0.837678,0.362963
+Pass 152,406730,416730,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.837678,0.377778,0.830569,0.918519
+Pass 153,409410,419410,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,0.830569,0.925926,0.966825,0.481481
+Pass 154,411530,421530,EPS,30-Lehtinen Lassi | 21-Gebala Marek,0.95545,0.488889,0.981043,0.133333
+Pass 155,413730,423730,EPS,21-Gebala Marek | 19-O. Adawi,0.981043,0.133333,0.880332,0.355556
+Pass 156,415890,425890,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.880332,0.37037,0.850711,0.911111
+Pass 157,418570,428570,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,0.850711,0.925926,0.841232,0.066667
+Pass 158,423450,433450,EPS,12-Asikainen Elias | 19-O. Adawi,0.827014,0.059259,0.851896,0.362963
+Pass 159,425570,435570,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.851896,0.377778,0.845972,0.918519
+Pass 160,428250,438250,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,0.845972,0.925926,0.972749,0.481481
+Pass 161,430370,440370,EPS,30-Lehtinen Lassi | 21-Gebala Marek,0.96327,0.488889,0.984597,0.133333
+Pass 162,432570,442570,EPS,21-Gebala Marek | 19-O. Adawi,0.984597,0.133333,0.89218,0.355556
+Pass 163,434770,444770,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.89218,0.37037,0.862559,0.911111
+Pass 164,437410,447410,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,0.862559,0.925926,0.854265,0.066667
+Pass 165,442290,452290,EPS,12-Asikainen Elias | 19-O. Adawi,0.841232,0.059259,0.863744,0.362963
+Pass 166,444450,454450,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.863744,0.377778,0.85782,0.918519
+Pass 167,447130,457130,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,0.85782,0.925926,0.984597,0.481481
+Pass 168,449250,459250,EPS,30-Lehtinen Lassi | 21-Gebala Marek,0.970379,0.488889,0.989336,0.133333
+Pass 169,451450,461450,EPS,21-Gebala Marek | 19-O. Adawi,0.989336,0.133333,0.901659,0.355556
+Pass 170,453650,463650,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.901659,0.37037,0.874408,0.911111
+Pass 171,456330,466330,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,0.874408,0.925926,0.863744,0.066667
+Pass 172,461170,471170,EPS,12-Asikainen Elias | 19-O. Adawi,0.853081,0.059259,0.876777,0.362963
+Pass 173,463370,473370,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.876777,0.377778,0.872038,0.918519
+Pass 174,466010,476010,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,0.872038,0.925926,0.990521,0.481481
+Pass 175,468130,478130,EPS,30-Lehtinen Lassi | 21-Gebala Marek,0.982227,0.488889,0.995261,0.133333
+Pass 176,470330,480330,EPS,21-Gebala Marek | 19-O. Adawi,0.995261,0.133333,0.909953,0.355556
+Pass 177,472530,482530,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.909953,0.37037,0.887441,0.911111
+Pass 178,475170,485170,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,0.887441,0.925926,0.877962,0.066667
+Pass 179,480050,490050,EPS,12-Asikainen Elias | 19-O. Adawi,0.866114,0.059259,0.887441,0.362963
+Pass 180,482210,492210,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.887441,0.377778,0.882701,0.918519
+Pass 181,484890,494890,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,0.882701,0.925926,0.994076,0.481481
+Pass 182,487010,497010,EPS,30-Lehtinen Lassi | 21-Gebala Marek,0.985782,0.488889,1.0,0.133333
+Pass 183,489210,499210,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,0.919431,0.355556
+Pass 184,491410,501410,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.919431,0.37037,0.898104,0.911111
+Pass 185,494050,504050,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,0.898104,0.925926,0.887441,0.066667
+Pass 186,498890,508890,EPS,12-Asikainen Elias | 19-O. Adawi,0.875592,0.059259,0.899289,0.362963
+Pass 187,501090,511090,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.899289,0.377778,0.89455,0.918519
+Pass 188,503770,513770,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,0.89455,0.925926,1.0,0.481481
+Pass 189,505890,515890,EPS,30-Lehtinen Lassi | 21-Gebala Marek,0.994076,0.488889,1.0,0.133333
+Pass 190,508090,518090,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,0.932464,0.355556
+Pass 191,510290,520290,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.932464,0.37037,0.909953,0.911111
+Pass 192,512930,522930,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,0.909953,0.925926,0.900474,0.066667
+Pass 193,517810,527810,EPS,12-Asikainen Elias | 19-O. Adawi,0.887441,0.059259,0.911137,0.362963
+Pass 194,520010,530010,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.911137,0.377778,0.905213,0.918519
+Pass 195,522690,532690,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,0.905213,0.925926,1.0,0.481481
+Pass 196,524810,534810,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 197,527010,537010,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,0.943128,0.355556
+Pass 198,529210,539210,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.943128,0.37037,0.920616,0.911111
+Pass 199,531850,541850,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,0.920616,0.925926,0.909953,0.066667
+Pass 200,536730,546730,EPS,12-Asikainen Elias | 19-O. Adawi,0.898104,0.059259,0.920616,0.362963
+Pass 201,538930,548930,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.920616,0.377778,0.915877,0.918519
+Pass 202,541610,551610,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,0.915877,0.925926,1.0,0.481481
+Pass 203,543730,553730,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 204,545930,555930,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,0.953791,0.355556
+Pass 205,548130,558130,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.953791,0.37037,0.932464,0.911111
+Pass 206,550770,560770,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,0.932464,0.925926,0.922986,0.066667
+Pass 207,555650,565650,EPS,12-Asikainen Elias | 19-O. Adawi,0.909953,0.059259,0.932464,0.362963
+Pass 208,557850,567850,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.932464,0.377778,0.92654,0.918519
+Pass 209,560530,570530,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,0.92654,0.925926,1.0,0.481481
+Pass 210,562650,572650,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 211,564850,574850,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,0.96327,0.355556
+Pass 212,567050,577050,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.96327,0.37037,0.941943,0.911111
+Pass 213,569690,579690,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,0.941943,0.925926,0.932464,0.066667
+Pass 214,574570,584570,EPS,12-Asikainen Elias | 19-O. Adawi,0.920616,0.059259,0.941943,0.362963
+Pass 215,576770,586770,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.941943,0.377778,0.937204,0.918519
+Pass 216,579450,589450,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,0.937204,0.925926,1.0,0.481481
+Pass 217,581570,591570,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 218,583770,593770,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,0.973934,0.355556
+Pass 219,585970,595970,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.973934,0.37037,0.952607,0.911111
+Pass 220,588610,598610,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,0.952607,0.925926,0.941943,0.066667
+Pass 221,593490,603490,EPS,12-Asikainen Elias | 19-O. Adawi,0.93128,0.059259,0.952607,0.362963
+Pass 222,595690,605690,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.952607,0.377778,0.947867,0.918519
+Pass 223,598370,608370,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,0.947867,0.925926,1.0,0.481481
+Pass 224,600490,610490,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 225,602690,612690,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,0.983412,0.355556
+Pass 226,604890,614890,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.983412,0.37037,0.96327,0.911111
+Pass 227,607530,617530,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,0.96327,0.925926,0.952607,0.066667
+Pass 228,612410,622410,EPS,12-Asikainen Elias | 19-O. Adawi,0.940758,0.059259,0.96327,0.362963
+Pass 229,614610,624610,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.96327,0.377778,0.957346,0.918519
+Pass 230,617290,627290,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,0.957346,0.925926,1.0,0.481481
+Pass 231,619410,629410,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 232,621610,631610,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,0.992891,0.355556
+Pass 233,623810,633810,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.992891,0.37037,0.973934,0.911111
+Pass 234,626450,636450,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,0.973934,0.925926,0.962085,0.066667
+Pass 235,631330,641330,EPS,12-Asikainen Elias | 19-O. Adawi,0.951422,0.059259,0.972749,0.362963
+Pass 236,633530,643530,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.972749,0.377778,0.968009,0.918519
+Pass 237,636210,646210,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,0.968009,0.925926,1.0,0.481481
+Pass 238,638330,648330,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 239,640530,650530,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 240,642730,652730,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,0.983412,0.911111
+Pass 241,645370,655370,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,0.983412,0.925926,0.972749,0.066667
+Pass 242,650250,660250,EPS,12-Asikainen Elias | 19-O. Adawi,0.962085,0.059259,0.983412,0.362963
+Pass 243,652450,662450,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.983412,0.377778,0.977488,0.918519
+Pass 244,655130,665130,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,0.977488,0.925926,1.0,0.481481
+Pass 245,657250,667250,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 246,659450,669450,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 247,661650,671650,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,0.992891,0.911111
+Pass 248,664290,674290,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,0.992891,0.925926,0.982227,0.066667
+Pass 249,669170,679170,EPS,12-Asikainen Elias | 19-O. Adawi,0.971564,0.059259,0.992891,0.362963
+Pass 251,674050,684050,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,0.986967,0.925926,1.0,0.481481
+Pass 252,676170,686170,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 253,678370,688370,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 254,680570,690570,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 255,683210,693210,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,0.991706,0.066667
+Pass 256,688090,698090,EPS,12-Asikainen Elias | 19-O. Adawi,0.981043,0.059259,1.0,0.362963
+Pass 257,690290,700290,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 258,692970,702970,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 259,695090,705090,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 260,697290,707290,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 261,699490,709490,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 262,702130,712130,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 263,707010,717010,EPS,12-Asikainen Elias | 19-O. Adawi,0.991706,0.059259,1.0,0.362963
+Pass 264,709210,719210,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 265,711890,721890,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 266,714010,724010,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 267,716210,726210,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 268,718410,728410,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 269,721050,731050,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 270,725930,735930,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 271,728130,738130,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 272,730810,740810,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 273,732930,742930,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 274,735130,745130,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 275,737330,747330,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 276,739970,749970,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 277,744850,754850,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 278,747050,757050,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 279,749730,759730,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 280,751850,761850,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 281,754050,764050,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 282,756250,766250,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 283,758890,768890,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 284,763770,773770,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 285,765970,775970,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 286,768650,778650,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 287,770770,780770,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 288,772970,782970,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 289,775170,785170,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 290,777810,787810,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 291,782690,792690,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 292,784890,794890,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 293,787570,797570,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 294,789690,799690,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 295,791890,801890,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 296,794090,804090,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 297,796730,806730,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 300,806890,816890,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 301,809570,819570,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 302,811690,821690,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 303,813890,823890,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 304,816090,826090,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 305,818730,828730,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 306,823610,833610,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 307,825810,835810,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 308,828490,838490,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 309,830610,840610,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 310,832810,842810,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 311,835010,845010,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 312,837650,847650,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 313,842530,852530,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 314,844730,854730,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 315,847410,857410,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 316,849530,859530,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 317,851730,861730,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 318,853930,863930,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 319,856570,866570,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 320,861450,871450,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 321,863650,873650,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 322,866330,876330,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 323,868450,878450,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 324,870650,880650,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 325,872850,882850,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 326,875490,885490,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 327,880370,890370,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 328,882570,892570,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 329,885250,895250,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 330,887370,897370,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 331,889570,899570,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 332,891770,901770,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 333,894410,904410,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 334,899290,909290,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 335,901490,911490,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 336,904170,914170,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 337,906290,916290,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 338,908490,918490,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 339,910690,920690,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 340,913330,923330,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 341,918210,928210,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 342,920410,930410,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 343,923090,933090,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 344,925210,935210,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 345,927410,937410,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 346,929610,939610,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 347,932250,942250,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 348,937130,947130,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 349,939330,949330,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 350,942010,952010,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 351,944130,954130,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 352,946330,956330,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 353,948530,958530,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 354,951170,961170,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 355,956050,966050,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 356,958250,968250,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 357,960930,970930,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 358,963050,973050,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 359,965250,975250,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 360,967450,977450,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 361,970090,980090,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 362,974970,984970,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 363,977170,987170,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 364,979850,989850,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 365,981970,991970,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 366,984170,994170,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 367,986370,996370,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 368,989010,999010,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 369,993890,1003890,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 370,996090,1006090,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 371,998770,1008770,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 372,1000890,1010890,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 373,1003090,1013090,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 374,1005290,1015290,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 375,1007930,1017930,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 376,1012810,1022810,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 377,1015010,1025010,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 378,1017690,1027690,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 379,1019810,1029810,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 380,1022010,1032010,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 381,1024210,1034210,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 382,1026850,1036850,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 383,1031730,1041730,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 384,1033930,1043930,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 385,1036610,1046610,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 386,1038730,1048730,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 387,1040930,1050930,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 388,1043130,1053130,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 389,1045770,1055770,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 390,1050650,1060650,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 391,1052850,1062850,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 392,1055530,1065530,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 393,1057650,1067650,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 394,1059850,1069850,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 395,1062050,1072050,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 396,1064690,1074690,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 397,1069570,1079570,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 398,1071770,1081770,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 399,1074450,1084450,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 400,1076570,1086570,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 401,1078770,1088770,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 402,1080970,1090970,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 403,1083610,1093610,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 404,1088490,1098490,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 405,1090690,1100690,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 406,1093370,1103370,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 407,1095490,1105490,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 408,1097690,1107690,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 409,1099890,1109890,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 410,1102530,1112530,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 411,1107410,1117410,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 412,1109610,1119610,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 413,1112290,1122290,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 414,1114410,1124410,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 415,1116610,1126610,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 416,1118810,1128810,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 417,1121450,1131450,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 418,1126330,1136330,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 419,1128530,1138530,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 420,1131210,1141210,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 421,1133330,1143330,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 422,1135530,1145530,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 423,1137730,1147730,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 424,1140370,1150370,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 425,1145250,1155250,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 426,1147450,1157450,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 427,1150130,1160130,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 428,1152250,1162250,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 429,1154450,1164450,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 430,1156650,1166650,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 431,1159290,1169290,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 432,1164170,1174170,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 433,1166370,1176370,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 434,1169050,1179050,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 435,1171170,1181170,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 436,1173370,1183370,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 437,1175570,1185570,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 438,1178210,1188210,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 439,1183090,1193090,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 440,1185290,1195290,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 441,1187970,1197970,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 442,1190090,1200090,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 443,1192290,1202290,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 444,1194490,1204490,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 445,1197130,1207130,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 446,1202010,1212010,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 447,1204210,1214210,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 448,1206890,1216890,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 449,1209010,1219010,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 450,1211210,1221210,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 451,1213410,1223410,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 452,1216050,1226050,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 453,1220930,1230930,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 454,1223130,1233130,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 455,1225810,1235810,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 456,1227930,1237930,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 457,1230130,1240130,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 458,1232330,1242330,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 459,1234970,1244970,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 460,1239850,1249850,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 461,1242050,1252050,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 462,1244730,1254730,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 463,1246850,1256850,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 464,1249050,1259050,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 465,1251250,1261250,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 466,1253890,1263890,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 467,1258770,1268770,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 468,1260970,1270970,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 469,1263650,1273650,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 470,1265770,1275770,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 471,1267970,1277970,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 472,1270170,1280170,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 473,1272810,1282810,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 474,1277690,1287690,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 475,1279890,1289890,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 476,1282570,1292570,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 477,1284690,1294690,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 478,1286890,1296890,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 479,1289090,1299090,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 480,1291730,1301730,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 481,1296610,1306610,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 482,1298810,1308810,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 483,1301490,1311490,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 484,1303610,1313610,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 485,1305810,1315810,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 486,1308010,1318010,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 487,1310650,1320650,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 488,1315530,1325530,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 489,1317730,1327730,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 490,1320410,1330410,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 491,1322530,1332530,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 492,1324730,1334730,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 493,1326930,1336930,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 494,1329570,1339570,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 495,1334450,1344450,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 496,1336650,1346650,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 497,1339330,1349330,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 498,1341450,1351450,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 499,1343650,1353650,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 500,1345850,1355850,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 501,1348490,1358490,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 502,1353370,1363370,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 503,1355570,1365570,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 504,1358250,1368250,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 505,1360370,1370370,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 506,1362570,1372570,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 507,1364770,1374770,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 508,1367410,1377410,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 509,1372290,1382290,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 510,1374490,1384490,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 511,1377170,1387170,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 512,1379290,1389290,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 513,1381490,1391490,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 514,1383690,1393690,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 515,1386330,1396330,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 516,1391210,1401210,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 517,1393410,1403410,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 518,1396090,1406090,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 519,1398210,1408210,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 520,1400410,1410410,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 521,1402610,1412610,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 522,1405250,1415250,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 523,1410130,1420130,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 524,1412330,1422330,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 525,1415010,1425010,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 526,1417130,1427130,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 527,1419330,1429330,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 528,1421530,1431530,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 529,1424170,1434170,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 530,1429050,1439050,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 531,1431250,1441250,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 532,1433930,1443930,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 533,1436050,1446050,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 534,1438250,1448250,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 535,1440450,1450450,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 536,1443090,1453090,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 537,1447970,1457970,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 538,1450170,1460170,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 539,1452850,1462850,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 540,1454970,1464970,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 541,1457170,1467170,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 542,1459370,1469370,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 543,1462010,1472010,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 544,1466890,1476890,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 545,1469090,1479090,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Pass 546,1471770,1481770,EPS,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,1.0,0.925926,1.0,0.481481
+Pass 547,1473890,1483890,EPS,30-Lehtinen Lassi | 21-Gebala Marek,1.0,0.488889,1.0,0.133333
+Pass 548,1476090,1486090,EPS,21-Gebala Marek | 19-O. Adawi,1.0,0.133333,1.0,0.355556
+Pass 549,1478290,1488290,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.37037,1.0,0.911111
+Pass 550,1480930,1490930,EPS,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,1.0,0.925926,1.0,0.066667
+Pass 551,1485810,1495810,EPS,12-Asikainen Elias | 19-O. Adawi,1.0,0.059259,1.0,0.362963
+Pass 552,1488010,1498010,EPS,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,1.0,0.377778,1.0,0.918519
+Miscontrol 001,23210,43210,,5-Nathan,,,,
+Miscontrol 002,40170,60170,,19-O. Adawi,,,,
+Miscontrol 003,50130,70130,,25-Talvitie Emil,,,,
+Miscontrol 004,61890,81890,,24-Ridge Rasmus,,,,
+Miscontrol 005,67130,87130,,29-Paappanen Eemeli,,,,
+Miscontrol 006,78650,98650,,21-Gebala Marek,,,,
+Miscontrol 007,81650,101650,,5-Nathan,,,,
+Miscontrol 008,91330,111330,,2-Margaritidis Angelos Nikolaos,,,,
+Miscontrol 009,101690,121690,,12-Asikainen Elias,,,,
+Miscontrol 10,106450,126450,,14-Laine Simo,,,,
+Miscontrol 11,114410,134410,,29-Paappanen Eemeli,,,,
+Miscontrol 12,118930,138930,,21-Gebala Marek,,,,
+Miscontrol 13,123970,143970,,12-Asikainen Elias,,,,
+Miscontrol 14,126570,146570,,19-O. Adawi,,,,
+Miscontrol 15,132210,152210,,30-Lehtinen Lassi,,,,
+Miscontrol 16,135250,155250,,14-Laine Simo,,,,
+Miscontrol 17,143490,163490,,2-Margaritidis Angelos Nikolaos,,,,
+Miscontrol 18,148690,168690,,19-O. Adawi,,,,
+Miscontrol 19,150930,170930,,2-Margaritidis Angelos Nikolaos,,,,
+Miscontrol 20,161770,181770,,30-Lehtinen Lassi,,,,
+Miscontrol 21,173090,193090,,19-O. Adawi,,,,
+Miscontrol 22,183770,203770,,19-O. Adawi,,,,
+Miscontrol 23,204410,224410,,12-Asikainen Elias,,,,
+Miscontrol 24,232130,252130,,12-Asikainen Elias,,,,
+Aerial 001,83330,103330,,14-Laine Simo,0.854265,0.481481,,
+Aerial 002,171690,191690,,29-Paappanen Eemeli,0.612559,0.481481,,
+Aerial 003,260810,280810,,29-Paappanen Eemeli,0.825829,0.518519,,
+Aerial 004,261530,281530,,21-Gebala Marek,0.817536,0.5,,
+Aerial 005,335010,355010,,30-Lehtinen Lassi,0.915877,0.481481,,
+Aerial 006,344050,364050,,21-Gebala Marek,0.951422,0.481481,,
+Aerial 007,370330,390330,,21-Gebala Marek,0.941943,0.488889,,
+Aerial 008,410490,430490,,30-Lehtinen Lassi,0.941943,0.488889,,
+Aerial 009,429370,449370,,21-Gebala Marek,0.957346,0.481481,,
+Aerial 010,430370,450370,,30-Lehtinen Lassi,0.96327,0.488889,,
+Aerial 011,467010,487010,,30-Lehtinen Lassi,0.970379,0.488889,,
+Aerial 012,472530,492530,,19-O. Adawi,0.909953,0.355556,,
+Aerial 013,495170,515170,,2-Margaritidis Angelos Nikolaos,0.887441,0.911111,,
+Aerial 014,505890,525890,,30-Lehtinen Lassi,0.994076,0.488889,,
+Aerial 015,512010,532010,,19-O. Adawi,0.911137,0.355556,,
+Aerial 016,523610,543610,,2-Margaritidis Angelos Nikolaos,0.905213,0.911111,,
+Aerial 017,543090,563090,,30-Lehtinen Lassi,1.0,0.481481,,
+Aerial 018,550770,570770,,2-Margaritidis Angelos Nikolaos,0.932464,0.911111,,
+Aerial 019,561610,581610,,30-Lehtinen Lassi,1.0,0.481481,,
+Aerial 020,569690,589690,,2-Margaritidis Angelos Nikolaos,0.941943,0.911111,,
+Aerial 021,580370,600370,,30-Lehtinen Lassi,1.0,0.481481,,
+Aerial 022,588610,608610,,2-Margaritidis Angelos Nikolaos,0.952607,0.911111,,
+Aerial 023,599370,619370,,30-Lehtinen Lassi,1.0,0.481481,,
+Aerial 024,607530,627530,,2-Margaritidis Angelos Nikolaos,0.96327,0.911111,,
+Aerial 025,618210,638210,,30-Lehtinen Lassi,1.0,0.481481,,
+Aerial 026,626450,646450,,2-Margaritidis Angelos Nikolaos,0.973934,0.911111,,
+Aerial 027,637170,657170,,30-Lehtinen Lassi,1.0,0.481481,,
+Aerial 028,645370,665370,,2-Margaritidis Angelos Nikolaos,0.983412,0.911111,,
+Aerial 029,656130,676130,,30-Lehtinen Lassi,1.0,0.481481,,
+Aerial 030,664290,684290,,2-Margaritidis Angelos Nikolaos,0.992891,0.911111,,
+Aerial 031,675010,695010,,30-Lehtinen Lassi,1.0,0.481481,,
+Aerial 032,683210,703210,,2-Margaritidis Angelos Nikolaos,1.0,0.911111,,
+Aerial 033,693970,713970,,30-Lehtinen Lassi,1.0,0.481481,,
+Aerial 034,702130,722130,,2-Margaritidis Angelos Nikolaos,1.0,0.911111,,
+Aerial 035,712890,732890,,30-Lehtinen Lassi,1.0,0.481481,,
+Aerial 036,721050,741050,,2-Margaritidis Angelos Nikolaos,1.0,0.911111,,
+Aerial 037,731810,751810,,30-Lehtinen Lassi,1.0,0.481481,,
+Aerial 038,739970,759970,,2-Margaritidis Angelos Nikolaos,1.0,0.911111,,
+Aerial 039,750730,770730,,30-Lehtinen Lassi,1.0,0.481481,,
+Aerial 040,758890,778890,,2-Margaritidis Angelos Nikolaos,1.0,0.911111,,
+Aerial 041,769610,789610,,30-Lehtinen Lassi,1.0,0.481481,,
+Aerial 042,777810,797810,,2-Margaritidis Angelos Nikolaos,1.0,0.911111,,
+Aerial 043,788570,808570,,30-Lehtinen Lassi,1.0,0.481481,,
+Aerial 044,796730,816730,,2-Margaritidis Angelos Nikolaos,1.0,0.911111,,
+Ground 001,51450,71450,,25-Talvitie Emil,0.697867,0.103704,,
+Ground 002,106450,126450,,14-Laine Simo,0.170616,0.340741,,
+Ground 003,153770,173770,,24-Ridge Rasmus,0.1,0.17037,,
+Ground 004,185090,205090,,21-Gebala Marek,0.924171,0.162963,,
+Ground 005,214810,234810,,21-Gebala Marek,0.914692,0.155556,,
+Ground 006,243570,263570,,21-Gebala Marek,0.92654,0.155556,,
+Ground 007,261290,281290,,29-Paappanen Eemeli,0.830569,0.511111,,
+Ground 008,273370,293370,,21-Gebala Marek,0.941943,0.148148,,
+Ground 009,282690,302690,,21-Gebala Marek,0.952607,0.133333,,
+Ground 010,317770,337770,,30-Lehtinen Lassi,0.943128,0.488889,,
+Ground 011,357050,377050,,21-Gebala Marek,0.96327,0.133333,,
+Ground 012,392610,412610,,30-Lehtinen Lassi,0.953791,0.488889,,
+Ground 013,411530,431530,,30-Lehtinen Lassi,0.95545,0.488889,,
+Ground 014,432570,452570,,21-Gebala Marek,0.984597,0.133333,,
+Ground 015,449250,469250,,30-Lehtinen Lassi,0.970379,0.488889,,
+Ground 016,468130,488130,,30-Lehtinen Lassi,0.982227,0.488889,,
+Ground 017,487010,507010,,30-Lehtinen Lassi,0.985782,0.488889,,
+Ground 018,505890,525890,,30-Lehtinen Lassi,0.994076,0.488889,,
+Ground 019,524810,544810,,30-Lehtinen Lassi,1.0,0.488889,,
+Ground 020,543730,563730,,30-Lehtinen Lassi,1.0,0.488889,,
+Ground 021,562650,582650,,30-Lehtinen Lassi,1.0,0.488889,,
+Ground 022,581570,601570,,30-Lehtinen Lassi,1.0,0.488889,,
+Ground 023,600490,620490,,30-Lehtinen Lassi,1.0,0.488889,,
+Ground 024,619410,639410,,30-Lehtinen Lassi,1.0,0.488889,,
+Ground 025,638330,658330,,30-Lehtinen Lassi,1.0,0.488889,,
+Ground 026,657250,677250,,30-Lehtinen Lassi,1.0,0.488889,,
+Ground 027,676170,696170,,30-Lehtinen Lassi,1.0,0.488889,,
+Shot 001,237410,257410,,20-Pinomaa Aleksi,0.925355,0.496296,,
+Shot 002,238370,258370,,5-Nathan,0.915877,0.481481,,
+Shot 003,249090,269090,,30-Lehtinen Lassi,0.92891,0.488889,,
+Shot 004,271330,291330,,19-O. Adawi,0.722749,0.362963,,
+Shot 005,271690,291690,,30-Lehtinen Lassi,0.92891,0.488889,,
+Shot 006,299770,319770,,30-Lehtinen Lassi,0.92891,0.488889,,
+Shot 007,318250,338250,,30-Lehtinen Lassi,0.943128,0.488889,,
+Shot 008,318690,338690,,2-Margaritidis Angelos Nikolaos,0.741706,0.918519,,
+Shot 009,336610,356610,,30-Lehtinen Lassi,0.940758,0.488889,,
+Shot 010,355210,375210,,30-Lehtinen Lassi,0.940758,0.481481,,
+Shot 011,374090,394090,,30-Lehtinen Lassi,0.945498,0.488889,,
+Shot 012,393050,413050,,30-Lehtinen Lassi,0.953791,0.488889,,
+Shot 013,411970,431970,,30-Lehtinen Lassi,0.95545,0.488889,,
+Shot 014,430850,450850,,30-Lehtinen Lassi,0.96327,0.488889,,
+Shot 015,449730,469730,,30-Lehtinen Lassi,0.970379,0.488889,,
+Shot 016,468610,488610,,30-Lehtinen Lassi,0.982227,0.488889,,
+Shot 017,487490,507490,,30-Lehtinen Lassi,0.985782,0.488889,,
+Shot 018,506370,526370,,30-Lehtinen Lassi,0.994076,0.488889,,
+Shot 019,525290,545290,,30-Lehtinen Lassi,1.0,0.488889,,
+Shot 020,544210,564210,,30-Lehtinen Lassi,1.0,0.488889,,
+Shot 021,563130,583130,,30-Lehtinen Lassi,1.0,0.488889,,
+Shot 022,582050,602050,,30-Lehtinen Lassi,1.0,0.488889,,
+Shot 023,600970,620970,,30-Lehtinen Lassi,1.0,0.488889,,
+Shot 024,619890,639890,,30-Lehtinen Lassi,1.0,0.488889,,
+Shot 025,638810,658810,,30-Lehtinen Lassi,1.0,0.488889,,
+Infraction 001,88330,108330,,2-Margaritidis Angelos Nikolaos,0.42891,0.940741,,
+Infraction 002,110810,130810,,19-O. Adawi,0.347156,0.37037,,
+Infraction 003,125010,145010,,19-O. Adawi,0.449052,0.392593,,
+Infraction 004,145890,165890,,12-Asikainen Elias,0.38981,0.059259,,
+Infraction 005,165210,185210,,14-Laine Simo,0.363744,0.340741,,
+Infraction 006,171690,191690,,29-Paappanen Eemeli,0.635071,0.481481,,
+Infraction 007,178050,198050,,19-O. Adawi,0.546209,0.407407,,
+Infraction 008,192330,212330,,19-O. Adawi,0.558057,0.37037,,
+Infraction 009,207850,227850,,19-O. Adawi,0.530806,0.37037,,
+Infraction 10,221530,241530,,19-O. Adawi,0.613744,0.37037,,
+Infraction 11,236250,256250,,19-O. Adawi,0.584123,0.377778,,
+Kick-off 001,6810,26810,,20-Pinomaa Aleksi,,,,
+Kick-off 002,393010,413010,,30-Lehtinen Lassi,0.953791,0.488889,,
+Kick-off 003,799650,819650,,19-O. Adawi,1.0,0.355556,,
+Kick-off 004,1194490,1214490,,19-O. Adawi,1.0,0.37037,,
+Dribble 001,23210,43210,,5-Nathan,0.728673,0.118519,,
+Dribble 002,61890,81890,,24-Ridge Rasmus,0.106635,0.185185,,
+Dribble 003,81650,101650,,5-Nathan,0.7109,0.111111,,
+Dribble 004,106450,126450,,14-Laine Simo,0.170616,0.340741,,
+Dribble 005,118930,138930,,21-Gebala Marek,0.783175,0.155556,,
+Dribble 006,123970,143970,,12-Asikainen Elias,0.419431,0.066667,,
+Dribble 007,135250,155250,,14-Laine Simo,0.222749,0.333333,,
+Dribble 008,153770,173770,,24-Ridge Rasmus,0.1,0.17037,,
+Dribble 009,165210,185210,,14-Laine Simo,0.363744,0.340741,,
+Dribble 010,185090,205090,,21-Gebala Marek,0.924171,0.162963,,
+Dribble 011,214810,234810,,21-Gebala Marek,0.914692,0.155556,,
+Dribble 012,232130,252130,,12-Asikainen Elias,0.555687,0.066667,,
+Dribble 013,243570,263570,,21-Gebala Marek,0.92654,0.155556,,
+Dribble 014,261290,281290,,29-Paappanen Eemeli,0.830569,0.511111,,
+Dribble 015,273370,293370,,21-Gebala Marek,0.941943,0.148148,,
+Dribble 016,282690,302690,,21-Gebala Marek,0.952607,0.133333,,
+Dribble 017,301410,321410,,21-Gebala Marek,0.959716,0.133333,,
+Dribble 018,317770,337770,,30-Lehtinen Lassi,0.943128,0.488889,,
+Dribble 019,319810,339810,,21-Gebala Marek,0.966825,0.133333,,
+Dribble 020,335970,355970,,30-Lehtinen Lassi,0.940758,0.488889,,
+Dribble 021,338210,358210,,21-Gebala Marek,0.966825,0.133333,,
+Dribble 022,354890,374890,,30-Lehtinen Lassi,0.940758,0.481481,,
+Dribble 023,357050,377050,,21-Gebala Marek,0.96327,0.133333,,
+Dribble 024,373650,393650,,30-Lehtinen Lassi,0.945498,0.488889,,
+Dribble 025,375810,395810,,21-Gebala Marek,0.966825,0.133333,,
+Dribble 026,392610,412610,,30-Lehtinen Lassi,0.953791,0.488889,,
+Dribble 027,394810,414810,,21-Gebala Marek,0.973934,0.133333,,
+Dribble 028,411530,431530,,30-Lehtinen Lassi,0.95545,0.488889,,
+Dribble 029,413730,433730,,21-Gebala Marek,0.981043,0.133333,,
+Dribble 030,430370,450370,,30-Lehtinen Lassi,0.96327,0.488889,,
+Dribble 031,432570,452570,,21-Gebala Marek,0.984597,0.133333,,
+Dribble 032,449250,469250,,30-Lehtinen Lassi,0.970379,0.488889,,
+Dribble 033,451450,471450,,21-Gebala Marek,0.989336,0.133333,,
+Dribble 034,468130,488130,,30-Lehtinen Lassi,0.982227,0.488889,,
+Dribble 035,470330,490330,,21-Gebala Marek,0.995261,0.133333,,
+Dribble 036,487010,507010,,30-Lehtinen Lassi,0.985782,0.488889,,
+Dribble 037,489210,509210,,21-Gebala Marek,1.0,0.133333,,
+Dribble 038,505890,525890,,30-Lehtinen Lassi,0.994076,0.488889,,
+Dribble 039,508090,528090,,21-Gebala Marek,1.0,0.133333,,
+Dribble 040,524810,544810,,30-Lehtinen Lassi,1.0,0.488889,,
+counter pressing 001,40170,60170,,19-O. Adawi,0.334123,0.355556,,
+counter pressing 002,67130,87130,,29-Paappanen Eemeli,0.627962,0.096296,,
+counter pressing 003,91330,111330,,2-Margaritidis Angelos Nikolaos,0.42891,0.940741,,
+counter pressing 004,101690,121690,,12-Asikainen Elias,0.413507,0.059259,,
+counter pressing 005,106450,126450,,14-Laine Simo,0.170616,0.340741,,
+counter pressing 006,114410,134410,,29-Paappanen Eemeli,0.505924,0.518519,,
+counter pressing 007,118930,138930,,21-Gebala Marek,0.783175,0.155556,,
+counter pressing 008,123970,143970,,12-Asikainen Elias,0.4,0.059259,,
+counter pressing 009,126570,146570,,19-O. Adawi,0.434834,0.925926,,
+counter pressing 10,132210,152210,,30-Lehtinen Lassi,0.530806,0.540741,,
+counter pressing 11,135250,155250,,14-Laine Simo,0.222749,0.333333,,
+counter pressing 12,143490,163490,,2-Margaritidis Angelos Nikolaos,0.42891,0.911111,,
+counter pressing 13,148690,168690,,19-O. Adawi,0.364929,0.385185,,
+counter pressing 14,150930,170930,,2-Margaritidis Angelos Nikolaos,0.322275,0.333333,,
+counter pressing 15,161770,181770,,30-Lehtinen Lassi,0.407583,0.881481,,
+counter pressing 16,173090,193090,,19-O. Adawi,0.5,0.333333,,
+counter pressing 17,183770,203770,,19-O. Adawi,0.546209,0.407407,,
+counter pressing 18,204410,224410,,12-Asikainen Elias,0.530806,0.355556,,
+counter pressing 19,232130,252130,,12-Asikainen Elias,0.555687,0.066667,,
+counter pressing 20,249090,269090,,30-Lehtinen Lassi,0.841232,0.481481,,
+counter pressing 21,271330,291330,,19-O. Adawi,0.722749,0.362963,,
+counter pressing 22,271690,291690,,30-Lehtinen Lassi,0.854265,0.481481,,
+counter pressing 23,299770,319770,,30-Lehtinen Lassi,0.92891,0.488889,,
+counter pressing 24,318250,338250,,30-Lehtinen Lassi,0.943128,0.488889,,
+counter pressing 25,336610,356610,,30-Lehtinen Lassi,0.940758,0.488889,,
+counter pressing 26,355210,375210,,30-Lehtinen Lassi,0.940758,0.481481,,
+counter pressing 27,374090,394090,,30-Lehtinen Lassi,0.945498,0.488889,,
+Progressive run 001,16990,36990,,21-Gebala Marek,0.319905,0.488889,,
+Progressive run 002,18210,38210,,21-Gebala Marek,0.7891,0.081481,,
+Progressive run 003,22660,42660,,5-Nathan,0.825829,0.118519,,
+Progressive run 004,27220,47220,,5-Nathan,0.687204,0.125926,,
+Progressive run 005,33120,53120,,2-Margaritidis Angelos Nikolaos,0.501185,0.925926,,
+Progressive run 006,38770,58770,,2-Margaritidis Angelos Nikolaos,0.528436,0.911111,,
+Progressive run 007,43690,63690,,2-Margaritidis Angelos Nikolaos,0.533175,0.925926,,
+Progressive run 008,47930,67930,,25-Talvitie Emil,0.675355,0.125926,,
+Progressive run 009,51450,71450,,25-Talvitie Emil,0.697867,0.103704,,
+Progressive run 10,55090,75090,,30-Lehtinen Lassi,0.731043,0.488889,,
+Progressive run 11,58130,78130,,12-Asikainen Elias,0.42891,0.103704,,
+Progressive run 12,64650,84650,,12-Asikainen Elias,0.4,0.096296,,
+Progressive run 13,68330,88330,,29-Paappanen Eemeli,0.687204,0.5,,
+Progressive run 14,72570,92570,,30-Lehtinen Lassi,0.626777,0.466667,,
+Progressive run 15,76290,96290,,5-Nathan,0.686019,0.111111,,
+Progressive run 16,80610,100610,,21-Gebala Marek,0.824645,0.111111,,
+Progressive run 17,84410,104410,,29-Paappanen Eemeli,0.648104,0.5,,
+Progressive run 18,88330,108330,,2-Margaritidis Angelos Nikolaos,0.42891,0.940741,,
+Progressive run 19,103490,123490,,12-Asikainen Elias,0.407583,0.074074,,
+Progressive run 20,113170,133170,,2-Margaritidis Angelos Nikolaos,0.401659,0.874074,,
+Progressive run 21,118090,138090,,21-Gebala Marek,0.783175,0.155556,,
+Progressive run 22,123010,143010,,12-Asikainen Elias,0.4,0.059259,,
+Progressive run 23,127690,147690,,2-Margaritidis Angelos Nikolaos,0.43128,0.911111,,
+Progressive run 24,136370,156370,,19-O. Adawi,0.354265,0.37037,,
+Progressive run 25,141330,161330,,2-Margaritidis Angelos Nikolaos,0.421801,0.925926,,
+Progressive run 26,147810,167810,,19-O. Adawi,0.364929,0.385185,,
+Progressive run 27,151930,171930,,14-Laine Simo,0.315166,0.325926,,
+Progressive run 28,157490,177490,,19-O. Adawi,0.35545,0.392593,,
+Progressive run 29,163010,183010,,2-Margaritidis Angelos Nikolaos,0.400474,0.888889,,
+Progressive run 30,167090,187090,,19-O. Adawi,0.46327,0.4,,
+Progressive run 31,169650,189650,,2-Margaritidis Angelos Nikolaos,0.441943,0.925926,,
+Progressive run 32,174610,194610,,19-O. Adawi,0.5,0.333333,,
+Progressive run 33,178050,198050,,19-O. Adawi,0.546209,0.407407,,
+Progressive run 34,180490,200490,,2-Margaritidis Angelos Nikolaos,0.530806,0.925926,,
+Progressive run 35,185090,205090,,21-Gebala Marek,0.924171,0.162963,,
+Progressive run 36,190290,210290,,21-Gebala Marek,0.925355,0.155556,,
+Progressive run 37,194850,214850,,2-Margaritidis Angelos Nikolaos,0.552133,0.918519,,
+Progressive run 38,198650,218650,,19-O. Adawi,0.550948,0.333333,,
+Progressive run 39,201170,221170,,2-Margaritidis Angelos Nikolaos,0.561611,0.925926,,
+Progressive run 40,207850,227850,,19-O. Adawi,0.530806,0.37037,,
+Progressive run 41,210490,230490,,2-Margaritidis Angelos Nikolaos,0.547393,0.925926,,
+Progressive run 42,214810,234810,,21-Gebala Marek,0.914692,0.155556,,
+Progressive run 43,219490,239490,,21-Gebala Marek,0.924171,0.155556,,
+Progressive run 44,224370,244370,,2-Margaritidis Angelos Nikolaos,0.6,0.918519,,
+Progressive run 45,229330,249330,,19-O. Adawi,0.6,0.355556,,
+Progressive run 46,236250,256250,,19-O. Adawi,0.584123,0.377778,,
+Progressive run 47,238810,258810,,2-Margaritidis Angelos Nikolaos,0.587678,0.925926,,
+Progressive run 48,243570,263570,,21-Gebala Marek,0.92654,0.155556,,
+Progressive run 49,251330,271330,,21-Gebala Marek,0.940758,0.155556,,
+Progressive run 50,256530,276530,,19-O. Adawi,0.627962,0.37037,,
+Progressive run 51,259210,279210,,2-Margaritidis Angelos Nikolaos,0.612559,0.925926,,
+Progressive run 52,264010,284010,,21-Gebala Marek,0.939573,0.148148,,
+Progressive run 53,268770,288770,,2-Margaritidis Angelos Nikolaos,0.669431,0.918519,,
+Progressive run 54,273370,293370,,21-Gebala Marek,0.941943,0.148148,,
+Progressive run 55,277970,297970,,2-Margaritidis Angelos Nikolaos,0.699052,0.918519,,
+Progressive run 56,282690,302690,,21-Gebala Marek,0.952607,0.133333,,
+Progressive run 57,287290,307290,,2-Margaritidis Angelos Nikolaos,0.739336,0.925926,,
+Progressive run 58,294570,314570,,19-O. Adawi,0.7109,0.377778,,
+Progressive run 59,297370,317370,,2-Margaritidis Angelos Nikolaos,0.707346,0.925926,,
+Progressive run 60,301410,321410,,21-Gebala Marek,0.959716,0.133333,,
+Progressive run 61,306050,326050,,2-Margaritidis Angelos Nikolaos,0.771327,0.925926,,
+Progressive run 62,312850,332850,,19-O. Adawi,0.75,0.377778,,
+Progressive run 63,315650,335650,,2-Margaritidis Angelos Nikolaos,0.741706,0.918519,,
+pressing 001,40170,60170,,19-O. Adawi,0.334123,0.355556,,
+pressing 002,67130,87130,,29-Paappanen Eemeli,0.627962,0.096296,,
+pressing 003,91330,111330,,2-Margaritidis Angelos Nikolaos,0.42891,0.940741,,
+pressing 004,101690,121690,,12-Asikainen Elias,0.413507,0.059259,,
+pressing 005,106450,126450,,14-Laine Simo,0.170616,0.340741,,
+pressing 006,114410,134410,,29-Paappanen Eemeli,0.505924,0.518519,,
+pressing 007,118930,138930,,21-Gebala Marek,0.783175,0.155556,,
+pressing 008,123970,143970,,12-Asikainen Elias,0.4,0.059259,,
+pressing 009,126570,146570,,19-O. Adawi,0.434834,0.925926,,
+pressing 10,132210,152210,,30-Lehtinen Lassi,0.530806,0.540741,,
+pressing 11,135250,155250,,14-Laine Simo,0.222749,0.333333,,
+pressing 12,143490,163490,,2-Margaritidis Angelos Nikolaos,0.42891,0.911111,,
+pressing 13,148690,168690,,19-O. Adawi,0.364929,0.385185,,
+pressing 14,150930,170930,,2-Margaritidis Angelos Nikolaos,0.322275,0.333333,,
+pressing 15,161770,181770,,30-Lehtinen Lassi,0.407583,0.881481,,
+pressing 16,173090,193090,,19-O. Adawi,0.5,0.333333,,
+pressing 17,183770,203770,,19-O. Adawi,0.546209,0.407407,,
+pressing 18,204410,224410,,12-Asikainen Elias,0.530806,0.355556,,
+pressing 19,232130,252130,,12-Asikainen Elias,0.555687,0.066667,,
+pressing 20,249090,269090,,30-Lehtinen Lassi,0.841232,0.481481,,
+pressing 21,271330,291330,,19-O. Adawi,0.722749,0.362963,,
+pressing 22,271690,291690,,30-Lehtinen Lassi,0.854265,0.481481,,
+pressing 23,299770,319770,,30-Lehtinen Lassi,0.92891,0.488889,,
+pressing 24,318250,338250,,30-Lehtinen Lassi,0.943128,0.488889,,
+pressing 25,336610,356610,,30-Lehtinen Lassi,0.940758,0.488889,,
+pressing 26,355210,375210,,30-Lehtinen Lassi,0.940758,0.481481,,
+pressing 27,374090,394090,,30-Lehtinen Lassi,0.945498,0.488889,,
+pressing 28,393010,413010,,30-Lehtinen Lassi,0.953791,0.488889,,
+pressing 29,411930,431930,,30-Lehtinen Lassi,0.95545,0.488889,,
+pressing 30,430810,450810,,30-Lehtinen Lassi,0.96327,0.488889,,
+pressing 31,449690,469690,,30-Lehtinen Lassi,0.970379,0.488889,,
+pressing 32,468570,488570,,30-Lehtinen Lassi,0.982227,0.488889,,
+pressing 33,487450,507450,,30-Lehtinen Lassi,0.985782,0.488889,,
+pressing 34,506330,526330,,30-Lehtinen Lassi,0.994076,0.488889,,
+pressing 35,525210,545210,,30-Lehtinen Lassi,1.0,0.488889,,
+pressing 36,544130,564130,,30-Lehtinen Lassi,1.0,0.488889,,
+extraction 001,83330,103330,,14-Laine Simo,0.854265,0.481481,,
+extraction 002,171690,191690,,29-Paappanen Eemeli,0.612559,0.481481,,
+extraction 003,237410,257410,,20-Pinomaa Aleksi,0.925355,0.496296,,
+extraction 004,238370,258370,,5-Nathan,0.915877,0.481481,,
+extraction 005,249090,269090,,30-Lehtinen Lassi,0.841232,0.481481,,
+extraction 006,260810,280810,,29-Paappanen Eemeli,0.825829,0.518519,,
+extraction 007,261530,281530,,21-Gebala Marek,0.817536,0.5,,
+extraction 008,271330,291330,,19-O. Adawi,0.722749,0.362963,,
+extraction 009,271690,291690,,30-Lehtinen Lassi,0.854265,0.481481,,
+extraction 010,299770,319770,,30-Lehtinen Lassi,0.92891,0.488889,,
+extraction 011,317770,337770,,30-Lehtinen Lassi,0.943128,0.488889,,
+extraction 012,318690,338690,,2-Margaritidis Angelos Nikolaos,0.741706,0.918519,,
+extraction 013,335010,355010,,30-Lehtinen Lassi,0.915877,0.481481,,
+extraction 014,336610,356610,,30-Lehtinen Lassi,0.940758,0.488889,,
+extraction 015,344050,364050,,21-Gebala Marek,0.951422,0.481481,,
+extraction 016,355210,375210,,30-Lehtinen Lassi,0.940758,0.481481,,
+extraction 017,370330,390330,,21-Gebala Marek,0.941943,0.488889,,
+extraction 018,374090,394090,,30-Lehtinen Lassi,0.945498,0.488889,,
+extraction 019,393010,413010,,30-Lehtinen Lassi,0.953791,0.488889,,
+extraction 020,410490,430490,,30-Lehtinen Lassi,0.941943,0.488889,,
+extraction 021,411930,431930,,30-Lehtinen Lassi,0.95545,0.488889,,
+extraction 022,429370,449370,,21-Gebala Marek,0.957346,0.481481,,
+extraction 023,430810,450810,,30-Lehtinen Lassi,0.96327,0.488889,,
+extraction 024,449690,469690,,30-Lehtinen Lassi,0.970379,0.488889,,
+extraction 025,467010,487010,,30-Lehtinen Lassi,0.970379,0.488889,,
+extraction 026,468570,488570,,30-Lehtinen Lassi,0.982227,0.488889,,
+extraction 027,472530,492530,,19-O. Adawi,0.909953,0.355556,,
+extraction 028,487450,507450,,30-Lehtinen Lassi,0.985782,0.488889,,
+extraction 029,495170,515170,,2-Margaritidis Angelos Nikolaos,0.887441,0.911111,,
+extraction 030,505890,525890,,30-Lehtinen Lassi,0.994076,0.488889,,
+extraction 031,506330,526330,,30-Lehtinen Lassi,0.994076,0.488889,,
+extraction 032,512010,532010,,19-O. Adawi,0.911137,0.355556,,
+extraction 033,523610,543610,,2-Margaritidis Angelos Nikolaos,0.905213,0.911111,,
+extraction 034,525210,545210,,30-Lehtinen Lassi,1.0,0.488889,,
+extraction 035,543090,563090,,30-Lehtinen Lassi,1.0,0.481481,,
+extraction 036,544130,564130,,30-Lehtinen Lassi,1.0,0.488889,,
+extraction 037,550770,570770,,2-Margaritidis Angelos Nikolaos,0.932464,0.911111,,
+extraction 038,561610,581610,,30-Lehtinen Lassi,1.0,0.481481,,
+extraction 039,563130,583130,,30-Lehtinen Lassi,1.0,0.488889,,
+extraction 040,569690,589690,,2-Margaritidis Angelos Nikolaos,0.941943,0.911111,,
+extraction 041,580370,600370,,30-Lehtinen Lassi,1.0,0.481481,,
+extraction 042,582050,602050,,30-Lehtinen Lassi,1.0,0.488889,,
+extraction 043,588610,608610,,2-Margaritidis Angelos Nikolaos,0.952607,0.911111,,
+extraction 044,599370,619370,,30-Lehtinen Lassi,1.0,0.481481,,
+extraction 045,600970,620970,,30-Lehtinen Lassi,1.0,0.488889,,
+extraction 046,607530,627530,,2-Margaritidis Angelos Nikolaos,0.96327,0.911111,,
+extraction 047,618210,638210,,30-Lehtinen Lassi,1.0,0.481481,,
+extraction 048,619890,639890,,30-Lehtinen Lassi,1.0,0.488889,,
+extraction 049,626450,646450,,2-Margaritidis Angelos Nikolaos,0.973934,0.911111,,
+extraction 050,637170,657170,,30-Lehtinen Lassi,1.0,0.481481,,
+extraction 051,638810,658810,,30-Lehtinen Lassi,1.0,0.488889,,
+extraction 052,645370,665370,,2-Margaritidis Angelos Nikolaos,0.983412,0.911111,,
+extraction 053,656130,676130,,30-Lehtinen Lassi,1.0,0.481481,,
+extraction 054,664290,684290,,2-Margaritidis Angelos Nikolaos,0.992891,0.911111,,
+extraction 055,675010,695010,,30-Lehtinen Lassi,1.0,0.481481,,
+extraction 056,683210,703210,,2-Margaritidis Angelos Nikolaos,1.0,0.911111,,
+extraction 057,693970,713970,,30-Lehtinen Lassi,1.0,0.481481,,
+extraction 058,702130,722130,,2-Margaritidis Angelos Nikolaos,1.0,0.911111,,
+extraction 059,712890,732890,,30-Lehtinen Lassi,1.0,0.481481,,
+extraction 060,721050,741050,,2-Margaritidis Angelos Nikolaos,1.0,0.911111,,
+extraction 061,731810,751810,,30-Lehtinen Lassi,1.0,0.481481,,
+extraction 062,739970,759970,,2-Margaritidis Angelos Nikolaos,1.0,0.911111,,
+extraction 063,750730,770730,,30-Lehtinen Lassi,1.0,0.481481,,
+extraction 064,758890,778890,,2-Margaritidis Angelos Nikolaos,1.0,0.911111,,
+extraction 065,769610,789610,,30-Lehtinen Lassi,1.0,0.481481,,
+P/A 001,22990,42990,,21-Gebala Marek | 30-Lehtinen Lassi,0.319905,0.488889,,
+P/A 002,24210,44210,,21-Gebala Marek | 5-Nathan,0.7891,0.081481,,
+P/A 003,28660,48660,,5-Nathan | 25-Talvitie Emil,0.825829,0.118519,,
+P/A 004,33220,53220,,5-Nathan | 29-Paappanen Eemeli,0.687204,0.125926,,
+P/A 005,35640,55640,,30-Lehtinen Lassi | 29-Paappanen Eemeli,0.649289,0.57037,,
+P/A 006,39120,59120,,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,0.501185,0.925926,,
+P/A 007,44770,64770,,2-Margaritidis Angelos Nikolaos | 19-O. Adawi,0.528436,0.911111,,
+P/A 008,47410,67410,,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.482227,0.362963,,
+P/A 009,49690,69690,,2-Margaritidis Angelos Nikolaos | 19-O. Adawi,0.533175,0.925926,,
+P/A 010,51890,71890,,19-O. Adawi | 25-Talvitie Emil,0.477488,0.333333,,
+P/A 011,53930,73930,,25-Talvitie Emil | 12-Asikainen Elias,0.675355,0.125926,,
+P/A 012,55850,75850,,12-Asikainen Elias | 25-Talvitie Emil,0.466825,0.037037,,
+P/A 013,57450,77450,,25-Talvitie Emil | 21-Gebala Marek,0.697867,0.103704,,
+P/A 014,59010,79010,,21-Gebala Marek | 30-Lehtinen Lassi,0.864929,0.148148,,
+P/A 015,61090,81090,,30-Lehtinen Lassi | 29-Paappanen Eemeli,0.731043,0.488889,,
+P/A 016,62650,82650,,29-Paappanen Eemeli | 12-Asikainen Elias,0.612559,0.474074,,
+P/A 017,64130,84130,,12-Asikainen Elias | 20-Pinomaa Aleksi,0.42891,0.103704,,
+P/A 018,69130,89130,,29-Paappanen Eemeli | 12-Asikainen Elias,0.7109,0.466667,,
+P/A 019,70650,90650,,12-Asikainen Elias | 25-Talvitie Emil,0.4,0.096296,,
+P/A 020,72410,92410,,25-Talvitie Emil | 29-Paappanen Eemeli,0.627962,0.096296,,
+P/A 021,74330,94330,,29-Paappanen Eemeli | 2-Margaritidis Angelos Nikolaos,0.687204,0.5,,
+P/A 022,76730,96730,,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,0.457346,0.918519,,
+P/A 023,78570,98570,,30-Lehtinen Lassi | 19-O. Adawi,0.626777,0.466667,,
+P/A 024,80570,100570,,19-O. Adawi | 5-Nathan,0.432464,0.37037,,
+P/A 025,82290,102290,,5-Nathan | 25-Talvitie Emil,0.686019,0.111111,,
+P/A 026,83890,103890,,25-Talvitie Emil | 21-Gebala Marek,0.787915,0.111111,,
+P/A 027,86610,106610,,21-Gebala Marek | 5-Nathan,0.824645,0.111111,,
+P/A 028,88450,108450,,5-Nathan | 29-Paappanen Eemeli,0.7109,0.111111,,
+P/A 029,90410,110410,,29-Paappanen Eemeli | 30-Lehtinen Lassi,0.648104,0.5,,
+P/A 030,92330,112330,,30-Lehtinen Lassi | 2-Margaritidis Angelos Nikolaos,0.575829,0.5,,
+P/A 031,94330,114330,,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,0.42891,0.940741,,
+P/A 032,100000,120000,,12-Asikainen Elias | 20-Pinomaa Aleksi,0.413507,0.059259,,
+P/A 033,109490,129490,,12-Asikainen Elias | 14-Laine Simo,0.407583,0.074074,,
+P/A 034,114650,134650,,14-Laine Simo | 19-O. Adawi,0.165877,0.355556,,
+P/A 035,116810,136810,,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.347156,0.37037,,
+P/A 036,119170,139170,,2-Margaritidis Angelos Nikolaos | 29-Paappanen Eemeli,0.401659,0.874074,,
+P/A 037,122010,142010,,29-Paappanen Eemeli | 21-Gebala Marek,0.511848,0.533333,,
+P/A 038,124090,144090,,21-Gebala Marek | 25-Talvitie Emil,0.783175,0.155556,,
+P/A 039,126050,146050,,25-Talvitie Emil | 12-Asikainen Elias,0.627962,0.111111,,
+P/A 040,129010,149010,,12-Asikainen Elias | 19-O. Adawi,0.4,0.059259,,
+P/A 041,131010,151010,,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.449052,0.392593,,
+P/A 042,133690,153690,,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,0.43128,0.911111,,
+P/A 043,136010,156010,,30-Lehtinen Lassi | 29-Paappanen Eemeli,0.530806,0.540741,,
+P/A 044,140290,160290,,14-Laine Simo | 19-O. Adawi,0.222749,0.333333,,
+P/A 045,142370,162370,,19-O. Adawi | 30-Lehtinen Lassi,0.354265,0.37037,,
+P/A 046,144330,164330,,30-Lehtinen Lassi | 2-Margaritidis Angelos Nikolaos,0.479858,0.555556,,
+P/A 047,147330,167330,,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,0.421801,0.925926,,
+P/A 048,151890,171890,,12-Asikainen Elias | 19-O. Adawi,0.38981,0.059259,,
+P/A 049,153810,173810,,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.364929,0.385185,,
+P/A 050,155890,175890,,2-Margaritidis Angelos Nikolaos | 14-Laine Simo,0.414692,0.903704,,
+P/A 051,157930,177930,,14-Laine Simo | 24-Ridge Rasmus,0.315166,0.325926,,
+P/A 052,159770,179770,,24-Ridge Rasmus | 14-Laine Simo,0.1,0.17037,,
+P/A 053,161570,181570,,14-Laine Simo | 19-O. Adawi,0.25237,0.318519,,
+P/A 054,163490,183490,,19-O. Adawi | 30-Lehtinen Lassi,0.35545,0.392593,,
+P/A 055,165650,185650,,30-Lehtinen Lassi | 2-Margaritidis Angelos Nikolaos,0.457346,0.555556,,
+P/A 056,169010,189010,,2-Margaritidis Angelos Nikolaos | 14-Laine Simo,0.400474,0.888889,,
+P/A 057,171210,191210,,14-Laine Simo | 19-O. Adawi,0.363744,0.340741,,
+P/A 058,173090,193090,,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.46327,0.4,,
+P/A 059,175650,195650,,2-Margaritidis Angelos Nikolaos | 29-Paappanen Eemeli,0.441943,0.925926,,
+P/A 060,177690,197690,,29-Paappanen Eemeli | 19-O. Adawi,0.635071,0.481481,,
+P/A 061,180610,200610,,19-O. Adawi | 14-Laine Simo,0.5,0.333333,,
+P/A 062,182210,202210,,14-Laine Simo | 19-O. Adawi,0.393365,0.325926,,
+P/A 063,184050,204050,,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.546209,0.407407,,
+P/A 064,186490,206490,,2-Margaritidis Angelos Nikolaos | 29-Paappanen Eemeli,0.530806,0.925926,,
+P/A 065,188730,208730,,29-Paappanen Eemeli | 21-Gebala Marek,0.771327,0.525926,,
+P/A 066,191090,211090,,21-Gebala Marek | 29-Paappanen Eemeli,0.924171,0.162963,,
+P/A 067,193050,213050,,29-Paappanen Eemeli | 21-Gebala Marek,0.86019,0.518519,,
+P/A 068,196290,216290,,21-Gebala Marek | 19-O. Adawi,0.925355,0.155556,,
+P/A 069,198330,218330,,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.558057,0.37037,,
+P/A 070,200850,220850,,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,0.552133,0.918519,,
+P/A 071,202890,222890,,30-Lehtinen Lassi | 19-O. Adawi,0.729858,0.474074,,
+P/A 072,204650,224650,,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.550948,0.333333,,
+P/A 073,207170,227170,,2-Margaritidis Angelos Nikolaos | 12-Asikainen Elias,0.561611,0.925926,,
+P/A 074,211810,231810,,12-Asikainen Elias | 19-O. Adawi,0.528436,0.066667,,
+P/A 075,213850,233850,,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.530806,0.37037,,
+P/A 076,216490,236490,,2-Margaritidis Angelos Nikolaos | 29-Paappanen Eemeli,0.547393,0.925926,,
+P/A 077,218610,238610,,29-Paappanen Eemeli | 21-Gebala Marek,0.793839,0.533333,,
+P/A 078,220810,240810,,21-Gebala Marek | 29-Paappanen Eemeli,0.914692,0.155556,,
+P/A 079,222650,242650,,29-Paappanen Eemeli | 21-Gebala Marek,0.854265,0.5,,
+P/A 080,225490,245490,,21-Gebala Marek | 19-O. Adawi,0.924171,0.155556,,
+P/A 081,227530,247530,,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.613744,0.37037,,
+P/A 082,230370,250370,,2-Margaritidis Angelos Nikolaos | 29-Paappanen Eemeli,0.6,0.918519,,
+P/A 083,232770,252770,,29-Paappanen Eemeli | 19-O. Adawi,0.854265,0.518519,,
+P/A 084,235330,255330,,19-O. Adawi | 12-Asikainen Elias,0.6,0.355556,,
+P/A 085,240410,260410,,12-Asikainen Elias | 19-O. Adawi,0.555687,0.066667,,
+P/A 086,242250,262250,,19-O. Adawi | 2-Margaritidis Angelos Nikolaos,0.584123,0.377778,,
+P/A 087,244810,264810,,2-Margaritidis Angelos Nikolaos | 30-Lehtinen Lassi,0.587678,0.925926,,
+P/A 088,247090,267090,,30-Lehtinen Lassi | 21-Gebala Marek,0.841232,0.481481,,
+SH/A 001,237410,257410,,20-Pinomaa Aleksi,0.925355,0.496296,,
+SH/A 002,238370,258370,,5-Nathan,0.915877,0.481481,,
+Substitution 001,1351110,1371110,EPS,20-Pinomaa Aleksi | 27- Reiju Rasmus,,,,
+Substitution 002,1351230,1371230,EPS,25-Talvitie Emil | 98-Rokkonen Mika,,,,
+Substitution 003,1413810,1433810,EPS,5-Nathan | 18-Aleksi Ruusu,,,,
+Substitution 004,1413930,1433930,EPS,14-Laine Simo | 70-Ronni Hope,,,,
+Substitution 005,1458310,1478310,EPS,19-O. Adawi | 14-Laine Simo,,,,
+Substitution 006,1458430,1478430,EPS,2-Margaritidis Angelos Nikolaos | 25-Talvitie Emil,,,,
+Substitution 007,1482810,1502810,EPS,24-Ridge Rasmus | 20-Pinomaa Aleksi,,,,
