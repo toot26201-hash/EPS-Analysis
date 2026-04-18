@@ -1,7 +1,8 @@
 import streamlit as st
 import pandas as pd
-from mplsoccer import Pitch
 import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+from mplsoccer import Pitch
 
 st.set_page_config(page_title="EPS Tactical Zones", layout="wide")
 
@@ -17,57 +18,43 @@ def load_data():
         st.error(f"Error: {e}")
         return pd.DataFrame()
 
-def get_zone(x, y):
-    # تعريف Zone 14 (StatsBomb coords: X 80-102, Y 30-50)
-    if 80 <= x <= 102 and 30 <= y <= 50:
-        return "Zone 14"
-    # تعريف الـ Half-spaces (StatsBomb coords: Y 18-30 or 50-62)
-    elif 80 <= x <= 102 and ((18 <= y <= 30) or (50 <= y <= 62)):
-        return "Half-space"
-    return "Other"
-
 df = load_data()
 if not df.empty:
-    # فك الأسماء
     all_names = df['Players'].str.split('|').explode().str.strip()
     selected_player = st.sidebar.selectbox("Select Player", sorted(all_names.unique()))
-    
     p_df = df[df['Players'].str.contains(selected_player, na=False)].copy()
 
-    # حساب المنطقة والنوع (تبديل المحاور لضبط الاتجاه اللي اتفقنا عليه)
-    p_df['Real_X_End'] = p_df['Y_End'] * 120
-    p_df['Real_Y_End'] = p_df['X_End'] * 80
-    p_df['Target_Zone'] = p_df.apply(lambda row: get_zone(row['Real_X_End'], row['Real_Y_End']), axis=1)
+    # --- فلترة المناطق (Zone 14 & Half-spaces) ---
+    # بنحول الإحداثيات لمقاس الملعب (120x80) مع ضبط القلبة اللي اتفقنا عليها
+    p_df['x_end_plot'] = p_df['Y_End'] * 120
+    p_df['y_end_plot'] = p_df['X_Start'] * 80 # تعديل بسيط للواقعية
+    
+    def classify_zone(x, y):
+        if 80 <= x <= 102 and 30 <= y <= 50: return "Zone 14"
+        if 80 <= x <= 102 and ((18 <= y <= 30) or (50 <= y <= 62)): return "Half-space"
+        return "Other"
 
-    # فلترة التمريرات اللي دخلت المناطق دي بس
+    p_df['Target_Zone'] = p_df.apply(lambda r: classify_zone(r['x_end_plot'], r['y_end_plot']), axis=1)
     tactical_passes = p_df[p_df['Target_Zone'] != "Other"].copy()
 
     st.title(f"🎯 Tactical Entry Map: {selected_player}")
     
-    col1, col2 = st.columns([3, 1])
+    pitch = Pitch(pitch_type='statsbomb', pitch_color='#1e293b', line_color='#777777')
+    fig, ax = pitch.draw(figsize=(12, 8))
 
-    with col1:
-        pitch = Pitch(pitch_type='statsbomb', pitch_color='#1e293b', line_color='#777777')
-        fig, ax = pitch.draw(figsize=(10, 7))
-        
-        # رسم المناطق تظليلياً للفهم
-        # Zone 14
-        pitch.box(80, 30, 102, 50, ax=ax, color='red', alpha=0.1, label='Zone 14')
-        # Half-spaces
-        pitch.box(80, 18, 102, 30, ax=ax, color='blue', alpha=0.1)
-        pitch.box(80, 50, 102, 62, ax=ax, color='blue', alpha=0.1)
+    # رسم المناطق يدوياً عشان نهرب من الـ AttributeError
+    # Zone 14
+    ax.add_patch(patches.Rectangle((80, 30), 22, 20, color='red', alpha=0.2, label='Zone 14'))
+    # Half-spaces
+    ax.add_patch(patches.Rectangle((80, 18), 22, 12, color='blue', alpha=0.1, label='Half-space'))
+    ax.add_patch(patches.Rectangle((80, 50), 22, 12, color='blue', alpha=0.1))
 
-        for _, row in tactical_passes.iterrows():
-            color = "#ff4b4b" if row['Target_Zone'] == "Zone 14" else "#38bdf8"
-            pitch.arrows(row['Y_Start']*120, row['X_Start']*80, 
-                         row['Real_X_End'], row['Real_Y_End'], 
-                         color=color, ax=ax, width=2, headwidth=4)
-        st.pyplot(fig)
+    for _, row in tactical_passes.iterrows():
+        color = "#ef4444" if row['Target_Zone'] == "Zone 14" else "#38bdf8"
+        pitch.arrows(row['Y_Start']*120, row['X_Start']*80, 
+                     row['x_end_plot'], row['y_end_plot'], 
+                     color=color, ax=ax, width=2, headwidth=4, alpha=0.8)
 
-    with col2:
-        st.subheader("📊 Summary")
-        st.write(f"Total Tactical Entries: {len(tactical_passes)}")
-        st.dataframe(tactical_passes[['Event Name', 'Target_Zone']])
-
-else:
-    st.info("ارفع ملف الإكسيل عشان نبدأ التحليل.")
+    st.pyplot(fig)
+    st.write("🔴 Zone 14 Entries | 🔵 Half-space Entries")
+    st.dataframe(tactical_passes[['Event Name', 'Target_Zone']].head(10))
