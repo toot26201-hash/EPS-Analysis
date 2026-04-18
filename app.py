@@ -2,79 +2,49 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 from mplsoccer import Pitch
-from highlight_text import ax_text
 
-st.set_page_config(page_title="EPS Player Pass Maps", layout="wide")
+st.set_page_config(page_title="EPS Realistic Maps", layout="wide")
 
 @st.cache_data
 def load_data():
     df = pd.read_csv('EPS_Match_Data_Clean.csv')
     df.columns = df.columns.str.strip()
-    df['Players'] = df['Players'].astype(str).fillna('Unknown')
     return df
 
 try:
     df = load_data()
+    # تنظيف الأسماء
+    all_names = df['Players'].str.split('|').explode().str.strip()
+    player = st.sidebar.selectbox("Select Player", sorted(all_names.unique()))
     
-    # تنظيف الأسماء وفك التمريرات المركبة (حسب الصور السابقة)
-    all_names_raw = df['Players'].str.split('|').explode().str.strip()
-    clean_player_list = sorted([p for p in all_names_raw.unique() if p and p not in ['nan', 'Unknown']])
+    p_df = df[df['Players'].str.contains(player, na=False)].copy()
 
-    st.sidebar.header("📋 إعدادات الخريطة")
-    selected_player = st.sidebar.selectbox("اختر اللاعب", clean_player_list)
+    # --- الملعب ---
+    pitch = Pitch(pitch_type='statsbomb', pitch_color='#22312b', line_color='#c7d5cc')
+    fig, ax = pitch.draw(figsize=(12, 8))
 
-    # فلترة التمريرات فقط للاعب المختار
-    player_passes = df[
-        (df['Players'].str.contains(selected_player, na=False)) & 
-        (df['Event Name'].str.contains('Pass', na=False, case=False))
-    ].copy()
+    if not p_df.empty:
+        for _, row in p_df.iterrows():
+            # تحويل الإحداثيات لواقعية الملعب (120x80)
+            x_start, y_start = row['X_Start'] * 120, row['Y_Start'] * 80
+            x_end, y_end = row['X_End'] * 120, row['Y_End'] * 80
+            
+            # فلترة التمريرات المستحيلة (لو المسافة أكبر من طول الملعب مثلاً)
+            dist = ((x_end-x_start)**2 + (y_end-y_start)**2)**0.5
+            if dist < 2: continue # شيل النقط اللي فوق بعضها (الزحمة الفاضية)
 
-    st.title(f"📍 Pass Map: {selected_player}")
+            # رسم السهم
+            pitch.arrows(x_start, y_start, x_end, y_end, 
+                         color='yellow' if y_start < 20 or y_start > 60 else '#00bfff',
+                         ax=ax, width=1.2, headwidth=3, alpha=0.7)
 
-    # --- إعداد الملعب حسب طلبك بالظبط ---
-    pitch = Pitch(
-        pitch_type='statsbomb', 
-        pitch_color='#22312b', 
-        line_color='#c7d5cc',
-        linestyle='--', 
-        linewidth=1, 
-        goal_linestyle='-'
-    )
-    fig, ax = pitch.draw(figsize=(12, 9))
-    fig.set_facecolor('#22312b')
+    st.pyplot(fig)
 
-    if not player_passes.empty:
-        # تصنيف التمريرات للتلوين
-        def get_color(row):
-            # عرضية: تبدأ من الأطراف
-            if row['Y_Start'] < 0.20 or row['Y_Start'] > 0.80:
-                return "yellow"
-            # طولية: مسافة التقدم في الملعب كبيرة
-            elif (row['X_End'] - row['X_Start']) > 0.30:
-                return "#00bfff" # أزرق سماوي
-            # تمريرة عادية
-            else:
-                return "#ff4b4b" # أحمر
-
-        for _, row in player_passes.iterrows():
-            color = get_color(row)
-            pitch.arrows(
-                row.X_Start*120, row.Y_Start*80, 
-                row.X_End*120, row.Y_End*80, 
-                color=color, ax=ax, width=2, headwidth=5, alpha=0.7
-            )
-
-        # إضافة اسم اللاعب وعنوان الخريطة داخل الصورة
-        ax_text(60, -5, f"<{selected_player}> | <Pass Map Analysis>", 
-                fontsize=20, color='white', fontweight='bold', ha='center', ax=ax,
-                highlight_textprops=[{"color": "#00bfff"}, {"color": "yellow"}])
-        
-        st.pyplot(fig)
-        
-        # مفتاح الألوان
-        st.write("🟡 **Yellow:** Crosses | 🔵 **Blue:** Long/Vertical Passes | 🔴 **Red:** Short/Other Passes")
-    else:
-        st.warning(f"لا توجد بيانات تمريرات مسجلة للاعب {selected_player} في هذا الملف.")
+    # مراجعة الأرقام للتأكد
+    st.write("🔍 مراجعة عينة من إحداثيات اللاعب (X من 0-120 | Y من 0-80):")
+    p_df['X_Real'] = p_df['X_Start'] * 120
+    p_df['Y_Real'] = p_df['Y_Start'] * 80
+    st.dataframe(p_df[['Event Name', 'X_Real', 'Y_Real']].head(10))
 
 except Exception as e:
-    st.error(f"حدث خطأ أثناء التشغيل: {e}")
+    st.error(f"Error: {e}")
