@@ -4,3 +4,4 @@ matplotlib
 mplsoccer
 seaborn
 highlight_text
+openpyxl
