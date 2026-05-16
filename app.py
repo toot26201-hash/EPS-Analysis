@@ -1,76 +1,156 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-import matplotlib.patches as patches
 from mplsoccer import Pitch
+import matplotlib.lines as mlines
+from PIL import Image
 
-st.set_page_config(page_title="EPS Team Analysis", layout="wide")
+# 1. إعدادات الصفحة والأسلوب (TootScouting Theme)
+st.set_page_config(page_title="TootScouting | Tactical Lab", layout="wide")
 
-@st.cache_data
-def load_data():
+# تخصيص واجهة المستخدم لتشبه المواقع الاحترافية
+st.markdown("""
+    <style>
+    .reportview-container { background: #f8f9fa; }
+    .main .block-container { padding-top: 2rem; padding-bottom: 2rem; }
+    h1 { color: #1e293b; font-weight: 800; font-size: 2.2rem !important; }
+    .stTabs [data-baseweb="tab-list"] { gap: 10px; }
+    .stTabs [data-baseweb="tab"] {
+        background-color: #f1f5f9;
+        border-radius: 4px;
+        padding: 8px 16px;
+        font-weight: 600;
+        color: #475569;
+    }
+    .stTabs [aria-selected="true"] { background-color: #1e293b !important; color: white !important; }
+    </style>
+""", unsafe_allow_html=True)
+
+def add_logo(ax):
     try:
-        # تأكد أن اسم الملف EPS_Match_Data.xlsx
-        df = pd.read_excel('EPS_Match_Data.xlsx')
-        df.columns = df.columns.str.strip()
-        for col in ['X_Start', 'Y_Start', 'X_End', 'Y_End']:
-            df[col] = pd.to_numeric(df[col], errors='coerce')
-        return df.dropna(subset=['X_Start', 'Y_Start', 'X_End', 'Y_End'])
-    except Exception as e:
-        st.error(f"Error: {e}")
-        return pd.DataFrame()
+        img = Image.open('image_deac96.png')
+        ax.imshow(img, extent=[48, 72, 28, 52], alpha=0.12, zorder=0)
+    except:
+        pass
 
-df = load_data()
+st.title("🔬 TootScouting Tactical Dashboard")
 
-if not df.empty:
-    st.title("🎯 EPS Team: Zone 14 & Half-space Arrows")
+# --- الـ Sidebar الجانبي (بنفس فكرة ScoutLab) ---
+st.sidebar.image("image_deac96.png", use_container_width=True) if Image.open('image_deac96.png') else st.sidebar.write("⚽ **TootScouting Pro**")
+st.sidebar.markdown("---")
 
-    # --- ضبط الإحداثيات (قلبة المحاور لضبط الاتجاه) ---
-    df['x_s'] = df['Y_Start'] * 120
-    df['y_s'] = df['X_Start'] * 80
-    df['x_e'] = df['Y_End'] * 120
-    df['y_e'] = df['X_End'] * 80
+uploaded_file = st.sidebar.file_uploader("📥 Upload Match CSV Data", type=['csv'])
 
-    # تعريف المناطق بدقة
-    def classify_zone(x, y):
-        # Zone 14
-        if 80 <= x <= 102 and 30 <= y <= 50:
-            return "Zone 14"
-        # Half-spaces
-        elif 80 <= x <= 102 and ((18 <= y <= 30) or (50 <= y <= 62)):
-            return "Half-space"
-        return "Other"
-
-    df['Target_Zone'] = df.apply(lambda r: classify_zone(r['x_e'], r['y_e']), axis=1)
+if uploaded_file is not None:
+    df = pd.read_csv(uploaded_file)
+    df.columns = df.columns.str.strip()
     
-    # فلترة التمريرات اللي دخلت الأهداف التكتيكية
-    team_passes = df[df['Target_Zone'] != "Other"].copy()
+    if 'X start' in df.columns:
+        df['x_scaled'] = df['X start'] * 120
+        df['y_scaled'] = df['Y start'] * 80
+        df['x_end_scaled'] = df['X end'] * 120
+        df['y_end_scaled'] = df['Y end'] * 80
 
-    # رسم الملعب
-    pitch = Pitch(pitch_type='statsbomb', pitch_color='#1e293b', line_color='#777777')
-    fig, ax = pitch.draw(figsize=(13, 9))
+    df = df.dropna(subset=['Action', 'Team'])
+    team_list = sorted(df['Team'].unique().tolist())
+    selected_team = st.sidebar.selectbox("📋 Select Team", team_list)
+    team_df = df[df['Team'] == selected_team].copy()
 
-    # 1. رسم التظليل أولاً (عشان يكون تحت الأسهم)
-    ax.add_patch(patches.Rectangle((80, 30), 22, 20, color='red', alpha=0.15)) # Zone 14
-    ax.add_patch(patches.Rectangle((80, 18), 22, 12, color='blue', alpha=0.1)) # Half-space Top
-    ax.add_patch(patches.Rectangle((80, 50), 22, 12, color='blue', alpha=0.1)) # Half-space Bottom
-
-    # 2. رسم الأسهم فوق التظليل
-    if not team_passes.empty:
-        for _, row in team_passes.iterrows():
-            color = "#ff4b4b" if row['Target_Zone'] == "Zone 14" else "#38bdf8"
-            # رسم السهم
-            pitch.arrows(row['x_s'], row['y_s'], row['x_e'], row['y_e'], 
-                         color=color, ax=ax, width=2.5, headwidth=4, alpha=0.9, zorder=3)
+    # فلاتر التحكم التكتيكية في الـ Sidebar (منظمة داخل Expander)
+    st.sidebar.markdown("### 🛠️ Tactical Control Unit")
+    
+    with st.sidebar.expander("🎯 Passing Filters", expanded=True):
+        selected_passes = st.multiselect(
+            "Choose Pass Types:",
+            ["Normal Passes", "Crosses", "Through Balls", "Corners", "Free Kicks"],
+            default=["Normal Passes", "Crosses"]
+        )
         
-        st.pyplot(fig)
+    with st.sidebar.expander("🛡️ Defensive & Attack Filters", expanded=True):
+        selected_defense = st.multiselect(
+            "Choose Actions:",
+            ["Tackles", "Clearances", "Ground Duels", "Aerial Duels", "Fouls", "Counterpress", "Goals"],
+            default=["Tackles", "Ground Duels", "Goals"]
+        )
+
+    all_selected_layers = selected_passes + selected_defense
+
+    # --- دليل الرموز الثابت والمنظم (Legend) ---
+    def get_full_legend():
+        return [
+            mlines.Line2D([], [], color='#2ecc71', marker='>', linestyle='-', label='Pass Success', markersize=8),
+            mlines.Line2D([], [], color='#e74c3c', marker='>', linestyle='-', label='Pass Failed', markersize=8),
+            mlines.Line2D([], [], color='blue', marker='>', linestyle='-', label='Cross Success', markersize=8),
+            mlines.Line2D([], [], color='red', marker='>', linestyle='--', label='Cross Failed', markersize=8),
+            mlines.Line2D([], [], color='#FF69B4', marker='>', linestyle='-', label='Through Ball', markersize=8),
+            mlines.Line2D([], [], color='blue', marker='x', label='Tackle (Blue X)', linestyle='None', markersize=10, markeredgewidth=2),
+            mlines.Line2D([], [], color='purple', marker='d', label='Clearance', linestyle='None', markersize=10),
+            mlines.Line2D([], [], color='#2ecc71', marker='s', label='Ground Duel Won', linestyle='None', markersize=10),
+            mlines.Line2D([], [], color='red', marker='s', label='Ground Duel Lost', linestyle='None', markersize=10),
+            mlines.Line2D([], [], color='#2ecc71', marker='^', label='Aerial Won', linestyle='None', markersize=10),
+            mlines.Line2D([], [], color='red', marker='^', label='Aerial Lost', linestyle='None', markersize=10),
+            mlines.Line2D([], [], color='gold', marker='*', label='Goal', linestyle='None', markersize=12)
+        ]
+
+    # --- محرك الرسم التكتيكي ---
+    def draw_actions(dataframe, ax, pitch_obj, layers):
+        for i, row in dataframe.iterrows():
+            act = str(row['Action']).lower()
+            tag = str(row['Tags']).lower()
+            is_success = 'success' in tag or 'ناجح' in tag
+            
+            # تمريرات
+            if 'pass' in act or 'تمرير' in act:
+                if 'cross' in tag and "Crosses" in layers:
+                    pitch_obj.arrows(row.x_scaled, row.y_scaled, row.x_end_scaled, row.y_end_scaled, width=2, color='blue' if is_success else 'red', linestyle='solid' if is_success else 'dashed', ax=ax)
+                elif 'through' in tag and "Through Balls" in layers:
+                    pitch_obj.arrows(row.x_scaled, row.y_scaled, row.x_end_scaled, row.y_end_scaled, width=2, color='#FF69B4', ax=ax)
+                elif 'corner' in tag and "Corners" in layers:
+                    pitch_obj.arrows(row.x_scaled, row.y_scaled, row.x_end_scaled, row.y_end_scaled, width=2, color='orange' if is_success else 'red', linestyle='solid' if is_success else 'dashed', ax=ax)
+                elif "Normal Passes" in layers and not any(k in tag for k in ['cross', 'through', 'corner', 'free kick']):
+                    pitch_obj.arrows(row.x_scaled, row.y_scaled, row.x_end_scaled, row.y_end_scaled, width=2, color='#2ecc71' if is_success else '#e74c3c', ax=ax, alpha=0.5)
+
+            # دفاعيات
+            elif any(word in act for word in ['tackle', 'inter', 'تدخل', 'قطع']) and "Tackles" in layers:
+                pitch_obj.scatter(row.x_scaled, row.y_scaled, marker='x', s=220, color='blue', linewidth=2.5, ax=ax)
+            elif 'clear' in act and "Clearances" in layers:
+                pitch_obj.scatter(row.x_scaled, row.y_scaled, marker='d', s=180, color='purple', ax=ax)
+            elif 'aerial' in act and "Aerial Duels" in layers:
+                pitch_obj.scatter(row.x_scaled, row.y_scaled, marker='^', s=200, color='#2ecc71' if is_success else 'red', edgecolors='black', ax=ax)
+            elif 'duel' in act and 'aerial' not in act and "Ground Duels" in layers:
+                pitch_obj.scatter(row.x_scaled, row.y_scaled, marker='s', s=180, color='#2ecc71' if is_success else 'red', ax=ax)
+            
+            if ('goal' in tag or 'هدف' in tag) and "Goals" in layers:
+                pitch_obj.scatter(row.x_scaled, row.y_scaled, marker='*', s=600, color='gold', edgecolors='black', ax=ax, zorder=5)
+
+    # --- التبويبات الرئيسية في الصفحة (Tabs) ---
+    tab1, tab2 = st.tabs(["👤 Individual Player Lab", "👥 Team Tactical Lab"])
+
+    with tab1:
+        player_list = sorted(team_df['Player'].dropna().unique().tolist())
+        sel_player = st.selectbox("🎯 Focus Player:", player_list)
+        p_df = team_df[team_df['Player'] == sel_player].copy()
         
-        # ملخص الأرقام
-        c1, c2 = st.columns(2)
-        c1.metric("Zone 14 Entries 🔴", len(team_passes[team_passes['Target_Zone']=="Zone 14"]))
-        c2.metric("Half-space Entries 🔵", len(team_passes[team_passes['Target_Zone']=="Half-space"]))
-    else:
-        st.warning("لم يتم العثور على تمريرات دخلت هذه المناطق. تأكد من دقة الإحداثيات في ملف الإكسيل.")
+        # رسم ملعب الفردي مع الممرات الـ 5 المضيئة خفيف
+        pitch = Pitch(pitch_type='statsbomb', pitch_color='#ffffff', line_color='#1e293b', linestyle='--', positional=True, positional_color='#e2e8f0', linewidth=1.2)
+        fig, ax = pitch.draw(figsize=(12, 8.5))
+        add_logo(ax)
+        
+        draw_actions(p_df, ax, pitch, all_selected_layers)
+        ax.legend(handles=get_full_legend(), loc='upper left', bbox_to_anchor=(1.01, 1), fontsize='small', framealpha=1, facecolor='#ffffff')
         st.pyplot(fig)
+
+    with tab2:
+        st.subheader(f"Tactical Distribution: {selected_team}")
+        
+        # رسم ملعب الفريق الجماعي
+        pitch_t = Pitch(pitch_type='statsbomb', pitch_color='#ffffff', line_color='#1e293b', linestyle='--', positional=True, positional_color='#e2e8f0', linewidth=1.2)
+        fig_t, ax_t = pitch_t.draw(figsize=(12.5, 9))
+        add_logo(ax_t)
+        
+        draw_actions(team_df, ax_t, pitch_t, all_selected_layers)
+        ax_t.legend(handles=get_full_legend(), loc='upper left', bbox_to_anchor=(1.01, 1), fontsize='small', framealpha=1, facecolor='#ffffff')
+        st.pyplot(fig_t)
 
 else:
-    st.info("ارفع ملف الإكسيل EPS_Match_Data.xlsx")
+    st.info("👋 Welcome to TootScouting Lab! Please upload a match CSV file on the left sidebar to generate the dynamic dashboard.")
