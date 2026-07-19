@@ -6,9 +6,9 @@ import seaborn as sns
 from matplotlib.lines import Line2D
 from mplsoccer import Pitch
 
-# 1. إعدادات الصفحة الأساسية
+# 1. Basic Page Configurations
 st.set_page_config(
-    page_title="TutScouting - Performance Lab",
+    page_title="TootScouting - Performance Lab",
     page_icon="⚽",
     layout="wide"
 )
@@ -16,20 +16,20 @@ st.set_page_config(
 st.title("⚽ TootScouting - Performance Lab")
 st.write("---")
 
-# 2. لوحة التحكم الجانبية (Sidebar)
-st.sidebar.header("📁 تحميل البيانات")
-uploaded_file = st.sidebar.file_uploader("ارفع ملف المباراة (Excel أو CSV)", type=["csv", "xlsx"])
+# 2. Sidebar Controls - Data Loading
+st.sidebar.header("📁 DATA LOADING")
+uploaded_file = st.sidebar.file_uploader("Upload Match Data (Excel or CSV)", type=["csv", "xlsx"])
 
-# إعداد شكل الملعب الافتراضي
+# Default pitch layout initialization
 pitch = Pitch(pitch_type='statsbomb', pitch_color='#1a1a1a', line_color='#7c7c7c')
 
-# 3. معالجة البيانات التكتيكية بعد الرفع
+# 3. Data Processing Pipeline
 if uploaded_file is not None:
     if uploaded_file.name.endswith('.csv'):
         df = pd.read_csv(uploaded_file)
     else:
         try:
-            # الحل الذكي: قراءة أول شيت متاح تلقائياً مهما كان اسمه (Actions, كل الأحداث، إلخ)
+            # Smart reading: Automatically selects the first active sheet regardless of its name
             xls = pd.ExcelFile(uploaded_file, engine='openpyxl')
             df = pd.read_excel(uploaded_file, sheet_name=xls.sheet_names[0], engine='openpyxl')
         except:
@@ -37,7 +37,7 @@ if uploaded_file is not None:
             
     df.columns = df.columns.astype(str).str.strip()
     
-    # خريطة ذكية شاملة لتوحيد مسميات الأعمدة لتقبل الملف الجديد
+    # Smart mapping dictionary to unify column structures across different coding templates
     rename_dict = {}
     for col in df.columns:
         c_low = col.lower()
@@ -50,7 +50,7 @@ if uploaded_file is not None:
 
     df = df.rename(columns=rename_dict)
     
-    # حل مشكلة تكرار عمود Action
+    # Resolving potential duplicate Action columns safely
     if isinstance(df.get('Action'), pd.DataFrame):
         df['Action_Clean'] = df['Action'].iloc[:, 0].fillna('Other').astype(str).str.strip()
     elif 'Action' in df.columns:
@@ -59,6 +59,7 @@ if uploaded_file is not None:
         df['Action_Clean'] = 'Other'
     
     if 'x1' in df.columns and 'y1' in df.columns:
+        st.sidebar.success("Data loaded successfully!")
         
         for col in ['x1', 'y1', 'x2', 'y2']:
             if col in df.columns:
@@ -66,7 +67,7 @@ if uploaded_file is not None:
                     df[col] = df[col].iloc[:, 0]
                 df[col] = pd.to_numeric(df[col], errors='coerce')
         
-        # تحجيم الإحداثيات (Scaling) الذكي
+        # Advanced Smart Scaling (Multiply by pitch bounds ONLY if inputs are percentages between 0 and 1)
         if df['x1'].max() <= 1.0 and df['y1'].max() <= 1.0:
             df['x_scaled'] = df['x1'] * 120
             df['y_scaled'] = df['y1'] * 80
@@ -77,13 +78,13 @@ if uploaded_file is not None:
             df['x2_scaled'] = df['x2'] if 'x2' in df.columns else np.nan
             df['y2_scaled'] = df['y2'] if 'y2' in df.columns else np.nan
 
-        # تصنيف الأكشن تكتيكياً
+        # Technical Tactical Classification Categorizer
         def classify_action(val):
             val = val.lower()
             if 'pass' in val or 'تمرير' in val: return "Pass"
             if 'shot' in val or 'sh/a' in val or 'تسديد' in val: return "Shot"
             if 'tackle' in val or 'تدخل' in val or 'pressing' in val or 'ضغط' in val or 'counter' in val: return "Defensive Action"
-            if 'clearance' in val or 'tشتيت' in val or 'تخليص' in val: return "Clearance"
+            if 'clearance' in val or 'تشتيت' in val or 'تخليص' in val: return "Clearance"
             if 'interception' in val or 'extraction' in val or 'قطع' in val: return "Interception"
             if 'aerial' in val or 'هوائي' in val: return "Aerial Duel"
             if 'ground' in val or 'أرضي' in val: return "Ground Duel"
@@ -95,45 +96,46 @@ if uploaded_file is not None:
 
         df['Event_Type'] = df['Action_Clean'].apply(classify_action)
 
-        # 4. فلاتر العرض التفاعلية (Sidebar Filters)
+        # 4. Interactive Filtration Interface (Sidebar Filters)
         st.sidebar.write("---")
-        st.sidebar.header("🔍 فلاتر الملعب")
+        st.sidebar.header("🔍 PITCH VISUAL FILTERS")
         
-        map_type = st.sidebar.radio("اختر نوع العرض على الملعب:", ["مخطط الأحداث (Event Map)", "الخريطة الحرارية (Heatmap)"])
+        # Display selection mode toggle
+        map_type = st.sidebar.radio("Select Display Type:", ["Event Map", "Heatmap"])
         
-        # فلتر اللاعبين
+        # Player filtration option picker
         if 'Player' in df.columns:
             if isinstance(df['Player'], pd.DataFrame):
                 df['Player'] = df['Player'].iloc[:, 0]
-            players = ["جميع اللاعبين (الفريق)"] + sorted(df['Player'].dropna().astype(str).unique().tolist())
+            players = ["All Players (Team)"] + sorted(df['Player'].dropna().astype(str).unique().tolist())
         else:
-            players = ["جميع اللاعبين (الفريق)"]
+            players = ["All Players (Team)"]
             
-        selected_player = st.sidebar.selectbox("اختر اللاعب أو الفريق:", players)
+        selected_player = st.sidebar.selectbox("Select Player or Squad:", players)
         
-        # فلتر الأحداث
+        # Event type filter checkboxes
         available_events = sorted(df['Event_Type'].unique().tolist())
-        selected_events = st.sidebar.multiselect("اختر الأحداث المشمولة في التحليل:", options=available_events, default=available_events)
+        selected_events = st.sidebar.multiselect("Select Actions to Include:", options=available_events, default=available_events)
         
-        # تطبيق الفلترة
+        # Execute active database filtration query
         filtered_df = df
-        if selected_player != "جميع اللاعبين (الفريق)" and 'Player' in df.columns:
+        if selected_player != "All Players (Team)" and 'Player' in df.columns:
             filtered_df = df[df['Player'].astype(str) == selected_player]
             
         filtered_df = filtered_df[filtered_df['Event_Type'].isin(selected_events)].dropna(subset=['x_scaled', 'y_scaled'])
         
         st.write("---")
-        st.subheader(f"📊 خطوة 2: {map_type}")
+        st.subheader(f"📊 Dashboard Presentation: {map_type}")
 
-        # تقسيم الشاشة
+        # Split screen layouts
         col_stats, col_pitch = st.columns([1, 2.5])
 
         with col_stats:
-            st.markdown("### 📈 ملخص سريع")
-            st.metric(label="إجمالي الأحداث المعروضة", value=len(filtered_df))
+            st.markdown("### 📈 Tactical Analytics")
+            st.metric(label="Total Filtered Events", value=len(filtered_df))
             st.write("---")
             if not filtered_df.empty:
-                st.markdown("**توزيع الأحداث الحالي:**")
+                st.markdown("**Event Distribution Percentages:**")
                 event_counts = filtered_df['Event_Type'].value_counts()
                 st.write(event_counts)
 
@@ -142,14 +144,15 @@ if uploaded_file is not None:
             pitch.draw(ax=ax)
             fig.patch.set_facecolor('#1a1a1a')
             
-            display_title = "TEAM HEATMAP" if selected_player == "جميع اللاعبين (الفريق)" else f"{selected_player.upper()} - HEATMAP"
-            if map_type == "مخطط الأحداث (Event Map)":
+            # Formulating clear, bold heading names
+            display_title = "TEAM HEATMAP" if selected_player == "All Players (Team)" else f"{selected_player.upper()} - HEATMAP"
+            if map_type == "Event Map":
                 display_title = display_title.replace("HEATMAP", "EVENT MAP")
                 
             ax.set_title(display_title, color='#D4AF37', fontsize=24, fontweight='bold', pad=20, ha='center')
 
-            # 🔘 الحالة الأولى: الخريطة الحرارية (Heatmap)
-            if map_type == "الخريطة الحرارية (Heatmap)":
+            # 🔘 Visual State One: Heatmap Rendering Mode
+            if map_type == "Heatmap":
                 if len(filtered_df) > 2:
                     sns.kdeplot(
                         x=filtered_df['x_scaled'], 
@@ -163,9 +166,9 @@ if uploaded_file is not None:
                         zorder=2
                     )
                 else:
-                    st.warning("⚠️ البيانات المتاحة قليلة جداً لرسم خريطة حرارية.")
+                    st.warning("⚠️ Insufficient data coordinates available to safely calculate a precise kernel density model.")
             
-            # 🔘 الحالة الثانية: مخطط الأحداث العادي (Event Map)
+            # 🔘 Visual State Two: Coordinate Action Vectors Map Mode
             else:
                 event_configs = {
                     "Pass": {"color": "#00ffcc", "marker": None, "is_arrow": True},
@@ -211,9 +214,9 @@ if uploaded_file is not None:
             st.pyplot(fig)
             plt.close(fig)
         
-        # عرض الجدول
+        # 6. Detailed Structured Data Table Feed
         st.write("---")
-        st.subheader("📊 جدول البيانات المفلترة")
+        st.subheader("📋 Filtered Dataset Record Stream")
         team_col = 'Player Team' if 'Player Team' in df.columns else ('Team' if 'Team' in df.columns else ('Team Tag' if 'Team Tag' in df.columns else 'Action_Clean'))
         start_col = 'Start' if 'Start' in df.columns else ('Start (mm:ss)' if 'Start (mm:ss)' in df.columns else 'Action_Clean')
         
@@ -224,11 +227,12 @@ if uploaded_file is not None:
         st.dataframe(filtered_df[show_cols].reset_index(drop=True), use_container_width=True)
         
     else:
-        st.error("⚠️ لم نتمكن من تحديد أعمدة الإحداثيات في الملف المرفوع.")
+        st.error("⚠️ Spatial Matrix Error: Unable to detect structural x1/y1 spatial data column names.")
 else:
+    # Clean Initial Welcome Screen
     fig, ax = plt.subplots(figsize=(12, 8))
     pitch.draw(ax=ax)
     fig.patch.set_facecolor('#1a1a1a')
     st.pyplot(fig)
     plt.close(fig)
-    st.info("💡 لوحة التحليل جاهزة. يرجى رفع ملف المباراة للبدء.")
+    st.info("💡 Laboratory Environment Idle. Awaiting performance coordinate uploads from the sidebar controller.")
