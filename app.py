@@ -53,21 +53,19 @@ if uploaded_file is not None:
         elif 'x1' not in rename_dict.values() and any(k == c_low or k in c_low for k in ['x1', 'x start', 'x_start', 'start x', 'start x (m)', 'pos x', 'x_coord']): rename_dict[col] = 'x1'
         elif 'y1' not in rename_dict.values() and any(k == c_low or k in c_low for k in ['y1', 'y start', 'y_start', 'start y', 'start y (m)', 'pos y', 'y_coord']): rename_dict[col] = 'y1'
         elif 'x2' not in rename_dict.values() and any(k == c_low or k in c_low for k in ['x2', 'x end', 'x_end', 'end x', 'end x (m)', 'pos x2', 'x_end_coord']): rename_dict[col] = 'x2'
-        elif 'y2' not in rename_dict.values() and any(k == c_low or k in c_low for k in ['y2', 'y end', 'y_end', 'end y', 'end y (m)', 'pos y2', 'y_end_coord']): rename_dict[col] = 'y2'
+        elif 'y2' not in rename_dict.values() and any(k == c_low or k in c_low for k in ['x2', 'y end', 'y_end', 'end y', 'end y (m)', 'pos y2', 'y_end_coord']): rename_dict[col] = 'y2'
         
         elif c_low in ['player', 'اللاعب', 'لاعب', 'player name', 'name']: rename_dict[col] = 'Player'
 
     df = df.rename(columns=rename_dict)
     
-    # 🚨 Fix for Duplicate Action Columns (e.g. Action vs Action 001)
-    action_cols = [c for c in df.columns if c.lower() in ['action', 'الأكشن', 'حدث', 'event', 'event type']]
-    if action_cols:
-        # Pick the first action column containing tactical category names
-        first_act_col = df[action_cols[0]]
-        if isinstance(first_act_col, pd.DataFrame):
-            df['Action_Clean'] = first_act_col.iloc[:, 0].fillna('Other').astype(str).str.strip()
-        else:
-            df['Action_Clean'] = first_act_col.fillna('Other').astype(str).str.strip()
+    # 🚨 CRITICAL FIX: Extracting the primary categorical Action column directly by position
+    action_indices = [i for i, col in enumerate(df.columns) if col.lower() in ['action', 'الأكشن', 'حدث', 'event', 'event type']]
+    
+    if action_indices:
+        # Always pick the FIRST matching Action column (Column A)
+        raw_action_series = df.iloc[:, action_indices[0]]
+        df['Action_Clean'] = raw_action_series.fillna('Other').astype(str).str.strip()
     else:
         df['Action_Clean'] = 'Other'
 
@@ -101,7 +99,7 @@ if uploaded_file is not None:
             df['x2_scaled'] = df['x2'] if 'x2' in df.columns else np.nan
             df['y2_scaled'] = df['y2'] if 'y2' in df.columns else np.nan
 
-        # 🔍 Comprehensive Tactical Categorizer
+        # 🔍 Comprehensive Robust Categorizer
         def classify_action(val):
             v = str(val).lower().strip()
             if any(k in v for k in ['pass', 'تمرير', 'p/a', 'pas', 'cross', 'عرضية', 'corner', 'throw', 'progressive run']): return "Pass"
@@ -117,7 +115,7 @@ if uploaded_file is not None:
             if any(k in v for k in ['kick-off', 'بداية', 'kick off']): return "Kick-off"
             
             cleaned_title = str(val).strip().title()
-            return cleaned_title if len(cleaned_title) > 0 else "Other Actions"
+            return cleaned_title if len(cleaned_title) > 0 and cleaned_title.lower() != 'other' else "Other Actions"
 
         df['Event_Type'] = df['Action_Clean'].apply(classify_action)
 
