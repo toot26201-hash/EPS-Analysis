@@ -41,6 +41,24 @@ if uploaded_file is not None:
             
     df.columns = df.columns.astype(str).str.strip()
     
+    # 🚨 CRITICAL FIX: Direct Positional Extraction for Action Column (Column A or B)
+    action_col_found = None
+    for col in df.columns:
+        if col.lower().strip() in ['action', 'الأكشن', 'حدث', 'event', 'event type']:
+            action_col_found = col
+            break
+            
+    if action_col_found:
+        # Check if pandas read multiple Action columns
+        if isinstance(df[action_col_found], pd.DataFrame):
+            # Take the FIRST Action column (which contains the raw categories)
+            df['Action_Clean'] = df[action_col_found].iloc[:, 0].fillna('Other').astype(str).str.strip()
+        else:
+            df['Action_Clean'] = df[action_col_found].fillna('Other').astype(str).str.strip()
+    else:
+        # Fallback to column index 0 or 1 if headers are messed up
+        df['Action_Clean'] = df.iloc[:, 0].fillna('Other').astype(str).str.strip()
+
     # Smart prioritization mapping for coordinate columns
     rename_dict = {}
     for col in df.columns:
@@ -53,21 +71,11 @@ if uploaded_file is not None:
         elif 'x1' not in rename_dict.values() and any(k == c_low or k in c_low for k in ['x1', 'x start', 'x_start', 'start x', 'start x (m)', 'pos x', 'x_coord']): rename_dict[col] = 'x1'
         elif 'y1' not in rename_dict.values() and any(k == c_low or k in c_low for k in ['y1', 'y start', 'y_start', 'start y', 'start y (m)', 'pos y', 'y_coord']): rename_dict[col] = 'y1'
         elif 'x2' not in rename_dict.values() and any(k == c_low or k in c_low for k in ['x2', 'x end', 'x_end', 'end x', 'end x (m)', 'pos x2', 'x_end_coord']): rename_dict[col] = 'x2'
-        elif 'y2' not in rename_dict.values() and any(k == c_low or k in c_low for k in ['x2', 'y end', 'y_end', 'end y', 'end y (m)', 'pos y2', 'y_end_coord']): rename_dict[col] = 'y2'
+        elif 'y2' not in rename_dict.values() and any(k == c_low or k in c_low for k in ['y2', 'y end', 'y_end', 'end y', 'end y (m)', 'pos y2', 'y_end_coord']): rename_dict[col] = 'y2'
         
         elif c_low in ['player', 'اللاعب', 'لاعب', 'player name', 'name']: rename_dict[col] = 'Player'
 
     df = df.rename(columns=rename_dict)
-    
-    # 🚨 CRITICAL FIX: Extracting the primary categorical Action column directly by position
-    action_indices = [i for i, col in enumerate(df.columns) if col.lower() in ['action', 'الأكشن', 'حدث', 'event', 'event type']]
-    
-    if action_indices:
-        # Always pick the FIRST matching Action column (Column A)
-        raw_action_series = df.iloc[:, action_indices[0]]
-        df['Action_Clean'] = raw_action_series.fillna('Other').astype(str).str.strip()
-    else:
-        df['Action_Clean'] = 'Other'
 
     # Fallback Mechanism for coordinates if missing
     if 'x1' not in df.columns or 'y1' not in df.columns:
@@ -99,20 +107,23 @@ if uploaded_file is not None:
             df['x2_scaled'] = df['x2'] if 'x2' in df.columns else np.nan
             df['y2_scaled'] = df['y2'] if 'y2' in df.columns else np.nan
 
-        # 🔍 Comprehensive Robust Categorizer
+        # 🔍 Extremely Aggressive Matcher (Regex/Substring)
         def classify_action(val):
             v = str(val).lower().strip()
-            if any(k in v for k in ['pass', 'تمرير', 'p/a', 'pas', 'cross', 'عرضية', 'corner', 'throw', 'progressive run']): return "Pass"
-            if any(k in v for k in ['shot', 'sh/a', 'تسديد', 'sh', 'so', 'goal', 'هدف']): return "Shot"
-            if any(k in v for k in ['tackle', 'تدخل', 'pressing', 'counter pressing', 'ضغط', 'counter', 'press', 'tck', 'challenge']): return "Defensive Action"
-            if any(k in v for k in ['clearance', 'تشتيت', 'تخليص', 'clr', 'clear']): return "Clearance"
-            if any(k in v for k in ['extraction', 'interception', 'قطع', 'intercept', 'int', 'recovery', 'استعادة']): return "Interception"
-            if any(k in v for k in ['aerial', 'هوائي', 'air', 'head duel', 'كرة هوائية']): return "Aerial Duel"
-            if any(k in v for k in ['ground', 'أرضي', 'duel', 'صراع', '1v1']): return "Ground Duel"
-            if any(k in v for k in ['dribble', 'مراوغة', 'takeon', 'take on', 'ترقيص', 'drb']): return "Dribble"
-            if any(k in v for k in ['miscontrol', 'فقد', 'lost', 'turnover', 'bad touch']): return "Miscontrol"
-            if any(k in v for k in ['foul', 'fouls', 'خطأ', 'fouled', 'yellow', 'card']): return "Foul"
-            if any(k in v for k in ['kick-off', 'بداية', 'kick off']): return "Kick-off"
+            # Clean out any trailing numbers (e.g., 'pass 001' -> 'pass')
+            v_alpha = ''.join([i for i in v if not i.isdigit()]).strip()
+            
+            if any(k in v_alpha for k in ['pass', 'تمرير', 'p/a', 'pas', 'cross', 'عرضية', 'corner', 'throw', 'progressive run']): return "Pass"
+            if any(k in v_alpha for k in ['shot', 'sh/a', 'تسديد', 'sh', 'so', 'goal', 'هدف']): return "Shot"
+            if any(k in v_alpha for k in ['tackle', 'تدخل', 'pressing', 'counter pressing', 'ضغط', 'counter', 'press', 'tck', 'challenge']): return "Defensive Action"
+            if any(k in v_alpha for k in ['clearance', 'تشتيت', 'تخليص', 'clr', 'clear']): return "Clearance"
+            if any(k in v_alpha for k in ['extraction', 'interception', 'قطع', 'intercept', 'int', 'recovery', 'استعادة']): return "Interception"
+            if any(k in v_alpha for k in ['aerial', 'هوائي', 'air', 'head duel', 'كرة هوائية']): return "Aerial Duel"
+            if any(k in v_alpha for k in ['ground', 'أرضي', 'duel', 'صراع', '1v1']): return "Ground Duel"
+            if any(k in v_alpha for k in ['dribble', 'مراوغة', 'takeon', 'take on', 'ترقيص', 'drb']): return "Dribble"
+            if any(k in v_alpha for k in ['miscontrol', 'فقد', 'lost', 'turnover', 'bad touch']): return "Miscontrol"
+            if any(k in v_alpha for k in ['foul', 'fouls', 'خطأ', 'fouled', 'yellow', 'card']): return "Foul"
+            if any(k in v_alpha for k in ['kick-off', 'بداية', 'kick off']): return "Kick-off"
             
             cleaned_title = str(val).strip().title()
             return cleaned_title if len(cleaned_title) > 0 and cleaned_title.lower() != 'other' else "Other Actions"
