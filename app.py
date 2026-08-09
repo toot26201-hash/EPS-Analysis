@@ -29,27 +29,50 @@ if uploaded_file is not None:
         df = pd.read_csv(uploaded_file)
     else:
         try:
-            # Smart reading: Automatically selects the first active sheet regardless of its name
             xls = pd.ExcelFile(uploaded_file, engine='openpyxl')
-            df = pd.read_excel(uploaded_file, sheet_name=xls.sheet_names[0], engine='openpyxl')
+            # Look for action-related sheets first, otherwise pick the first non-empty sheet
+            sheet_to_read = xls.sheet_names[0]
+            for sheet in xls.sheet_names:
+                if any(k in sheet.lower() for k in ['action', 'event', 'حدث', 'كل']):
+                    sheet_to_read = sheet
+                    break
+            df = pd.read_excel(uploaded_file, sheet_name=sheet_to_read, engine='openpyxl')
         except:
             df = pd.read_excel(uploaded_file, engine='openpyxl')
             
     df.columns = df.columns.astype(str).str.strip()
     
-    # Smart mapping dictionary to unify column structures across different coding templates
+    # Smart prioritization mapping for coordinate columns
     rename_dict = {}
     for col in df.columns:
         c_low = col.lower()
-        if c_low in ['x1', 'x start', 'x_start', 'start x', 'pos x', 'xstart']: rename_dict[col] = 'x1'
-        elif c_low in ['y1', 'y start', 'y_start', 'start y', 'pos y', 'ystart']: rename_dict[col] = 'y1'
-        elif c_low in ['x2', 'x end', 'x_end', 'end x', 'pos x2', 'xend']: rename_dict[col] = 'x2'
-        elif c_low in ['y2', 'y end', 'y_end', 'end y', 'pos y2', 'yend']: rename_dict[col] = 'y2'
+        # Priority 1: Explicit (0-1) range tags
+        if 'start x (0-1)' in c_low or 'x start (0-1)' in c_low: rename_dict[col] = 'x1'
+        elif 'start y (0-1)' in c_low or 'y start (0-1)' in c_low: rename_dict[col] = 'y1'
+        elif 'end x (0-1)' in c_low or 'x end (0-1)' in c_low: rename_dict[col] = 'x2'
+        elif 'end y (0-1)' in c_low or 'y end (0-1)' in c_low: rename_dict[col] = 'y2'
+        
+        # Priority 2: Standard coordinate representations
+        elif 'x1' not in rename_dict.values() and any(k == c_low or k in c_low for k in ['x1', 'x start', 'x_start', 'start x', 'start x (m)', 'pos x', 'x_coord']): rename_dict[col] = 'x1'
+        elif 'y1' not in rename_dict.values() and any(k == c_low or k in c_low for k in ['y1', 'y start', 'y_start', 'start y', 'start y (m)', 'pos y', 'y_coord']): rename_dict[col] = 'y1'
+        elif 'x2' not in rename_dict.values() and any(k == c_low or k in c_low for k in ['x2', 'x end', 'x_end', 'end x', 'end x (m)', 'pos x2', 'x_end_coord']): rename_dict[col] = 'x2'
+        elif 'y2' not in rename_dict.values() and any(k == c_low or k in c_low for k in ['y2', 'y end', 'y_end', 'end y', 'end y (m)', 'pos y2', 'y_end_coord']): rename_dict[col] = 'y2'
+        
         elif c_low in ['player', 'اللاعب', 'لاعب']: rename_dict[col] = 'Player'
         elif c_low in ['action', 'الأكشن', 'حدث', 'event', 'event type']: rename_dict[col] = 'Action'
 
     df = df.rename(columns=rename_dict)
     
+    # Fallback Mechanism: If x1/y1 are still missing, find numeric spatial columns dynamically
+    if 'x1' not in df.columns or 'y1' not in df.columns:
+        num_cols = df.select_dtypes(include=[np.number]).columns.tolist()
+        if len(num_cols) >= 2:
+            df['x1'] = df[num_cols[0]]
+            df['y1'] = df[num_cols[1]]
+            if len(num_cols) >= 4:
+                df['x2'] = df[num_cols[2]]
+                df['y2'] = df[num_cols[3]]
+
     # Resolving potential duplicate Action columns safely
     if isinstance(df.get('Action'), pd.DataFrame):
         df['Action_Clean'] = df['Action'].iloc[:, 0].fillna('Other').astype(str).str.strip()
@@ -67,7 +90,7 @@ if uploaded_file is not None:
                     df[col] = df[col].iloc[:, 0]
                 df[col] = pd.to_numeric(df[col], errors='coerce')
         
-        # Advanced Smart Scaling (Multiply by pitch bounds ONLY if inputs are percentages between 0 and 1)
+        # Advanced Smart Scaling
         if df['x1'].max() <= 1.0 and df['y1'].max() <= 1.0:
             df['x_scaled'] = df['x1'] * 120
             df['y_scaled'] = df['y1'] * 80
@@ -100,10 +123,8 @@ if uploaded_file is not None:
         st.sidebar.write("---")
         st.sidebar.header("🔍 PITCH VISUAL FILTERS")
         
-        # Display selection mode toggle
         map_type = st.sidebar.radio("Select Display Type:", ["Event Map", "Heatmap"])
         
-        # Player filtration option picker
         if 'Player' in df.columns:
             if isinstance(df['Player'], pd.DataFrame):
                 df['Player'] = df['Player'].iloc[:, 0]
@@ -113,11 +134,9 @@ if uploaded_file is not None:
             
         selected_player = st.sidebar.selectbox("Select Player or Squad:", players)
         
-        # Event type filter checkboxes
         available_events = sorted(df['Event_Type'].unique().tolist())
         selected_events = st.sidebar.multiselect("Select Actions to Include:", options=available_events, default=available_events)
         
-        # Execute active database filtration query
         filtered_df = df
         if selected_player != "All Players (Team)" and 'Player' in df.columns:
             filtered_df = df[df['Player'].astype(str) == selected_player]
@@ -144,7 +163,6 @@ if uploaded_file is not None:
             pitch.draw(ax=ax)
             fig.patch.set_facecolor('#1a1a1a')
             
-            # Formulating clear, bold heading names
             display_title = "TEAM HEATMAP" if selected_player == "All Players (Team)" else f"{selected_player.upper()} - HEATMAP"
             if map_type == "Event Map":
                 display_title = display_title.replace("HEATMAP", "EVENT MAP")
