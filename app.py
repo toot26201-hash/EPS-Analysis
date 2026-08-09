@@ -84,6 +84,14 @@ if uploaded_file is not None:
 
     df = df.rename(columns=rename_dict)
 
+    # 4. Interactive Filtration & Controls
+    st.sidebar.write("---")
+    st.sidebar.header("🔍 PITCH VISUAL FILTERS")
+    
+    flip_pitch = st.sidebar.checkbox("Flip Pitch Direction (Right -> Left Coding)", value=False)
+    # 🎯 أوبشن توحيد التسديدات في جنب واحد فقط
+    force_shots_one_side = st.sidebar.checkbox("Force Shots to Single Attacking Half", value=True)
+
     if 'x1' in df.columns and 'y1' in df.columns:
         st.sidebar.success("Data loaded successfully!")
         
@@ -93,24 +101,38 @@ if uploaded_file is not None:
                     df[col] = df[col].iloc[:, 0]
                 df[col] = pd.to_numeric(df[col], errors='coerce')
         
-        # Advanced Smart Scaling
+        # Advanced Scaling with Flip Option
         if df['x1'].max() <= 1.0 and df['y1'].max() <= 1.0:
-            df['x_scaled'] = df['x1'] * 120
-            df['y_scaled'] = df['y1'] * 80
-            df['x2_scaled'] = df['x2'] * 120 if 'x2' in df.columns else np.nan
-            df['y2_scaled'] = df['y2'] * 80 if 'y2' in df.columns else np.nan
+            if flip_pitch:
+                df['x_scaled'] = (1.0 - df['x1']) * 120
+                df['y_scaled'] = (1.0 - df['y1']) * 80
+                df['x2_scaled'] = (1.0 - df['x2']) * 120 if 'x2' in df.columns else np.nan
+                df['y2_scaled'] = (1.0 - df['y2']) * 80 if 'y2' in df.columns else np.nan
+            else:
+                df['x_scaled'] = df['x1'] * 120
+                df['y_scaled'] = df['y1'] * 80
+                df['x2_scaled'] = df['x2'] * 120 if 'x2' in df.columns else np.nan
+                df['y2_scaled'] = df['y2'] * 80 if 'y2' in df.columns else np.nan
         else:
-            df['x_scaled'], df['y_scaled'] = df['x1'], df['y1']
-            df['x2_scaled'] = df['x2'] if 'x2' in df.columns else np.nan
-            df['y2_scaled'] = df['y2'] if 'y2' in df.columns else np.nan
+            if flip_pitch:
+                max_x = df['x1'].max() if df['x1'].max() > 0 else 120
+                max_y = df['y1'].max() if df['y1'].max() > 0 else 80
+                df['x_scaled'] = max_x - df['x1']
+                df['y_scaled'] = max_y - df['y1']
+                df['x2_scaled'] = max_x - df['x2'] if 'x2' in df.columns else np.nan
+                df['y2_scaled'] = max_y - df['y2'] if 'y2' in df.columns else np.nan
+            else:
+                df['x_scaled'], df['y_scaled'] = df['x1'], df['y1']
+                df['x2_scaled'] = df['x2'] if 'x2' in df.columns else np.nan
+                df['y2_scaled'] = df['y2'] if 'y2' in df.columns else np.nan
 
-        # Clean numbers out of string actions
+        # Categorize actions
         def classify_action(val):
             v = str(val).lower().strip()
             v_alpha = ''.join([i for i in v if not i.isdigit()]).strip()
             
-            if any(k in v_alpha for k in ['pass', 'تمرير', 'p/a', 'pas', 'cross', 'عرضية', 'corner', 'throw', 'progressive run']): return "Pass"
             if any(k in v_alpha for k in ['shot', 'sh/a', 'تسديد', 'sh', 'so', 'goal', 'هدف']): return "Shot"
+            if any(k in v_alpha for k in ['pass', 'تمرير', 'p/a', 'pas', 'cross', 'عرضية', 'corner', 'throw', 'progressive run']): return "Pass"
             if any(k in v_alpha for k in ['tackle', 'تدخل', 'pressing', 'counter pressing', 'ضغط', 'counter', 'press', 'tck', 'challenge']): return "Defensive Action"
             if any(k in v_alpha for k in ['clearance', 'تشتيت', 'تخليص', 'clr', 'clear']): return "Clearance"
             if any(k in v_alpha for k in ['extraction', 'interception', 'قطع', 'intercept', 'int', 'recovery', 'استعادة']): return "Interception"
@@ -126,10 +148,14 @@ if uploaded_file is not None:
 
         df['Event_Type'] = df['Action_Clean'].apply(classify_action)
 
-        # 4. Interactive Filtration Interface
-        st.sidebar.write("---")
-        st.sidebar.header("🔍 PITCH VISUAL FILTERS")
-        
+        # 🎯 تطبيق تحويل التسديدات للجانب الأيمن للمرمى (Normalization to Right Goal)
+        if force_shots_one_side:
+            shot_mask = df['Event_Type'] == 'Shot'
+            # Any shot originating in left half (x < 60) gets flipped to right half
+            left_shots = shot_mask & (df['x_scaled'] < 60)
+            df.loc[left_shots, 'x_scaled'] = 120 - df.loc[left_shots, 'x_scaled']
+            df.loc[left_shots, 'y_scaled'] = 80 - df.loc[left_shots, 'y_scaled']
+
         map_type = st.sidebar.radio("Select Display Type:", ["Event Map", "Heatmap"])
         
         if 'Player' in df.columns:
@@ -144,7 +170,6 @@ if uploaded_file is not None:
         available_events = sorted(df['Event_Type'].unique().tolist())
         selected_events = st.sidebar.multiselect("Select Actions to Include:", options=available_events, default=available_events)
         
-        # 🚨 Explicit Pass Arrow Toggle (Defaults to True)
         draw_pass_arrows = st.sidebar.checkbox("Draw Pass Arrows (X1,Y1 -> X2,Y2)", value=True)
 
         filtered_df = df
@@ -198,22 +223,22 @@ if uploaded_file is not None:
             # 🔘 Visual State Two: Event Map Mode
             else:
                 event_configs = {
-                    "Pass": {"color": "#00ffcc", "marker": "o"},
-                    "Shot": {"color": "#00ff00", "marker": "*"},
-                    "Defensive Action": {"color": "#ff00ff", "marker": "X"},
-                    "Interception": {"color": "#FFFF00", "marker": "o"},
-                    "Clearance": {"color": "#ffffff", "marker": "s"},
-                    "Aerial Duel": {"color": "#3399ff", "marker": "^"},
-                    "Ground Duel": {"color": "#8B4513", "marker": "v"},
-                    "Dribble": {"color": "#ff9900", "marker": "P"},
-                    "Miscontrol": {"color": "#ff3333", "marker": "h"},
-                    "Foul": {"color": "#ccff00", "marker": "d"},
-                    "Kick-off": {"color": "#9933ff", "marker": "p"}
+                    "Shot": {"color": "#00ff00", "marker": "*", "size": 250}, # مكبرين حجم النجمة للتسديدات
+                    "Pass": {"color": "#00ffcc", "marker": "o", "size": 100},
+                    "Defensive Action": {"color": "#ff00ff", "marker": "X", "size": 120},
+                    "Interception": {"color": "#FFFF00", "marker": "o", "size": 100},
+                    "Clearance": {"color": "#ffffff", "marker": "s", "size": 100},
+                    "Aerial Duel": {"color": "#3399ff", "marker": "^", "size": 100},
+                    "Ground Duel": {"color": "#8B4513", "marker": "v", "size": 100},
+                    "Dribble": {"color": "#ff9900", "marker": "P", "size": 120},
+                    "Miscontrol": {"color": "#ff3333", "marker": "h", "size": 100},
+                    "Foul": {"color": "#ccff00", "marker": "d", "size": 100},
+                    "Kick-off": {"color": "#9933ff", "marker": "p", "size": 100}
                 }
 
                 legend_elements = []
                 for event in selected_events:
-                    cfg = event_configs.get(event, {"color": "#e6b800", "marker": "o"})
+                    cfg = event_configs.get(event, {"color": "#e6b800", "marker": "o", "size": 100})
                     subset = filtered_df[filtered_df['Event_Type'] == event]
                     
                     if subset.empty: continue
@@ -230,11 +255,11 @@ if uploaded_file is not None:
                     else:
                         pitch.scatter(
                             subset['x_scaled'], subset['y_scaled'], 
-                            color=cfg['color'], marker=cfg['marker'], s=100, ax=ax, zorder=3, alpha=0.8
+                            color=cfg['color'], marker=cfg['marker'], s=cfg.get('size', 100), ax=ax, zorder=4, alpha=0.9
                         )
                         legend_elements.append(Line2D([0], [0], marker=cfg['marker'], color='none', 
                                                       markerfacecolor=cfg['color'], markeredgecolor=cfg['color'], 
-                                                      label=event, markersize=8))
+                                                      label=event, markersize=10))
 
                 if legend_elements:
                     ax.legend(handles=legend_elements, loc='upper center', bbox_to_anchor=(0.5, -0.05), 
@@ -243,7 +268,7 @@ if uploaded_file is not None:
             st.pyplot(fig)
             plt.close(fig)
         
-        # 6. Detailed Data Table Feed
+        # 5. Detailed Data Table Feed
         st.write("---")
         st.subheader("📋 Filtered Dataset Record Stream")
         team_col = 'Player Team' if 'Player Team' in df.columns else ('Team' if 'Team' in df.columns else ('Team Tag' if 'Team Tag' in df.columns else 'Action_Clean'))
