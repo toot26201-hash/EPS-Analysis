@@ -41,7 +41,7 @@ if uploaded_file is not None:
             
     df.columns = df.columns.astype(str).str.strip()
     
-    # 🚨 Extract actual text Action column
+    # Extract actual text Action column
     act_series = None
     for col in df.columns:
         c_clean = col.lower().strip()
@@ -144,8 +144,8 @@ if uploaded_file is not None:
         available_events = sorted(df['Event_Type'].unique().tolist())
         selected_events = st.sidebar.multiselect("Select Actions to Include:", options=available_events, default=available_events)
         
-        # Option to toggle arrows or dots for passes to prevent screen clutter
-        draw_pass_arrows = st.sidebar.checkbox("Show Pass Arrows (Disable for cleaner Team view)", value=(selected_player != "All Players (Team)"))
+        # 🚨 Explicit Pass Arrow Toggle (Defaults to True)
+        draw_pass_arrows = st.sidebar.checkbox("Draw Pass Arrows (X1,Y1 -> X2,Y2)", value=True)
 
         filtered_df = df
         if selected_player != "All Players (Team)" and 'Player' in df.columns:
@@ -221,13 +221,17 @@ if uploaded_file is not None:
                     if event == "Pass" and draw_pass_arrows:
                         arrow_df = subset.dropna(subset=['x2_scaled', 'y2_scaled'])
                         if not arrow_df.empty:
-                            pitch.arrows(arrow_df['x_scaled'], arrow_df['y_scaled'], 
-                                         arrow_df['x2_scaled'], arrow_df['y2_scaled'], 
-                                         color=cfg['color'], width=1.5, headwidth=3, ax=ax, zorder=3, alpha=0.6)
+                            pitch.arrows(
+                                arrow_df['x_scaled'], arrow_df['y_scaled'], 
+                                arrow_df['x2_scaled'], arrow_df['y2_scaled'], 
+                                color=cfg['color'], width=1.8, headwidth=3, ax=ax, zorder=3, alpha=0.7
+                            )
                             legend_elements.append(Line2D([0], [0], color=cfg['color'], lw=2, label=event))
                     else:
-                        pitch.scatter(subset['x_scaled'], subset['y_scaled'], 
-                                      color=cfg['color'], marker=cfg['marker'], s=100, ax=ax, zorder=3, alpha=0.8)
+                        pitch.scatter(
+                            subset['x_scaled'], subset['y_scaled'], 
+                            color=cfg['color'], marker=cfg['marker'], s=100, ax=ax, zorder=3, alpha=0.8
+                        )
                         legend_elements.append(Line2D([0], [0], marker=cfg['marker'], color='none', 
                                                       markerfacecolor=cfg['color'], markeredgecolor=cfg['color'], 
                                                       label=event, markersize=8))
