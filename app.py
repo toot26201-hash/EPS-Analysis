@@ -41,23 +41,35 @@ if uploaded_file is not None:
             
     df.columns = df.columns.astype(str).str.strip()
     
-    # 🚨 CRITICAL FIX: Direct Positional Extraction for Action Column (Column A or B)
-    action_col_found = None
+    # 🚨 FIX 1: Extract the ACTUAL text Action column (Skip numerical/ID columns like '#')
+    act_series = None
+    
+    # Search by header name first
     for col in df.columns:
-        if col.lower().strip() in ['action', 'الأكشن', 'حدث', 'event', 'event type']:
-            action_col_found = col
-            break
-            
-    if action_col_found:
-        # Check if pandas read multiple Action columns
-        if isinstance(df[action_col_found], pd.DataFrame):
-            # Take the FIRST Action column (which contains the raw categories)
-            df['Action_Clean'] = df[action_col_found].iloc[:, 0].fillna('Other').astype(str).str.strip()
-        else:
-            df['Action_Clean'] = df[action_col_found].fillna('Other').astype(str).str.strip()
+        c_clean = col.lower().strip()
+        if c_clean in ['action', 'الأكشن', 'حدث', 'event', 'event type'] or (c_clean.startswith('action') and not c_clean.endswith('name')):
+            col_data = df[col]
+            if isinstance(col_data, pd.DataFrame):
+                col_data = col_data.iloc[:, 0]
+            # Verify it's a text column (not pure numbers like # ID)
+            if not pd.to_numeric(col_data, errors='coerce').notna().all():
+                act_series = col_data
+                break
+                
+    # Fallback: Find the first non-numeric text column if headers failed
+    if act_series is None:
+        for col in df.columns:
+            if col.strip() not in ['#', 'id', 'ID', 'no', 'No']:
+                col_data = df[col]
+                # Check if it contains actual string words
+                if col_data.dtype == 'object' and not pd.to_numeric(col_data, errors='coerce').notna().all():
+                    act_series = col_data
+                    break
+
+    if act_series is not None:
+        df['Action_Clean'] = act_series.fillna('Other').astype(str).str.strip()
     else:
-        # Fallback to column index 0 or 1 if headers are messed up
-        df['Action_Clean'] = df.iloc[:, 0].fillna('Other').astype(str).str.strip()
+        df['Action_Clean'] = 'Other'
 
     # Smart prioritization mapping for coordinate columns
     rename_dict = {}
@@ -71,7 +83,7 @@ if uploaded_file is not None:
         elif 'x1' not in rename_dict.values() and any(k == c_low or k in c_low for k in ['x1', 'x start', 'x_start', 'start x', 'start x (m)', 'pos x', 'x_coord']): rename_dict[col] = 'x1'
         elif 'y1' not in rename_dict.values() and any(k == c_low or k in c_low for k in ['y1', 'y start', 'y_start', 'start y', 'start y (m)', 'pos y', 'y_coord']): rename_dict[col] = 'y1'
         elif 'x2' not in rename_dict.values() and any(k == c_low or k in c_low for k in ['x2', 'x end', 'x_end', 'end x', 'end x (m)', 'pos x2', 'x_end_coord']): rename_dict[col] = 'x2'
-        elif 'y2' not in rename_dict.values() and any(k == c_low or k in c_low for k in ['y2', 'y end', 'y_end', 'end y', 'end y (m)', 'pos y2', 'y_end_coord']): rename_dict[col] = 'y2'
+        elif 'y2' not in rename_dict.values() and any(k == c_low or k in c_low for k in ['x2', 'y end', 'y_end', 'end y', 'end y (m)', 'pos y2', 'y_end_coord']): rename_dict[col] = 'y2'
         
         elif c_low in ['player', 'اللاعب', 'لاعب', 'player name', 'name']: rename_dict[col] = 'Player'
 
@@ -107,10 +119,10 @@ if uploaded_file is not None:
             df['x2_scaled'] = df['x2'] if 'x2' in df.columns else np.nan
             df['y2_scaled'] = df['y2'] if 'y2' in df.columns else np.nan
 
-        # 🔍 Extremely Aggressive Matcher (Regex/Substring)
+        # 🔍 FIX 2: Clean numbers out of string actions (e.g. 'Pass 001' -> 'Pass')
         def classify_action(val):
             v = str(val).lower().strip()
-            # Clean out any trailing numbers (e.g., 'pass 001' -> 'pass')
+            # Remove digits/numbers from action names
             v_alpha = ''.join([i for i in v if not i.isdigit()]).strip()
             
             if any(k in v_alpha for k in ['pass', 'تمرير', 'p/a', 'pas', 'cross', 'عرضية', 'corner', 'throw', 'progressive run']): return "Pass"
@@ -125,7 +137,7 @@ if uploaded_file is not None:
             if any(k in v_alpha for k in ['foul', 'fouls', 'خطأ', 'fouled', 'yellow', 'card']): return "Foul"
             if any(k in v_alpha for k in ['kick-off', 'بداية', 'kick off']): return "Kick-off"
             
-            cleaned_title = str(val).strip().title()
+            cleaned_title = ''.join([i for i in str(val) if not i.isdigit()]).strip().title()
             return cleaned_title if len(cleaned_title) > 0 and cleaned_title.lower() != 'other' else "Other Actions"
 
         df['Event_Type'] = df['Action_Clean'].apply(classify_action)
