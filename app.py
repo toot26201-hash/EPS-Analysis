@@ -41,27 +41,22 @@ if uploaded_file is not None:
             
     df.columns = df.columns.astype(str).str.strip()
     
-    # 🚨 FIX 1: Extract the ACTUAL text Action column (Skip numerical/ID columns like '#')
+    # 🚨 Extract actual text Action column
     act_series = None
-    
-    # Search by header name first
     for col in df.columns:
         c_clean = col.lower().strip()
         if c_clean in ['action', 'الأكشن', 'حدث', 'event', 'event type'] or (c_clean.startswith('action') and not c_clean.endswith('name')):
             col_data = df[col]
             if isinstance(col_data, pd.DataFrame):
                 col_data = col_data.iloc[:, 0]
-            # Verify it's a text column (not pure numbers like # ID)
             if not pd.to_numeric(col_data, errors='coerce').notna().all():
                 act_series = col_data
                 break
                 
-    # Fallback: Find the first non-numeric text column if headers failed
     if act_series is None:
         for col in df.columns:
             if col.strip() not in ['#', 'id', 'ID', 'no', 'No']:
                 col_data = df[col]
-                # Check if it contains actual string words
                 if col_data.dtype == 'object' and not pd.to_numeric(col_data, errors='coerce').notna().all():
                     act_series = col_data
                     break
@@ -74,30 +69,20 @@ if uploaded_file is not None:
     # Smart prioritization mapping for coordinate columns
     rename_dict = {}
     for col in df.columns:
-        c_low = col.lower()
-        if 'start x (0-1)' in c_low or 'x start (0-1)' in c_low: rename_dict[col] = 'x1'
-        elif 'start y (0-1)' in c_low or 'y start (0-1)' in c_low: rename_dict[col] = 'y1'
-        elif 'end x (0-1)' in c_low or 'x end (0-1)' in c_low: rename_dict[col] = 'x2'
-        elif 'end y (0-1)' in c_low or 'y end (0-1)' in c_low: rename_dict[col] = 'y2'
+        c_low = col.lower().strip()
+        if 'start x (0-1)' in c_low or 'x start (0-1)' in c_low or c_low == 'x1': rename_dict[col] = 'x1'
+        elif 'start y (0-1)' in c_low or 'y start (0-1)' in c_low or c_low == 'y1': rename_dict[col] = 'y1'
+        elif 'end x (0-1)' in c_low or 'x end (0-1)' in c_low or c_low == 'x2': rename_dict[col] = 'x2'
+        elif 'end y (0-1)' in c_low or 'y end (0-1)' in c_low or c_low == 'y2': rename_dict[col] = 'y2'
         
-        elif 'x1' not in rename_dict.values() and any(k == c_low or k in c_low for k in ['x1', 'x start', 'x_start', 'start x', 'start x (m)', 'pos x', 'x_coord']): rename_dict[col] = 'x1'
-        elif 'y1' not in rename_dict.values() and any(k == c_low or k in c_low for k in ['y1', 'y start', 'y_start', 'start y', 'start y (m)', 'pos y', 'y_coord']): rename_dict[col] = 'y1'
-        elif 'x2' not in rename_dict.values() and any(k == c_low or k in c_low for k in ['x2', 'x end', 'x_end', 'end x', 'end x (m)', 'pos x2', 'x_end_coord']): rename_dict[col] = 'x2'
-        elif 'y2' not in rename_dict.values() and any(k == c_low or k in c_low for k in ['x2', 'y end', 'y_end', 'end y', 'end y (m)', 'pos y2', 'y_end_coord']): rename_dict[col] = 'y2'
+        elif 'x1' not in rename_dict.values() and any(k == c_low or k in c_low for k in ['x start', 'x_start', 'start x', 'pos x', 'x_coord']): rename_dict[col] = 'x1'
+        elif 'y1' not in rename_dict.values() and any(k == c_low or k in c_low for k in ['y start', 'y_start', 'start y', 'pos y', 'y_coord']): rename_dict[col] = 'y1'
+        elif 'x2' not in rename_dict.values() and any(k == c_low or k in c_low for k in ['x end', 'x_end', 'end x', 'pos x2', 'x_end_coord']): rename_dict[col] = 'x2'
+        elif 'y2' not in rename_dict.values() and any(k == c_low or k in c_low for k in ['y end', 'y_end', 'end y', 'pos y2', 'y_end_coord']): rename_dict[col] = 'y2'
         
         elif c_low in ['player', 'اللاعب', 'لاعب', 'player name', 'name']: rename_dict[col] = 'Player'
 
     df = df.rename(columns=rename_dict)
-
-    # Fallback Mechanism for coordinates if missing
-    if 'x1' not in df.columns or 'y1' not in df.columns:
-        num_cols = df.select_dtypes(include=[np.number]).columns.tolist()
-        if len(num_cols) >= 2:
-            df['x1'] = df[num_cols[0]]
-            df['y1'] = df[num_cols[1]]
-            if len(num_cols) >= 4:
-                df['x2'] = df[num_cols[2]]
-                df['y2'] = df[num_cols[3]]
 
     if 'x1' in df.columns and 'y1' in df.columns:
         st.sidebar.success("Data loaded successfully!")
@@ -119,10 +104,9 @@ if uploaded_file is not None:
             df['x2_scaled'] = df['x2'] if 'x2' in df.columns else np.nan
             df['y2_scaled'] = df['y2'] if 'y2' in df.columns else np.nan
 
-        # 🔍 FIX 2: Clean numbers out of string actions (e.g. 'Pass 001' -> 'Pass')
+        # Clean numbers out of string actions
         def classify_action(val):
             v = str(val).lower().strip()
-            # Remove digits/numbers from action names
             v_alpha = ''.join([i for i in v if not i.isdigit()]).strip()
             
             if any(k in v_alpha for k in ['pass', 'تمرير', 'p/a', 'pas', 'cross', 'عرضية', 'corner', 'throw', 'progressive run']): return "Pass"
@@ -160,6 +144,9 @@ if uploaded_file is not None:
         available_events = sorted(df['Event_Type'].unique().tolist())
         selected_events = st.sidebar.multiselect("Select Actions to Include:", options=available_events, default=available_events)
         
+        # Option to toggle arrows or dots for passes to prevent screen clutter
+        draw_pass_arrows = st.sidebar.checkbox("Show Pass Arrows (Disable for cleaner Team view)", value=(selected_player != "All Players (Team)"))
+
         filtered_df = df
         if selected_player != "All Players (Team)" and 'Player' in df.columns:
             filtered_df = df[df['Player'].astype(str) == selected_player]
@@ -176,7 +163,7 @@ if uploaded_file is not None:
             st.metric(label="Total Filtered Events", value=len(filtered_df))
             st.write("---")
             if not filtered_df.empty:
-                st.markdown("**Event Distribution Percentages:**")
+                st.markdown("**Event Distribution:**")
                 event_counts = filtered_df['Event_Type'].value_counts()
                 st.write(event_counts)
 
@@ -211,7 +198,7 @@ if uploaded_file is not None:
             # 🔘 Visual State Two: Event Map Mode
             else:
                 event_configs = {
-                    "Pass": {"color": "#00ffcc", "marker": None, "is_arrow": True},
+                    "Pass": {"color": "#00ffcc", "marker": "o"},
                     "Shot": {"color": "#00ff00", "marker": "*"},
                     "Defensive Action": {"color": "#ff00ff", "marker": "X"},
                     "Interception": {"color": "#FFFF00", "marker": "o"},
@@ -231,19 +218,19 @@ if uploaded_file is not None:
                     
                     if subset.empty: continue
                     
-                    if cfg.get("is_arrow"):
+                    if event == "Pass" and draw_pass_arrows:
                         arrow_df = subset.dropna(subset=['x2_scaled', 'y2_scaled'])
                         if not arrow_df.empty:
                             pitch.arrows(arrow_df['x_scaled'], arrow_df['y_scaled'], 
                                          arrow_df['x2_scaled'], arrow_df['y2_scaled'], 
-                                         color=cfg['color'], width=2, ax=ax, zorder=3)
+                                         color=cfg['color'], width=1.5, headwidth=3, ax=ax, zorder=3, alpha=0.6)
                             legend_elements.append(Line2D([0], [0], color=cfg['color'], lw=2, label=event))
                     else:
                         pitch.scatter(subset['x_scaled'], subset['y_scaled'], 
-                                      color=cfg['color'], marker=cfg['marker'], s=150, ax=ax, zorder=3)
+                                      color=cfg['color'], marker=cfg['marker'], s=100, ax=ax, zorder=3, alpha=0.8)
                         legend_elements.append(Line2D([0], [0], marker=cfg['marker'], color='none', 
                                                       markerfacecolor=cfg['color'], markeredgecolor=cfg['color'], 
-                                                      label=event, markersize=10))
+                                                      label=event, markersize=8))
 
                 if legend_elements:
                     ax.legend(handles=legend_elements, loc='upper center', bbox_to_anchor=(0.5, -0.05), 
@@ -267,7 +254,6 @@ if uploaded_file is not None:
     else:
         st.error("⚠️ Spatial Matrix Error: Unable to detect structural x1/y1 spatial data column names.")
 else:
-    # Clean Initial Welcome Screen
     fig, ax = plt.subplots(figsize=(12, 8))
     pitch.draw(ax=ax)
     fig.patch.set_facecolor('#1a1a1a')
