@@ -66,6 +66,13 @@ if uploaded_file is not None:
     else:
         df['Action_Clean'] = 'Other'
 
+    # Check for Tags column to detect Goals
+    tags_col = None
+    for col in df.columns:
+        if col.lower().strip() in ['tags', 'tag', 'outcome', 'ملاحظات', 'النتيجة']:
+            tags_col = col
+            break
+
     # Smart prioritization mapping for coordinate columns
     rename_dict = {}
     for col in df.columns:
@@ -89,8 +96,7 @@ if uploaded_file is not None:
     st.sidebar.header("🔍 PITCH VISUAL FILTERS")
     
     flip_pitch = st.sidebar.checkbox("Flip Pitch Direction (Right -> Left Coding)", value=False)
-    # 🎯 أوبشن توحيد التسديدات في جنب واحد فقط
-    force_shots_one_side = st.sidebar.checkbox("Force Shots to Single Attacking Half", value=True)
+    force_shots_one_side = st.sidebar.checkbox("Force Shots/Goals to Single Attacking Half", value=True)
 
     if 'x1' in df.columns and 'y1' in df.columns:
         st.sidebar.success("Data loaded successfully!")
@@ -101,7 +107,7 @@ if uploaded_file is not None:
                     df[col] = df[col].iloc[:, 0]
                 df[col] = pd.to_numeric(df[col], errors='coerce')
         
-        # Advanced Scaling with Flip Option
+        # Advanced Scaling
         if df['x1'].max() <= 1.0 and df['y1'].max() <= 1.0:
             if flip_pitch:
                 df['x_scaled'] = (1.0 - df['x1']) * 120
@@ -126,12 +132,22 @@ if uploaded_file is not None:
                 df['x2_scaled'] = df['x2'] if 'x2' in df.columns else np.nan
                 df['y2_scaled'] = df['y2'] if 'y2' in df.columns else np.nan
 
-        # Categorize actions
-        def classify_action(val):
-            v = str(val).lower().strip()
-            v_alpha = ''.join([i for i in v if not i.isdigit()]).strip()
+        # 🎯 Dynamic Classification with Goal Isolation
+        def classify_action(row):
+            val = str(row['Action_Clean']).lower().strip()
+            v_alpha = ''.join([i for i in val if not i.isdigit()]).strip()
             
-            if any(k in v_alpha for k in ['shot', 'sh/a', 'تسديد', 'sh', 'so', 'goal', 'هدف']): return "Shot"
+            tag_val = ""
+            if tags_col and pd.notna(row[tags_col]):
+                tag_val = str(row[tags_col]).lower()
+
+            # Detect Goals from action name OR tags
+            if 'goal' in v_alpha or 'هدف' in v_alpha or 'goal' in tag_val:
+                return "Goal"
+
+            if any(k in v_alpha for k in ['shot', 'sh/a', 'تسديد', 'sh', 'so']):
+                return "Shot"
+                
             if any(k in v_alpha for k in ['pass', 'تمرير', 'p/a', 'pas', 'cross', 'عرضية', 'corner', 'throw', 'progressive run']): return "Pass"
             if any(k in v_alpha for k in ['tackle', 'تدخل', 'pressing', 'counter pressing', 'ضغط', 'counter', 'press', 'tck', 'challenge']): return "Defensive Action"
             if any(k in v_alpha for k in ['clearance', 'تشتيت', 'تخليص', 'clr', 'clear']): return "Clearance"
@@ -146,12 +162,11 @@ if uploaded_file is not None:
             cleaned_title = ''.join([i for i in str(val) if not i.isdigit()]).strip().title()
             return cleaned_title if len(cleaned_title) > 0 and cleaned_title.lower() != 'other' else "Other Actions"
 
-        df['Event_Type'] = df['Action_Clean'].apply(classify_action)
+        df['Event_Type'] = df.apply(classify_action, axis=1)
 
-        # 🎯 تطبيق تحويل التسديدات للجانب الأيمن للمرمى (Normalization to Right Goal)
+        # 🎯 Force Shots & Goals to single attacking half
         if force_shots_one_side:
-            shot_mask = df['Event_Type'] == 'Shot'
-            # Any shot originating in left half (x < 60) gets flipped to right half
+            shot_mask = df['Event_Type'].isin(['Shot', 'Goal'])
             left_shots = shot_mask & (df['x_scaled'] < 60)
             df.loc[left_shots, 'x_scaled'] = 120 - df.loc[left_shots, 'x_scaled']
             df.loc[left_shots, 'y_scaled'] = 80 - df.loc[left_shots, 'y_scaled']
@@ -203,7 +218,7 @@ if uploaded_file is not None:
                 
             ax.set_title(display_title, color='#D4AF37', fontsize=24, fontweight='bold', pad=20, ha='center')
 
-            # 🔘 Visual State One: Heatmap Rendering Mode
+            # 🔘 Visual State One: Heatmap Mode
             if map_type == "Heatmap":
                 if len(filtered_df) > 2:
                     sns.kdeplot(
@@ -223,7 +238,8 @@ if uploaded_file is not None:
             # 🔘 Visual State Two: Event Map Mode
             else:
                 event_configs = {
-                    "Shot": {"color": "#00ff00", "marker": "*", "size": 250}, # مكبرين حجم النجمة للتسديدات
+                    "Goal": {"color": "#FFD700", "marker": "*", "size": 450},       # نجمة ذهبية ضخمة للأهداف ⚽⭐
+                    "Shot": {"color": "#00ff00", "marker": "*", "size": 220},       # نجمة خضراء للتسديدات العادية
                     "Pass": {"color": "#00ffcc", "marker": "o", "size": 100},
                     "Defensive Action": {"color": "#ff00ff", "marker": "X", "size": 120},
                     "Interception": {"color": "#FFFF00", "marker": "o", "size": 100},
@@ -255,11 +271,11 @@ if uploaded_file is not None:
                     else:
                         pitch.scatter(
                             subset['x_scaled'], subset['y_scaled'], 
-                            color=cfg['color'], marker=cfg['marker'], s=cfg.get('size', 100), ax=ax, zorder=4, alpha=0.9
+                            color=cfg['color'], marker=cfg['marker'], s=cfg.get('size', 100), ax=ax, zorder=5 if event == 'Goal' else 4, alpha=0.95
                         )
                         legend_elements.append(Line2D([0], [0], marker=cfg['marker'], color='none', 
                                                       markerfacecolor=cfg['color'], markeredgecolor=cfg['color'], 
-                                                      label=event, markersize=10))
+                                                      label=event, markersize=12 if event == 'Goal' else 10))
 
                 if legend_elements:
                     ax.legend(handles=legend_elements, loc='upper center', bbox_to_anchor=(0.5, -0.05), 
